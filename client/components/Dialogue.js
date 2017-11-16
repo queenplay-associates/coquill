@@ -6,16 +6,25 @@ export default class Dialogue extends Component {
     super(props)
     this.state = { text: '' } // You can also pass a Quill Delta here
     this.handleChange = this.handleChange.bind(this)
+    console.log('the props', props)
   }
 
   handleChange(value) {
     this.setState({ text: value })
+    console.log('EDITOR', this.editor)
+    var delta = this.editor.editor.getContents()
+    console.log('DELTAAA', delta)
+    
+    console.log('the state', this.state)
   }
 
   render() {
     return (
-      <ReactQuill value={this.state.text}
-                  onChange={this.handleChange} />
+      <div>
+        <ReactQuill value={this.state.text}
+            onChange={this.handleChange}
+            ref={input => {this.editor = input}} />
+      </div>
     )
   }
 }
