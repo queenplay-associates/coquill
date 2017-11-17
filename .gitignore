@@ -7,5 +7,6 @@ functions/node_modules
 # Compilation artifacts
 public/bundle.js
 public/bundle.js.map
-functions/lib.js
 public/secrets.js
+
+functions/lib.js
