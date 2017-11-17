@@ -1,15 +1,16 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {AppContainer} from 'react-hot-loader';
-import {Editor} from './client/components'
+import { BrowserRouter } from 'react-router-dom'
 
-import App from '~/App'
+import Routes from './client/routes'
+import App from './App.jsx'
+
 
 function main() {
   render(
     <AppContainer>
-       {/* <App />  */}
-       <Editor /> 
+       <Routes />
     </AppContainer>,
     document.getElementById('main'))
 }
