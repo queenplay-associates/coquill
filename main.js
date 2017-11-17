@@ -1,7 +1,7 @@
 import React from 'react'
 import {render} from 'react-dom'
 import {AppContainer} from 'react-hot-loader';
-import {Dialogue} from './client/components'
+import {Editor} from './client/components'
 
 import App from '~/App'
 
@@ -9,7 +9,7 @@ function main() {
   render(
     <AppContainer>
        {/* <App />  */}
-       <Dialogue /> 
+       <Editor /> 
     </AppContainer>,
     document.getElementById('main'))
 }

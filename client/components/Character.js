@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactQuill from 'react-quill'; // ES6
 
-export default class Dialogue extends Component {
+export default class Character extends Component {
   constructor(props) {
     super(props)
     this.state = { text: '' } // You can also pass a Quill Delta here
@@ -21,10 +21,11 @@ export default class Dialogue extends Component {
   render() {
     return (
       <div>
-        DIALOGUE IS RENDERING
+        CHARACTER IS RENDERING
       <ReactQuill 
         value={this.state.text}  
-        onChange={this.handleChange} />
+        onChange={this.handleChange}
+        className="character" />
         </div>
     )
   }

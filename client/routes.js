@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Router} from 'react-router'
 import {Route, Switch, Redirect} from 'react-router-dom'
-import {Dialogue} from './components'
+import {Editor} from './components'
 
 class Routes extends Component {
 
@@ -9,7 +9,7 @@ class Routes extends Component {
     return (
       <Router>
           <Switch>
-            <Route path="/" component={Dialogue} />
+            <Route path="/" component={Editor} />
           </Switch>
       </Router>
     )
