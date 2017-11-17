@@ -36,6 +36,7 @@
     "minimist": "^1.2.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
+    "react-quill": "^1.1.0"
     "webpack": "^3.8.1"
   }
 }
