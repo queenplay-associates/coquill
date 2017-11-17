@@ -15,8 +15,8 @@ export default class App extends Component {
     // Create references
       // reference refers to the root of the database
       // child adds a child to the object root
-    const db = fire.database().ref('/').child('object');
-    console.log('db:',fire.database().ref('coquill-e559a'));
+    const db = fire.database().ref().child('object');
+    //console.log('db:',fire.database().ref('coquill-e559a'));
 
     // Sync object changes
     db.on('value', snap => console.log('hello?',snap.val()));
