@@ -3,6 +3,7 @@ import fire from './public/secrets';
 
 // export default () => '🔥 Ready.'
 //{ "fire": 10, "fireworks": { "garden": 10, "livingRoom": 3 }, "match": 1, "spark": 3 }
+console.log("App.jsx hit")
 
 export default class App extends Component {
   constructor() {

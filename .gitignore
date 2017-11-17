@@ -8,5 +8,5 @@ functions/node_modules
 public/bundle.js
 public/bundle.js.map
 public/secrets.js
-
+firebase-debug.log
 functions/lib.js
