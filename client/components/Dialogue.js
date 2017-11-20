@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactQuill from 'react-quill'; // ES6
+import reducer from '~/client/store/reducer'
 
 export default class Dialogue extends Component {
   constructor(props) {

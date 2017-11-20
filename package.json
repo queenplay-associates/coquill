@@ -33,6 +33,7 @@
   "dependencies": {
     "chokidar": "^1.7.0",
     "firebase": "^4.6.2",
+    "immutable": "^3.8.2",
     "minimist": "^1.2.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0",
