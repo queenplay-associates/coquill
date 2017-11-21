@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactQuill from 'react-quill'; // ES6
 
-export default class Character extends Component {
+export default class Parenthetical extends Component {
   constructor(props) {
     super(props)
     this.state = { text: '' } // You can also pass a Quill Delta here
@@ -19,12 +19,14 @@ export default class Character extends Component {
   render() {
     return (
       <div>
+        (    
         <ReactQuill 
-          value={this.state.text}  
-          onChange={this.handleChange}
-          className="character" 
-          ref={component => this.component = component} />
-      </div>
+            value={this.state.text}  
+            onChange={this.handleChange} 
+            className="parenthetical"
+            ref={component => this.component = component }/>
+        )
+     </div>
     )
   }
 }

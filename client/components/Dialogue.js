@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactQuill from 'react-quill'; // ES6
-import reducer from '~/client/store/reducer'
 
 export default class Dialogue extends Component {
   constructor(props) {
@@ -20,12 +19,12 @@ export default class Dialogue extends Component {
   render() {
     return (
       <div>       
-      <ReactQuill 
-        value={this.state.text}  
-        onChange={this.handleChange} 
-        className="dialogue"
-        ref={component => this.component = component }/>
-        </div>
+        <ReactQuill 
+          value={this.state.text}  
+          onChange={this.handleChange} 
+          className="dialogue"
+          ref={component => this.component = component }/>
+      </div>
     )
   }
 }

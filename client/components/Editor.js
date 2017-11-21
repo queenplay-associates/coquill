@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Container, Dialogue, Character} from './';
+import {Dialogue, Character, SceneHeading} from './';
 
 export default class Editor extends Component {
     constructor() {
@@ -7,33 +7,37 @@ export default class Editor extends Component {
         this.state = {
             components: []
         }
-        console.log('THE STATE', this.state)
         this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange(event) {
-        console.log('THE STATE', this.state)
-        const newComponent = {type: event.target.value}
         const newStateOfComponent = this.state.components;
-        newStateOfComponent.push(newComponent);
+        newStateOfComponent.push({type: event.target.value});
         this.setState({ components: newStateOfComponent })
     }
 
   render() {
-      console.log('TYPE COMPONENTS', typeof this.state.components)
     return (
         <div>
             <nav>
                 <button type="button"
-                    onClick={this.handleChange} value ="dialogue" >Dialogue</button> 
+                    onClick={this.handleChange} value ="sceneHeading">Scene Heading</button>
                 <button type="button"
-                    onClick={this.handleChange} value ="character" >Character</button> 
+                    onClick={this.handleChange} value ="character">Character</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="parenthetical">Action</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="dialogue">Dialogue</button> 
+                <button type="button"
+                    onClick={this.handleChange} value ="action">Action</button>   
             </nav>
             {this.state.components && this.state.components.map((component, i) =>
-                {
-                console.log("mapped component", component.type)    
+                {   
                 if (component.type === "dialogue") return <Dialogue key={i} />;
                 if (component.type === "character") return <Character key={i} />;
+                if (component.type === "sceneHeading") return <SceneHeading key={i} />;
+                if (component.type === "action") return <Action key={i} />;
+                if (component.type === "parenthetical") return <Parenthetical key={i} />;
                 })
             }
         </div>
