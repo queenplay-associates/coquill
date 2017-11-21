@@ -1,64 +1,75 @@
 import React, { Component } from 'react';
 import fire from './public/secrets';
-
-// export default () => '🔥 Ready.'
-//{ "fire": 10, "fireworks": { "garden": 10, "livingRoom": 3 }, "match": 1, "spark": 3 }
-console.log("App.jsx hit")
+import { addChar } from '~/client/store/index'
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {object: {
-      "fire": "",
-      "fireworks": {},
-      "match": "",
-       "spark": ""
-    }}
+    this.state = {
+      screenplay: {}
+    };
+    this.handleClick = this.handleClick.bind(this)
   }
 
   componentDidMount() {
-    // Get elements
-    const pObj = document.getElementById('object');
-    // Create references
-      // reference refers to the root of the database
-      // child adds a child to the object root
-     //ref for object 
-    const db = fire.database().ref().child('object');
-    //ref for fireworks
-    const fireWorkRef = db.child('fireworks');
+    const db = fire.database().ref().child('screenplay')
+        , scenes = db.child('scenes');
 
-
-    //console.log('db:',fire.database().ref('coquill-e559a'));
-
-    // Sync object changes
     db.on('value', snap => {
-      //console.log('hello?', snap.val())
-      this.setState({ object: snap.val() })
+      this.setState({ screenplay: {
+        scenes: snap.val()
+      }})
     });
 
-    fireWorkRef.on('child_added', snap => this.setState({ object: {fireworks: snap.val()}}))
+    scenes.on('child_added', snap => {
+      this.setState({
+        screenplay: {
+          key: snap.val()
+        }
+      });
+    });
 
-    fireWorkRef.on('child_changed', snap => console.log('child element changed ---> key ==', snap.key, 'val--=', snap.val()) )
-    fireWorkRef.on('child_removed', snap => {
-     console.log('child element removed ---> val =', snap.val()) 
-    })
+    scenes.on('child_changed', snap => {
+      this.setState({
+        screenplay: {
+          key: snap.val()
+        }
+      });
+    });
 
+    // scenes.on('child_removed', snap => {
+    //  console.log('child element removed ---> val =', snap.val())
+    // })
+  }
+
+  handleClick(e) {
+    e.preventDefault()
+    console.log('button clicked')
+    const testType = {
+      characters: {
+        "character_1": {
+          name: "Eleni"
+        },
+        "character_2": {
+          "name": "Guang"
+        }
+    }}
+    addChar(name)
   }
 
   render() {
-    const content = JSON.stringify(this.state.object ,null,3 )// Object.values(this.state.object)
-    const changedFire = JSON.stringify(this.state.object.fireworks, null, 3)
-    //console.log("---->",content) 
+    const content = JSON.stringify(this.state.screenplay, null, 3)
+  ,       changedFire = JSON.stringify(this.state.screenplay.key, null, 3)
+  
+
     return (
       <div>
         <h1> 🔥 Ready. </h1>
+        {/* <button onClick={this.handleClick}>I am a button!!!</button> */}
         <h2>{content}</h2>
         <p>🔥{changedFire}🔥</p>
+        
       </div>
     );
   }
 }
-
-/* NOTE-->
-db ordered alphabetically
-*/

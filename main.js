@@ -1,20 +1,29 @@
 import React from 'react'
-import {render} from 'react-dom'
-import {AppContainer} from 'react-hot-loader';
-import {BrowserRouter} from 'react-router-dom'
-
 import Routes from './client/routes'
-import App from './App.jsx'
+import { render } from 'react-dom'
+import { AppContainer } from 'react-hot-loader';
+import App from '~/App';
 
+// import { BrowserRouter as Router } from 'react-router-dom';
+// import Routes from './client/routes';
 
 function main() {
   render(
     <AppContainer>
-       <Routes />
+      <App />
+       {/*<Routes />*/}
     </AppContainer>,
     document.getElementById('main'))
 }
 
-main()
+main();
 
-module.hot && module.hot.accept('~/App', main)
+module.hot && module.hot.accept('~/App', main);
+
+/*
+dynamic:
+
+add character
+
+screenplay/scenes/scene_5/character_1
+ */
