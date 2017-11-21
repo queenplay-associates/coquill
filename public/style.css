@@ -45,6 +45,7 @@
   text-align: left;
   white-space: pre-wrap;
   word-wrap: break-word;
+  outline: none; 
 }
 .ql-editor p,
 .ql-editor ol,
@@ -938,6 +939,17 @@
 
 /* CUSTOM STYLE */
 .ql-container.ql-snow {
-   border: 1px solid #ccc; 
-  min-height: 500px;
+  /* border-left: 1px solid black;  */
+  outline: none;
+}
+
+.quill.character {
+  text-transform: uppercase;
+  position: relative;
+  left: 50%;
+}
+
+.quill.dialogue {
+  position: relative;
+  left: 20%;
 }

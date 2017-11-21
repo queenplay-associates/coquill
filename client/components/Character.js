@@ -9,6 +9,10 @@ export default class Character extends Component {
     console.log('the props', props)
   }
 
+  componentDidMount() {
+    this.component.focus()
+  }
+
   handleChange(value, delta) {
     this.setState({ text: value })
     // console.log('EDITOR', this.editor)
@@ -21,11 +25,11 @@ export default class Character extends Component {
   render() {
     return (
       <div>
-        CHARACTER IS RENDERING
       <ReactQuill 
         value={this.state.text}  
         onChange={this.handleChange}
-        className="character" />
+        className="character" 
+        ref={component => this.component = component} />
         </div>
     )
   }
