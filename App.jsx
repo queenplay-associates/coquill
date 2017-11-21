@@ -3,7 +3,6 @@ import fire from './public/secrets';
 
 // export default () => '🔥 Ready.'
 //{ "fire": 10, "fireworks": { "garden": 10, "livingRoom": 3 }, "match": 1, "spark": 3 }
-console.log("App.jsx hit")
 
 export default class App extends Component {
   constructor() {
@@ -22,7 +21,7 @@ export default class App extends Component {
     // Create references
       // reference refers to the root of the database
       // child adds a child to the object root
-     //ref for object 
+     //ref for object
     const db = fire.database().ref().child('object');
     //ref for fireworks
     const fireWorkRef = db.child('fireworks');
@@ -40,7 +39,7 @@ export default class App extends Component {
 
     fireWorkRef.on('child_changed', snap => console.log('child element changed ---> key ==', snap.key, 'val--=', snap.val()) )
     fireWorkRef.on('child_removed', snap => {
-     console.log('child element removed ---> val =', snap.val()) 
+     console.log('child element removed ---> val =', snap.val())
     })
 
   }
@@ -48,7 +47,7 @@ export default class App extends Component {
   render() {
     const content = JSON.stringify(this.state.object ,null,3 )// Object.values(this.state.object)
     const changedFire = JSON.stringify(this.state.object.fireworks, null, 3)
-    //console.log("---->",content) 
+    //console.log("---->",content)
     return (
       <div>
         <h1> 🔥 Ready. </h1>

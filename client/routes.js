@@ -1,21 +1,20 @@
-import React, {Component} from 'react'
-//import {Router} from 'react-router'
-import {Route, Switch, BrowserRouter} from 'react-router-dom'
-import {Editor} from './components'
-import App from '../App.jsx'
+import React from 'react'
 
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
+import { Editor } from './components'
+import App from '../App.jsx'
 
 const Routes = () => {
   return (
     <div>
-      <BrowserRouter>
+      <Router>
         <Switch>
           <Route exact path="/fire" component={App} />
           <Route exact path="/" component={Editor} />
         </Switch>
-      </BrowserRouter>
+      </Router>
     </div>
   )
-}
+};
 
 export default Routes

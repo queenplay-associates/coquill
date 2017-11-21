@@ -4,8 +4,6 @@ import {AppContainer} from 'react-hot-loader';
 import { BrowserRouter } from 'react-router-dom'
 
 import Routes from './client/routes'
-import App from './App.jsx'
-
 
 function main() {
   render(
@@ -15,6 +13,6 @@ function main() {
     document.getElementById('main'))
 }
 
-main()
+main();
 
-module.hot && module.hot.accept('~/App', main)
+module.hot && module.hot.accept('~/App', main);
