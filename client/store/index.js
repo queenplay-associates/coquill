@@ -5,10 +5,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import reducer from './reducer'
 import fire from '~/public/secrets';
 
-import firebase from 'firebase';
-
 const firebaseMiddleware = store => next => {
-  const ref = firebase.database().ref().child('screenplay');
+  const ref = fire.database().ref().child('screenplay');
   const listener = ref.on('child_added', snap => next(snap.val()));
   // this.unsubscribe = () => ref.off('child_added', listener)
 
