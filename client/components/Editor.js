@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dialogue, Character, SceneHeading} from './';
+import ScriptComponent from './ScriptComponent';
 
 export default class Editor extends Component {
     constructor() {
@@ -25,20 +25,20 @@ export default class Editor extends Component {
                 <button type="button"
                     onClick={this.handleChange} value ="character">Character</button>
                 <button type="button"
-                    onClick={this.handleChange} value ="parenthetical">Action</button>
+                    onClick={this.handleChange} value ="parenthetical">Parenthetical</button>
                 <button type="button"
                     onClick={this.handleChange} value ="dialogue">Dialogue</button> 
                 <button type="button"
-                    onClick={this.handleChange} value ="action">Action</button>   
+                    onClick={this.handleChange} value ="action">Action</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="transition">Transition</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="shot">Shot</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="text">Text</button>      
             </nav>
             {this.state.components && this.state.components.map((component, i) =>
-                {   
-                if (component.type === "dialogue") return <Dialogue key={i} />;
-                if (component.type === "character") return <Character key={i} />;
-                if (component.type === "sceneHeading") return <SceneHeading key={i} />;
-                if (component.type === "action") return <Action key={i} />;
-                if (component.type === "parenthetical") return <Parenthetical key={i} />;
-                })
+                { return <ScriptComponent key={i} type={component.type}/>; })
             }
         </div>
     )

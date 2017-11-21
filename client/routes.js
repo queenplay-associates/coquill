@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 //import {Router} from 'react-router'
 import {Route, Switch, BrowserRouter} from 'react-router-dom'
-import {Editor} from './components'
+import Editor from './components/Editor'
 import App from '../App.jsx'
 
 

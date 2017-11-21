@@ -939,16 +939,22 @@
 
 /* CUSTOM STYLE */
 .ql-container.ql-snow {
-  /* border-left: 1px solid black;  */
+  border-left: 1px solid black; 
   outline: none;
+  font-size: 24;
 }
-
+.quill.sceneHeading {
+  text-transform: uppercase;
+}
 .quill.character {
   text-transform: uppercase;
   position: relative;
-  left: 50%;
+  left: 45%;
 }
-
+.quill.parenthetical {
+  position: relative;
+  left: 45%;
+}
 .quill.dialogue {
   position: relative;
   left: 20%;
