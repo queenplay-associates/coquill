@@ -18,8 +18,8 @@ export default class ScriptComponent extends Component {
 
   render() {
     return (
-      <div> 
-        <ReactQuill 
+      <div>
+         <ReactQuill 
             value={this.state.text}  
             onChange={this.handleChange} 
             className={this.props.type}
