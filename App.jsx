@@ -59,7 +59,8 @@ export default class App extends Component {
 
   render() {
     const content = JSON.stringify(this.state.screenplay, null, 3)
-  , changedFire = JSON.stringify(this.state.screenplay.key, null, 3);
+  ,       changedFire = JSON.stringify(this.state.screenplay.key, null, 3)
+  
 
     return (
       <div>
