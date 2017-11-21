@@ -27,7 +27,7 @@ export default class Editor extends Component {
                 <button type="button"
                     onClick={this.handleChange} value ="parenthetical">Parenthetical</button>
                 <button type="button"
-                    onClick={this.handleChange} value ="dialogue">Dialogue</button> 
+                    onClick={this.handleChange} value ="dialogue">Dialogue</button>
                 <button type="button"
                     onClick={this.handleChange} value ="action">Action</button>
                 <button type="button"
@@ -35,7 +35,7 @@ export default class Editor extends Component {
                 <button type="button"
                     onClick={this.handleChange} value ="shot">Shot</button>
                 <button type="button"
-                    onClick={this.handleChange} value ="text">Text</button>      
+                    onClick={this.handleChange} value ="text">Text</button>
             </nav>
             {this.state.components && this.state.components.map((component, i) =>
                 { return <ScriptComponent key={i} type={component.type}/>; })
@@ -48,6 +48,6 @@ export default class Editor extends Component {
 // DROP DOWN
             // <select onChange={this.handleChange}>
             //     <option value="">Select</option>
-            //     <option value ="dialogue">Dialogue</option> 
-            //     <option value ="character">Character</option> 
+            //     <option value ="dialogue">Dialogue</option>
+            //     <option value ="character">Character</option>
             // </select>
