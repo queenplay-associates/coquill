@@ -1,20 +1,19 @@
 import React, {Component} from 'react';
-import {Container, Dialogue, Character} from './';
+import ScriptComponent from './ScriptComponent';
 
 export default class Editor extends Component {
     constructor() {
         super()
         this.state = {
-            component: ''
+            components: []
         }
-        console.log('THE STATE', this.state)
         this.handleChange = this.handleChange.bind(this)
     }
 
     handleChange(event) {
-        console.log('THE EVENT', event.target.value)
-        this.setState({component: event.target.value})
-        console.log('THE STATE AGAIN', this.state)
+        const newStateOfComponent = this.state.components;
+        newStateOfComponent.push({type: event.target.value});
+        this.setState({ components: newStateOfComponent })
     }
 
   render() {
@@ -22,11 +21,25 @@ export default class Editor extends Component {
         <div>
             <nav>
                 <button type="button"
+                    onClick={this.handleChange} value ="sceneHeading">Scene Heading</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="character">Character</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="parenthetical">Parenthetical</button>
+                <button type="button"
                     onClick={this.handleChange} value ="dialogue">Dialogue</button> 
                 <button type="button"
-                    onClick={this.handleChange} value ="character">Character</button> 
+                    onClick={this.handleChange} value ="action">Action</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="transition">Transition</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="shot">Shot</button>
+                <button type="button"
+                    onClick={this.handleChange} value ="text">Text</button>      
             </nav>
-            <Container insert={this.state.component} />
+            {this.state.components && this.state.components.map((component, i) =>
+                { return <ScriptComponent key={i} type={component.type}/>; })
+            }
         </div>
     )
   }

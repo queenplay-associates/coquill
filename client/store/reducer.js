@@ -66,7 +66,6 @@ INSERT (PUSH)
 }
 
 mw will push this object to firebase, reducer will push that to state
-
 redux -> mw -> firebase -> mw -> reducer -> state -> component
 
 DELTA
