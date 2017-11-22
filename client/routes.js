@@ -1,6 +1,7 @@
-import React, {Component} from 'react'
+import React from 'react'
+
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
-import { Editor } from './components'
+//import { Editor } from './components'
 import App from '../App.jsx'
 
 const Routes = () => {
