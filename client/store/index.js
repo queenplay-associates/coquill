@@ -33,6 +33,6 @@ const store = createStore(
   )
 );
 
-window.store = store;
+// window.store = store;
 export default store
 export * from './reducer'

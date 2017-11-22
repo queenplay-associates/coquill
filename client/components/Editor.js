@@ -1,20 +1,40 @@
 import React, {Component} from 'react';
 import ScriptComponent from './ScriptComponent';
 import fire from '~/public/secrets';
+import store from '~/client/store/index'
 
 export default class Editor extends Component {
   constructor() {
     super();
-    this.state = { screenplay: {} };
+    this.state = { 
+      screenplay: {},
+      components: []
+    };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     const db = fire.database().ref().child('screenplay');
 
+    let obj;
     db.on('value', snap => {
-      this.setState({ screenplay: snap.val()})
+      this.setState({ screenplay: snap.val()
+                      // components: snap.val().filter(type => type === 'PUSH')
+                    })
+      obj = snap.val()
     });
+
+    console.log('SNAP VAL TYPE', typeof this.state.screenplay)
+
+    let componentsArr = [];
+    console.log('this state screenplay', obj)
+    for (key in this.state.screenplay) {
+      componentsArr.push('HELLO')
+      if (this.state.screenplay.key.type === 'PUSH') componentsArr.push(this.state.screenplay.key.objectType)
+    }
+
+    this.setState({components: componentsArr})
+    console.log('COMPONENTS', componentsArr)
 
     // db.on('child_removed', snap => {
     //  console.log('child element removed ---> val =', snap.val())
@@ -22,9 +42,12 @@ export default class Editor extends Component {
   }
 
   handleChange(evt) {
-    const newStateOfComponent = this.state.screenplay;
+    // for rendering the components
+    const newStateOfComponent = this.state.components;
     newStateOfComponent.push({type: evt.target.value});
-    this.setState({ screenplay: newStateOfComponent })
+    this.setState({ components: newStateOfComponent })
+
+    store.dispatch({type: 'PUSH', objectType: evt.target.value})
   }
 
   render() {

@@ -6,11 +6,6 @@ const PUSH = 'PUSH',
       APPLY_DELTA = 'APPLY_DELTA',
       CHANGE_TYPE = 'CHANGE_TYPE'   
 
-const pushObject = objectType => ({
-  type: PUSH,
-  objectType
-});
-
 
 const reducer = (state = OrderedMap(), action) => {
   switch (action.type) {
