@@ -16,25 +16,24 @@ export default class Editor extends Component {
   componentDidMount() {
     const db = fire.database().ref().child('screenplay');
 
-    let obj;
     db.on('value', snap => {
-      this.setState({ screenplay: snap.val()
-                      // components: snap.val().filter(type => type === 'PUSH')
-                    })
-      obj = snap.val()
+      let newComponent;
+      if(snap.val().type === "PUSH") {
+        newComponent = [...components, snap.val().objectType];
+        console.log("NEW COMPONENT", newComponent)
+        // ^this might/could work if we knew how to call type 
+      }
+        this.setState({ 
+          screenplay: snap.val(), 
+          components: newComponent
+        })
     });
-
-    console.log('SNAP VAL TYPE', typeof this.state.screenplay)
-
-    let componentsArr = [];
-    console.log('this state screenplay', obj)
-    for (key in this.state.screenplay) {
-      componentsArr.push('HELLO')
-      if (this.state.screenplay.key.type === 'PUSH') componentsArr.push(this.state.screenplay.key.objectType)
-    }
-
-    this.setState({components: componentsArr})
-    console.log('COMPONENTS', componentsArr)
+    db.on('child_added', snap => {
+      console.log("SNAP", snap)
+      //DISCOVERY COMMMENTS: still don't know how to find the 'type' of each object so that we can push the objectType to components
+      //its not in snap, snap is a mess of shit that only firebase can understand
+      //oh yeah, we are trying to figure out how to render the history of actions that is stored in the firebase db (aka this.state.screenplay)
+    })
 
     // db.on('child_removed', snap => {
     //  console.log('child element removed ---> val =', snap.val())
@@ -43,9 +42,9 @@ export default class Editor extends Component {
 
   handleChange(evt) {
     // for rendering the components
-    const newStateOfComponent = this.state.components;
-    newStateOfComponent.push({type: evt.target.value});
-    this.setState({ components: newStateOfComponent })
+    // const newStateOfComponent = this.state.components;
+    // newStateOfComponent.push({type: evt.target.value});
+    // this.setState({ components: newStateOfComponent })
 
     store.dispatch({type: 'PUSH', objectType: evt.target.value})
   }
