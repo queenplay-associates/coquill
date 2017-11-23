@@ -9,8 +9,7 @@ const PUSH = 'PUSH',
 const pushObject = objectType => ({
   type: PUSH,
   objectType
-});
-
+})
 
 const reducer = (state = OrderedMap(), action) => {
   switch (action.type) {
@@ -19,10 +18,9 @@ const reducer = (state = OrderedMap(), action) => {
       type: action.objectType,
     });
 
-
   case INSERT_BEFORE:
     const itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
-    const itemsAfter = state.takeLast(state.count - itemsBefore.count)
+    const itemsAfter = state.skipUntil(({key}) => key === 'c')//state.takeLast(state.count - itemsBefore.count)
     return itemsBefore
       .set(action.actionKey, {
         type: action.objectType
@@ -34,7 +32,7 @@ const reducer = (state = OrderedMap(), action) => {
   case APPLY_DELTA:  
   case CHANGE_TYPE:
     return state.update(action.key, item => itemReducer(item, action))
-
+    
   default:
     return state
   }

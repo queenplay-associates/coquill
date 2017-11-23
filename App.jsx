@@ -20,7 +20,7 @@ export default class App extends Component {
         scenes: snap.val()
       }})
     });
-
+    /*
     scenes.on('child_added', snap => {
       this.setState({
         screenplay: {
@@ -40,6 +40,7 @@ export default class App extends Component {
     // scenes.on('child_removed', snap => {
     //  console.log('child element removed ---> val =', snap.val())
     // })
+    */
   }
 
   handleClick(e) {
@@ -58,8 +59,8 @@ export default class App extends Component {
   }
 
   render() {
-    const content = JSON.stringify(this.state.screenplay, null, 3)
-  ,       changedFire = JSON.stringify(this.state.screenplay.key, null, 3)
+    const content = JSON.stringify(this.state.screenplay, null, 3),
+         changedFire = JSON.stringify(this.state.screenplay.key, null, 3)
   
 
     return (

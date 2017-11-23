@@ -16,7 +16,6 @@ const firebaseMiddleware = store => next => {
   return action => {
     if (action.doNotSync) { return next(action) }
     const actionKey = ref.push().key;
-
     return ref.child(actionKey).set({actionKey, ...action})
   }
 };
@@ -36,7 +35,7 @@ const store = createStore(
   )
 );
 window.store = store
-
+/*
 //ex : add char in to firebase
 export const addChar = (name) => {
     //firebase ref, check if child exist, then add 
@@ -54,7 +53,7 @@ export const addChar = (name) => {
         // })
       }
     });
-}
+}*/
   
 export default store
 export * from './reducer'
