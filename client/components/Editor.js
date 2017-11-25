@@ -17,23 +17,21 @@ export default class Editor extends Component {
     const db = fire.database().ref().child('screenplay');
 
     db.on('value', snap => {
-      let newComponent;
-      if(snap.val().type === "PUSH") {
-        newComponent = [...components, snap.val().objectType];
-        console.log("NEW COMPONENT", newComponent)
-        // ^this might/could work if we knew how to call type 
+      let newComponent = [];
+      if(snap.val()) {
+        for (var snapVal in snap.val()) {
+          if(snap.val()[snapVal].type === "PUSH") {
+          newComponent.push(snap.val()[snapVal].objectType);
+          }
+        }
       }
-        this.setState({ 
-          screenplay: snap.val(), 
-          components: newComponent
-        })
+      this.setState({ 
+        screenplay: snap.val(), 
+        components: newComponent
+      })
+      console.log("SCREENPLAY", this.state.screenplay)
+      console.log("COMPONENTS", this.state.components)
     });
-    db.on('child_added', snap => {
-      console.log("SNAP", snap)
-      //DISCOVERY COMMMENTS: still don't know how to find the 'type' of each object so that we can push the objectType to components
-      //its not in snap, snap is a mess of shit that only firebase can understand
-      //oh yeah, we are trying to figure out how to render the history of actions that is stored in the firebase db (aka this.state.screenplay)
-    })
 
     // db.on('child_removed', snap => {
     //  console.log('child element removed ---> val =', snap.val())
