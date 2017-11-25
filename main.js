@@ -1,29 +1,23 @@
 import React from 'react'
-import Routes from './client/routes'
+//import Routes from './client/routes'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
-import App from '~/App';
+//import Editor from '~/client/components/Editor';
 
 // import { BrowserRouter as Router } from 'react-router-dom';
-// import Routes from './client/routes';
+import GuangApp from '~/client/components/GuangApp.jsx'
 
 function main() {
   render(
-    <AppContainer>
-      <App />
-       {/*<Routes />*/}
+  <AppContainer>
+    {/*<Editor />*/}
+    {/*<Routes />*/}
+    <GuangApp />
     </AppContainer>,
-    document.getElementById('main'))
+  document.getElementById('main'))
 }
 
 main();
 
-module.hot && module.hot.accept('~/App', main);
-
-/*
-dynamic:
-
-add character
-
-screenplay/scenes/scene_5/character_1
- */
+//module.hot && module.hot.accept('~/client/components/Editor', main);
+module.hot && module.hot.accept('~/client/components/GuangApp.jsx', main);
