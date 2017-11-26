@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ScriptComponent from './ScriptComponent';
 import fire from '~/public/secrets';
-import store from '~/client/store/index'
+import store from '~/client/store/index';
 
 export default class Editor extends Component {
   constructor() {
@@ -21,7 +21,10 @@ export default class Editor extends Component {
       if(snap.val()) {
         for (var snapVal in snap.val()) {
           if(snap.val()[snapVal].type === "PUSH") {
-          newComponent.push(snap.val()[snapVal].objectType);
+            newComponent.push([snap.val()[snapVal].objectType, snap.val()[snapVal].content]);
+          }
+          if(snap.val()[snapVal].type === "APPLY_DELTA") {
+            //call array[index of the compoent][1] (1 refers to where we input the content) = content
           }
         }
       }
@@ -29,7 +32,6 @@ export default class Editor extends Component {
         screenplay: snap.val(), 
         components: newComponent
       })
-      console.log("SCREENPLAY", this.state.screenplay)
       console.log("COMPONENTS", this.state.components)
     });
 
@@ -39,12 +41,7 @@ export default class Editor extends Component {
   }
 
   handleChange(evt) {
-    // for rendering the components
-    // const newStateOfComponent = this.state.components;
-    // newStateOfComponent.push({type: evt.target.value});
-    // this.setState({ components: newStateOfComponent })
-
-    store.dispatch({type: 'PUSH', objectType: evt.target.value})
+    store.dispatch({type: 'PUSH', objectType: evt.target.value, content: ''})
   }
 
   render() {
@@ -81,7 +78,7 @@ export default class Editor extends Component {
                   value ="text">Text</button>
         </nav>
         {this.state.components && this.state.components.map((component, i) =>
-        { return <ScriptComponent key={i} type={component.type}/>; })}
+        { return <ScriptComponent key={i} index={i} type={component}/>; })}
       </div>
     );
   }
