@@ -6,6 +6,15 @@ const PUSH = 'PUSH',
       APPLY_DELTA = 'APPLY_DELTA',
       CHANGE_TYPE = 'CHANGE_TYPE'   
 
+export const pushObject = (objectType) => ({
+  type: PUSH,
+  objectType
+})
+export const applyDelta = (delta, index) => ({
+  type: APPLY_DELTA,
+  delta,
+  componentKey: index
+})
 
 const reducer = (state = OrderedMap(), action) => {
   switch (action.type) {
@@ -13,8 +22,6 @@ const reducer = (state = OrderedMap(), action) => {
     return state.set(action.actionKey, {
       type: action.objectType,
     });
-
-
   case INSERT_BEFORE:
     const itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
     const itemsAfter = state.takeLast(state.count - itemsBefore.count)
@@ -23,10 +30,11 @@ const reducer = (state = OrderedMap(), action) => {
         type: action.objectType
       })
       .merge(itemsAfter)
-
   // Add support for INSERT_BEFORE, INSERT_AFTER
-
-  case APPLY_DELTA:  
+  case APPLY_DELTA:
+      return state.set(action.actionKey, {
+        type: action.objectType,
+      });
   case CHANGE_TYPE:
     return state.update(action.key, item => itemReducer(item, action))
 

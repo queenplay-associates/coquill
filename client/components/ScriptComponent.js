@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactQuill from 'react-quill'; // ES6
 import store from '~/client/store/index';
+//import applyDelta 
 
 export default class ScriptComponent extends Component {
   constructor(props) {
@@ -15,10 +16,9 @@ export default class ScriptComponent extends Component {
   }
 
   handleChange(value, delta) {
-    this.setState({ content: value })
-    store.dispatch({type: 'APPLY_DELTA', objectType: this.props.type, componentKey: this.props.index, content: value})
-    console.log("DELTA", delta)
-    console.log("VALUE", value)
+    //this.setState({ content: value })
+    console.log("THIS PROPS", this.props)
+    this.props.store.dispatch(applyDelta(delta, this.props.index))
   }
 
   render() {
