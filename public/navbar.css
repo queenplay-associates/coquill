@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans|Questrial');
-@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Space+Mono');
 
 * {
-    font-family: Questrial, "Times New Roman", sans-serif;
+    font-family: 'Space Mono', Roboto, Questrial, Monospace, sans-serif;
 }
 
 body {
@@ -41,7 +41,28 @@ h3:hover {
     transition: 0.15s ease-in;
 }
 
+h3:active {
+    color: #e0bd66;
+}
+
 a {
     text-decoration: none;
     color: inherit;
+}
+
+/*need to figure out how to get this to be last at all media positions of a page*/
+.footer {
+    display: flex;
+    right: 0; bottom: 0; left: 0;
+    position: absolute;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0; padding: 1rem;
+    background-color: black;
+    color: #e0bd66;
+}
+
+span {
+    padding: 0 10px;
 }
