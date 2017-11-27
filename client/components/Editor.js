@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
+import { Route, Switch } from 'react-router-dom';
 import ScriptComponent from './ScriptComponent';
 import fire from '~/public/secrets';
+
+import Navbar from './Navbar'
+// import Footer from './Footer'
 
 export default class Editor extends Component {
   constructor() {
@@ -30,46 +34,51 @@ export default class Editor extends Component {
   render() {
     const content = JSON.stringify(this.state.screenplay, null, 3);
 
+    const buttonTypes = [
+      ['sceneHeading', 'Scene Heading'],
+      ['character', 'Character'],
+      ['parenthetical', 'Parenthetical'],
+      ['dialogue', 'Dialogue'],
+      ['action', 'Action'],
+      ['transition', 'Transition'],
+      ['shot', 'Shot'],
+      ['text', 'Text']
+    ];
+
     return (
       <div>
         <h1> 🔥 Ready. </h1>
         <h2>{content}</h2>
+        <Navbar/>
+        <Switch>
+          {/*<Route path="/" component={Home} />*/}
+
+        </Switch>
         <nav>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="sceneHeading">Scene Heading</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="character">Character</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="parenthetical">Parenthetical</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value="dialogue">Dialogue</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="action">Action</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="transition">Transition</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="shot">Shot</button>
-          <button type="button"
-                  onClick={this.handleChange}
-                  value ="text">Text</button>
+          {
+            buttonTypes.map(elem => {
+              return (
+                <button key={elem[0]}
+                        type="button"
+                        onClick={this.handleChange}
+                        value={elem[0]}>{elem[1]}
+                </button>
+              )
+            })
+          }
         </nav>
-        {this.state.components && this.state.components.map((component, i) =>
-        { return <ScriptComponent key={i} type={component.type}/>; })}
+        {this.state.components && this.state.components.map((component, i) => {
+          return <ScriptComponent key={i} type={component.type}/>;
+        })}
+        {/*<Footer />*/}
       </div>
     );
   }
 }
 
 // DROP DOWN
-            // <select onChange={this.handleChange}>
-            //     <option value="">Select</option>
-            //     <option value ="dialogue">Dialogue</option>
-            //     <option value ="character">Character</option>
-            // </select>
+  // <select onChange={this.handleChange}>
+  //     <option value="">Select</option>
+  //     <option value="dialogue">Dialogue</option>
+  //     <option value="character">Character</option>
+  // </select>
