@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ScriptComponent from './ScriptComponent';
 import fire from '~/public/secrets';
-// import store from '~/client/store/index';
 import {Provider} from 'react-redux'
 import {pushObject} from '~/client/store/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
@@ -12,42 +11,13 @@ import reducer from '../store/reducer';
 export default class Editor extends Component {
   constructor() {
     super();
-    this.state = { 
-      screenplay: {},
-      components: []
-    };
+    this.state = { };
     this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.mountStoreAtRef(this.props.fireRef)
-
-    // const db = fire.database().ref().child('screenplay');
-
-    // db.on('value', snap => {
-    //    let newComponent = [];
-    //   if(snap.val()) {
-    //     for (var snapVal in snap.val()) {
-    //       if(snap.val()[snapVal].type === "PUSH") {
-    //         newComponent.push(snap.val()[snapVal].objectType);
-    //       }
-    //       if(snap.val()[snapVal].type === "APPLY_DELTA") {
-    //         //what do i do
-    //       }
-    //     }
-    //   } 
-    //   this.setState({ 
-    //     screenplay: snap.val(), 
-    //     components: newComponent
-    //   })
-    //   console.log("COMPONENTS", this.state.components)
-    // });
-
-    // db.on('child_removed', snap => {
-    //  console.log('child element removed ---> val =', snap.val())
-    // })
   }
-
 
   componentWillReceiveProps(incoming, outgoing) {
     this.mountStoreAtRef(incoming.fireRef);
@@ -65,8 +35,6 @@ export default class Editor extends Component {
       this.setState({store:null})
       return process.nextTick( () => this.mountStoreAtRef(ref))
     }
-
-    console.log('creating store...')
 
     const store = createStore(
       reducer,
@@ -103,13 +71,10 @@ export default class Editor extends Component {
     ( this.state ) ? ( {screenplay} =  this.state, {store} = this.state ) : screenplay = {} 
  
      if (!store) return null
-     console.log("state after render --->", this.state || "" )
-     
      return (
      <Provider store={store}>
          <div>
-             <p>hello content -></p>
-
+             <p>SCREENPLAY TITLE</p>
              <button type="button"
                       onClick={this.handleChange}
                       value ="sceneHeading">Scene Heading</button>
@@ -136,6 +101,7 @@ export default class Editor extends Component {
                       value ="text">Text</button>
              <p>🔥🔥</p>
              {this.props.children}
+             
          </div>
      </Provider>
      )

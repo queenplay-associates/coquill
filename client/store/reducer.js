@@ -57,7 +57,6 @@ function itemReducer(item, action) {
 
 function deltaReducer(delta=new Delta, action) {
   if (action.content) return action.content
-  // console.log(delta, action)
   return delta.compose(action.delta)
 } 
 
