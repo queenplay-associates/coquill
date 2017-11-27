@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import ScriptComponent from './ScriptComponent';
 import fire from '~/public/secrets';
 
+import "~/public/_buttons.scss";
+
 export default class Editor extends Component {
   constructor() {
     super();
@@ -37,28 +39,28 @@ export default class Editor extends Component {
         <nav>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="sceneHeading">Scene Heading</button>
+                  value="sceneHeading">Scene Heading</button>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="character">Character</button>
+                  value="character">Character</button>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="parenthetical">Parenthetical</button>
+                  value="parenthetical">Parenthetical</button>
           <button type="button"
                   onClick={this.handleChange}
                   value="dialogue">Dialogue</button>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="action">Action</button>
+                  value="action">Action</button>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="transition">Transition</button>
+                  value="transition">Transition</button>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="shot">Shot</button>
+                  value="shot">Shot</button>
           <button type="button"
                   onClick={this.handleChange}
-                  value ="text">Text</button>
+                  value="text">Text</button>
         </nav>
         {this.state.components && this.state.components.map((component, i) =>
         { return <ScriptComponent key={i} type={component.type}/>; })}
