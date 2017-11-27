@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const logo = 'https://vignette.wikia.nocookie.net/witcher/images/3/38/TW3_English_logo.png/revision/latest?cb=20150923154606';
+const logo = 'http://www.emoji.co.uk/files/mozilla-emojis/animals-nature-mozilla/11611-fire.png';
 
 export default class Navbar extends Component {
   render() {
@@ -9,11 +9,13 @@ export default class Navbar extends Component {
       <NavLink to='/'>
         <img className="logo"
              src={logo}
-             alt="coquill-logo"/>
+             alt="fire-logo"/>
       </NavLink>
-      <NavLink to='/students'><h3>Students</h3></NavLink>
-      <NavLink to='/teachers'><h3>Teachers</h3></NavLink>
-      <NavLink to='/campuses'><h3>Login</h3></NavLink>
+      <NavLink to='/about'><h3>About</h3></NavLink>
+      <NavLink to='/screenplays'><h3>Screenplays</h3></NavLink>
+      <NavLink to='/login'>
+        <h3 className="login">Login</h3>
+      </NavLink>
     </nav>
   }
 }

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans|Questrial');
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface');
+
+* {
+    font-family: Questrial, "Times New Roman", sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+nav.nav-bar {
+    top: 0;
+    z-index: 1;
+    display: flex;
+    position: fixed;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    margin: 0; padding: 0;
+    background-color: ghostwhite;
+    color: rgba(0, 0, 0, 0.9);
+    border-radius: 0 0 15px 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    width: 7%;
+    height: 7%;
+}
+
+.logo:hover {
+    transform: scale(1.1);
+    transition: 0.15s ease;
+}
+
+h3:hover {
+    color: #e0bd66;
+    transition: 0.15s ease-in;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

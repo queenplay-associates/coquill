@@ -1,10 +1,6 @@
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
 import ScriptComponent from './ScriptComponent';
 import fire from '~/public/secrets';
-
-import Navbar from './Navbar'
-// import Footer from './Footer'
 
 export default class Editor extends Component {
   constructor() {
@@ -49,11 +45,6 @@ export default class Editor extends Component {
       <div>
         <h1> 🔥 Ready. </h1>
         <h2>{content}</h2>
-        <Navbar/>
-        <Switch>
-          {/*<Route path="/" component={Home} />*/}
-
-        </Switch>
         <nav>
           {
             buttonTypes.map(elem => {
@@ -70,7 +61,6 @@ export default class Editor extends Component {
         {this.state.components && this.state.components.map((component, i) => {
           return <ScriptComponent key={i} type={component.type}/>;
         })}
-        {/*<Footer />*/}
       </div>
     );
   }

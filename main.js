@@ -2,13 +2,13 @@ import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
-import Editor from '~/client/components/Editor';
+import Root from '~/client/Root';
 
 function main() {
   render(
     <AppContainer>
       <Router>
-        <Editor />
+        <Root />
       </Router>
     </AppContainer>,
     document.getElementById('main')
@@ -17,4 +17,4 @@ function main() {
 
 main();
 
-module.hot && module.hot.accept('~/client/components/Editor', main);
+module.hot && module.hot.accept('~/client/Root', main);
