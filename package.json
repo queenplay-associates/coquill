@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "chokidar": "^1.7.0",
+    "color": "^2.0.1",
     "firebase": "^4.6.2",
     "immutable": "^3.8.2",
     "minimist": "^1.2.0",
@@ -44,6 +45,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "sentiment": "^4.1.0",
     "webpack": "^3.8.1"
   }
 }
