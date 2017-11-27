@@ -18,11 +18,15 @@ class ScriptComponent extends Component {
     this.reactQuillRef = null;
     this.attachQuillRefs = this.attachQuillRefs.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    console.log("DELTA IN CONSTRUCTOR", props.delta);
   }
 
   componentDidMount() {
     //this.reactQuillRef.focus()
-    db.on('child_added', snap => this.deltaFilter(snap.val()))//pull which related component?
+    //db.on('child_added', snap => this.deltaFilter(snap.val()))
+    if(this.props.delta.delta) {
+      this.deltaFilter(this.props.delta.delta)
+    }
   }
 
   doc = new Delta;
