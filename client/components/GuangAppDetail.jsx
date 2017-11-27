@@ -2,16 +2,21 @@ import React, { Component } from 'react'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import { createLogger } from 'redux-logger'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import {Provider} from 'react-redux'
+
 
 import reducer from '../store/reducer'
-import {Provider} from 'react-redux'
-import { firebaseMiddleware } from '~/client/store/index'
 import fire from '~/public/secrets'
+import  {pushObject} from '~/client/store/reducer'
 
-//let store;
+//TODO:
+/*
+    pass fire as prop, and pass it along 
+    use connect to mount actions and props. 
 
+*/
 const ListA = (props) => {
-    console.log("ListA props =", props.data);     
+    //console.log("ListA props =", props.data);     
     return ( 
         <div>
         <h1> 👩🏻‍🚒data from store </h1>
@@ -26,20 +31,28 @@ const ListA = (props) => {
 }
 
 export default class GuangApp extends Component {
+    constructor(){
+        super()
+        this.insertHandler = this.insertHandler.bind(this)
+        this.pushHandler = this.pushHandler.bind(this)
+        console.log("state in construction", this.state)
+    }
 
 componentDidMount() {
   console.log("did mount")
   this.mountStoreAtRef(this.props.fireRef)
-  
-  const db = fire.database().ref().child('screenplay');
+// the following show data from firebase
+//   const db = fire.database().ref().child('screenplay');
 
-  db.on('value', snap => {
-    this.setState({ screenplay: snap.val()})
-  });
+//   db.on('value', snap => {
+//     this.setState({ screenplay: snap.val()})
+//   });
 }
 
 componentWillReceiveProps(incoming, outgoing) {
     this.mountStoreAtRef(incoming.fireRef)
+    console.log("state in componentWillReceiveProps", this.state)
+    
   }
 
   componentWillUnmount() {
@@ -72,17 +85,23 @@ mountStoreAtRef(ref) {
         )
     )
     this.setState({store})
-    window.store = store
+    console.log("mountStoreAtRef", this.state)
+    
+    //window.store = store
 }
 
 insertHandler(evt){
     evt.preventDefault();
+    
+    this.state.store.dispatch({type:'INSERT_BEFORE', objectType: 'Parenthetical', beforeKey:'-KzqNkn8HeH0FBOJPp5Y'})
 }
 
 pushHandler(evt){
     evt.preventDefault();
-    
-    
+    console.log("push clicked")
+    this.state.store.dispatch(pushObject('Dialog'))
+    console.log("testAction --->", )
+    //debugger
 }
 
 render() {
@@ -91,16 +110,17 @@ render() {
    ( this.state ) ? ( {screenplay} =  this.state, {store} = this.state ) : screenplay = {} 
 
     if (!store) return null
+    console.log("state after render --->", this.state || "" )
+    
     return (
     <Provider store={store}>
         <div>
             <p>hello content -></p>
             {
                 screenplay ? <ListA data={screenplay} /> : <h2>loading </h2>
-
             }
             <button onClick={this.pushHandler}>pushHander </button>
-            <button onClick={this.insertHandler}>insertHander </button>
+            <button onClick={this.insertHandler}>insert before Hander </button>
             <p>🔥🔥</p>
         </div>
     </Provider>

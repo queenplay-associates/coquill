@@ -6,12 +6,19 @@ const PUSH = 'PUSH',
       APPLY_DELTA = 'APPLY_DELTA',
       CHANGE_TYPE = 'CHANGE_TYPE'   
 
-const pushObject = objectType => ({
+export const pushObject = (objectType) => ({
   type: PUSH,
   objectType
 })
+export const insertBefore = (objectType, beforeKey) => ({
+  type: INSERT_BEFORE,
+  objectType,
+  beforeKey
+})
 
-const reducer = (state = OrderedMap(), action) => {
+const reducer = (state = OrderedMap({}), action) => {
+  //debugger;
+  console.log("action passed in ----->", action)
   switch (action.type) {
   case PUSH:
     return state.set(action.actionKey, {
@@ -20,7 +27,7 @@ const reducer = (state = OrderedMap(), action) => {
 
   case INSERT_BEFORE:
     const itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
-    const itemsAfter = state.skipUntil(({key}) => key === 'c')//state.takeLast(state.count - itemsBefore.count)
+    const itemsAfter = state.skipUntil(({key}) => key === action.beforeKey)//state.takeLast(state.count - itemsBefore.count)
     return itemsBefore
       .set(action.actionKey, {
         type: action.objectType
