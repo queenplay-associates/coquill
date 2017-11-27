@@ -20,19 +20,18 @@ export const firebaseMiddleware = store => next => {
 // attach key here
       =>
 // hold state in store, create store in screenplay component
-*/
-
-// const store = createStore(
-//   reducer,
-//   composeWithDevTools(
-//     applyMiddleware(
-//       createLogger({collapsed: true}),
-//       firebaseMiddleware
-//     )
-//   )
-// );
-/*
 window.store = store;
+const store = createStore(
+  reducer,
+  composeWithDevTools(
+    applyMiddleware(
+      createLogger({collapsed: true}),
+      firebaseMiddleware
+    )
+  )
+);
+
+// window.store = store;
 export default store
 export * from './reducer'
 */

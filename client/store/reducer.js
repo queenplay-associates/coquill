@@ -10,19 +10,22 @@ export const pushObject = (objectType) => ({
   type: PUSH,
   objectType
 })
-export const insertBefore = (objectType, beforeKey) => ({
-  type: INSERT_BEFORE,
-  objectType,
-  beforeKey
+export const applyDelta = (delta, index) => ({
+  type: APPLY_DELTA,
+  delta,
+  componentKey: index
+})
+export const setContent = (content, componentKey) => ({
+  type: APPLY_DELTA,
+  content, componentKey,
 })
 
-const reducer = (state = OrderedMap({}), action) => {
-  //debugger;
-  console.log("action passed in ----->", action)
+const reducer = (state = OrderedMap(), action) => {
   switch (action.type) {
   case PUSH:
     return state.set(action.actionKey, {
       type: action.objectType,
+      key: action.actionKey,
     });
 
   case INSERT_BEFORE:
@@ -33,12 +36,10 @@ const reducer = (state = OrderedMap({}), action) => {
         type: action.objectType
       })
       .merge(itemsAfter)
-
   // Add support for INSERT_BEFORE, INSERT_AFTER
-
-  case APPLY_DELTA:  
+  case APPLY_DELTA:
   case CHANGE_TYPE:
-    return state.update(action.key, item => itemReducer(item, action))
+    return state.update(action.componentKey, {}, item => itemReducer(item, action))
     
   default:
     return state
@@ -55,6 +56,8 @@ function itemReducer(item, action) {
 }
 
 function deltaReducer(delta=new Delta, action) {
+  if (action.content) return action.content
+  // console.log(delta, action)
   return delta.compose(action.delta)
 } 
 
