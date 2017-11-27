@@ -5,14 +5,12 @@
  * Copyright (c) 2013, salesforce.com
  */
 
-
-
 .ql-container {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
   height: 100%;
-  margin: 0px;
+  margin: 0;
   position: relative;
 }
 .ql-container.ql-disabled .ql-tooltip {
@@ -45,7 +43,6 @@
   text-align: left;
   white-space: pre-wrap;
   word-wrap: break-word;
-  outline: none; 
 }
 .ql-editor p,
 .ql-editor ol,
@@ -939,7 +936,7 @@
 
 /* CUSTOM STYLE */
 .ql-container.ql-snow {
-  border-left: 1px solid black; 
+  border-left: 1px solid black;
   outline: none;
   font-size: 24;
 }
