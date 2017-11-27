@@ -5,14 +5,12 @@
  * Copyright (c) 2013, salesforce.com
  */
 
-
-
 .ql-container {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
   height: 100%;
-  margin: 0px;
+  margin: 0;
   position: relative;
 }
 .ql-container.ql-disabled .ql-tooltip {
@@ -37,7 +35,6 @@
   cursor: text;
   line-height: 1.42;
   height: 100%;
-  outline: none;
   overflow-y: auto;
   padding: 12px 15px;
   tab-size: 4;
@@ -45,7 +42,7 @@
   text-align: left;
   white-space: pre-wrap;
   word-wrap: break-word;
-  outline: none; 
+  outline: none;
 }
 .ql-editor p,
 .ql-editor ol,
@@ -703,7 +700,7 @@
   right: 4px;
 }
 .ql-snow .ql-icon-picker .ql-picker-options {
-  padding: 4px 0px;
+  padding: 4px 0;
 }
 .ql-snow .ql-icon-picker .ql-picker-item {
   height: 24px;
@@ -719,7 +716,7 @@
   float: left;
   height: 16px;
   margin: 2px;
-  padding: 0px;
+  padding: 0;
   width: 16px;
 }
 .ql-snow .ql-picker:not(.ql-color-picker):not(.ql-icon-picker) svg {
@@ -868,12 +865,12 @@
   border-color: #000;
 }
 .ql-toolbar.ql-snow + .ql-container.ql-snow {
-  border-top: 0px;
+  border-top: 0;
 }
 .ql-snow .ql-tooltip {
   background-color: #fff;
   border: 1px solid #ccc;
-  box-shadow: 0px 0px 5px #ddd;
+  box-shadow: 0 0 5px #ddd;
   color: #444;
   padding: 5px 12px;
   white-space: nowrap;
@@ -888,7 +885,7 @@
   border: 1px solid #ccc;
   font-size: 13px;
   height: 26px;
-  margin: 0px;
+  margin: 0;
   padding: 3px 5px;
   width: 170px;
 }
@@ -920,9 +917,9 @@
   display: inline-block;
 }
 .ql-snow .ql-tooltip.ql-editing a.ql-action::after {
-  border-right: 0px;
+  border-right: 0;
   content: 'Save';
-  padding-right: 0px;
+  padding-right: 0;
 }
 .ql-snow .ql-tooltip[data-mode=link]::before {
   content: "Enter link:";
@@ -939,9 +936,9 @@
 
 /* CUSTOM STYLE */
 .ql-container.ql-snow {
-  border-left: 1px solid black; 
+  border-left: 1px solid black;
   outline: none;
-  font-size: 24;
+  font-size: 24pt;
 }
 .quill.sceneHeading {
   text-transform: uppercase;
