@@ -30,8 +30,8 @@ const reducer = (state = OrderedMap(), action) => {
     });
 
   case INSERT_BEFORE:
-    const itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
-    const itemsAfter = state.skipUntil(({key}) => key === action.beforeKey)
+    let itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
+    let itemsAfter = state.skipUntil(({key}) => key === action.beforeKey)
     return itemsBefore
       .set(action.actionKey, {
         type: action.objectType,
@@ -40,9 +40,9 @@ const reducer = (state = OrderedMap(), action) => {
       .merge(itemsAfter)
   
   case INSERT_AFTER:
-      const itemsBefore = state.takeUntil(({key}) => key === action.afterKey)
+      itemsBefore = state.takeUntil(({key}) => key === action.afterKey)
       const after = state.get(action.afterKey)
-      const itemsAfter = state.skipUntil(({key}) => key === action.afterKey)
+      itemsAfter = state.skipUntil(({key}) => key === action.afterKey)
                               .delete(action.afterKey)
       return itemsBefore             // Everything before afterKey
         .set(action.afterKey, after) // The thing at afterKey
