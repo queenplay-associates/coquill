@@ -67,14 +67,43 @@ export default class Editor extends Component {
   }
 
   render() {
+
     let screenplay, store
     ( this.state ) ? ( {screenplay} =  this.state, {store} = this.state ) : screenplay = {} 
  
      if (!store) return null
+
+     const content = JSON.stringify(this.state.screenplay, null, 3);
+     
+         const buttonTypes = [
+           ['sceneHeading', 'Scene Heading'],
+           ['character', 'Character'],
+           ['parenthetical', 'Parenthetical'],
+           ['dialogue', 'Dialogue'],
+           ['action', 'Action'],
+           ['transition', 'Transition'],
+           ['shot', 'Shot'],
+           ['text', 'Text']
+         ];
+
      return (
      <Provider store={store}>
          <div>
              <p>SCREENPLAY TITLE</p>
+             <nav>
+                {
+                  buttonTypes.map(elem => {
+                    return (
+                      <button key={elem[0]}
+                              type="button"
+                              onClick={this.handleChange}
+                              value={elem[0]}>{elem[1]}
+                      </button>
+                    )
+                  })
+                }
+              </nav>
+{/* 
              <button type="button"
                       onClick={this.handleChange}
                       value ="sceneHeading">Scene Heading</button>
@@ -99,6 +128,7 @@ export default class Editor extends Component {
               <button type="button"
                       onClick={this.handleChange}
                       value ="text">Text</button>
+                       */}
              <p>🔥🔥</p>
              {this.props.children}
              
@@ -106,11 +136,12 @@ export default class Editor extends Component {
      </Provider>
      )
  }
+
 }
 
 // DROP DOWN
-            // <select onChange={this.handleChange}>
-            //     <option value="">Select</option>
-            //     <option value ="dialogue">Dialogue</option>
-            //     <option value ="character">Character</option>
-            // </select>
+  // <select onChange={this.handleChange}>
+  //     <option value="">Select</option>
+  //     <option value="dialogue">Dialogue</option>
+  //     <option value="character">Character</option>
+  // </select>

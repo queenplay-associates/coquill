@@ -1,5 +1,5 @@
-'use strict'
-const webpack = require('webpack')
+'use strict';
+const webpack = require('webpack');
 
 const config = env => ({
   entry: entries(env, './main.js'),
@@ -11,8 +11,6 @@ const config = env => ({
   resolve: {
     extensions: [ '.jsx', '.js', '.json' ],
     alias: {
-      // This lets us use '~' to mean 'the root of the app' in import
-      // statements.
       '~': __dirname
     }
   },
@@ -24,7 +22,7 @@ const config = env => ({
       use: babel(env),
     },
     {
-      test: /\.(jpeg|jpg|png|)$/,
+      test: /\.(jpeg|jpg|png)$/,
       use: 'url-loader',
     },
     {
@@ -37,26 +35,26 @@ const config = env => ({
     }]
   },
   plugins: plugins(env),
-})
+});
 
-const isProd = ({NODE_ENV}) => NODE_ENV === 'production'
-const isHot = env => !isProd(env)
+const isProd = ({NODE_ENV}) => NODE_ENV === 'production';
+const isHot = env => !isProd(env);
 
 const entries = (env, entry) =>
   isHot(env)
     ? ['react-hot-loader/patch', entry]
-    : entry
+    : entry;
 
 const plugins = env => isHot(env) ? [
   new webpack.HotModuleReplacementPlugin,  // Enable HMR globally
   new webpack.NamedModulesPlugin,          // Better module names in the browser
                                            // console on HMR updates
   new webpack.NoEmitOnErrorsPlugin,        // Don't emit on errors.
-] : []
+] : [];
 
 function devServer(env) {
-  if (isProd(env)) return
-  const {FIREBASE_SERVE_URL} = env
+  if (isProd(env)) return;
+  const {FIREBASE_SERVE_URL} = env;
   return {
     hot: true,
     proxy: FIREBASE_SERVE_URL && {
@@ -75,6 +73,6 @@ const babel = env => ({
     ],
     plugins: isHot(env) && ['react-hot-loader/babel']
   }
-})
+});
 
-module.exports = config(process.env)
+module.exports = config(process.env);

@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import ReactQuill from 'react-quill'; // ES6
+import ReactQuill from 'react-quill';
 import {connect} from 'react-redux';
 import {setContent, applyDelta} from '~/client/store/reducer';
 import Delta from 'quill-delta';
 import fire from '~/public/secrets';
 const db = fire.database().ref('screenplay');
 
+
 class ScriptComponent extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     //Quill props
     this.quillRef = null;
     this.reactQuillRef = null;
