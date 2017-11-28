@@ -10,9 +10,9 @@ export const pushObject = (objectType) => ({
   type: PUSH,
   objectType
 })
-export const applyDelta = (delta, index) => ({
+export const applyDelta = (value, index) => ({
   type: APPLY_DELTA,
-  delta,
+  value,
   componentKey: index
 })
 export const setContent = (content, componentKey) => ({
@@ -49,7 +49,7 @@ const reducer = (state = OrderedMap(), action) => {
 function itemReducer(item={}, action) {
   const {type} = action
   if (type === APPLY_DELTA)
-    return {...item, delta: deltaReducer(item.delta, action)}
+    return {...item, value: deltaReducer(item.value, action)}
   if (type === CHANGE_TYPE)
     return {...item, type: action.objectType}
   return item

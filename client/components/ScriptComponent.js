@@ -29,8 +29,8 @@ class ScriptComponent extends Component {
     editor.setContents(this.doc, 'silent')
   }
 
-  handleChange(value, delta) {
-    this.props.applyDelta(delta);
+  handleChange(value) {
+    this.props.applyDelta(value);
   }
 
   attachQuillRefs() {
@@ -66,8 +66,8 @@ export default connect(
     setContent(content) {
       return dispatch(setContent(content, id))
     },
-    applyDelta(delta) {
-      return dispatch(applyDelta(delta, id))
+    applyDelta(value) {
+      return dispatch(applyDelta(value, id))
     }
   })
 )(ScriptComponent)
