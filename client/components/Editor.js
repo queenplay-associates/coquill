@@ -7,6 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
+import './Editor.css'
 
 export default class Editor extends Component {
   constructor() {
@@ -78,25 +79,26 @@ export default class Editor extends Component {
      const content = JSON.stringify(this.state.screenplay, null, 3);
 
          const buttonTypes = [
-           ['sceneHeading', 'Scene Heading'],
-           ['character', 'Character'],
-           ['parenthetical', 'Parenthetical'],
-           ['dialogue', 'Dialogue'],
-           ['action', 'Action'],
-           ['transition', 'Transition'],
-           ['shot', 'Shot'],
-           ['text', 'Text']
+           ['sceneHeading', 'Scene Heading', 'regular'],
+           ['character', 'Character', 'dark'],
+           ['parenthetical', 'Parenthetical', 'green'],
+           ['dialogue', 'Dialogue', 'blue'],
+           ['action', 'Action', 'salmon'],
+           ['transition', 'Transition', 'sun'],
+           ['shot', 'Shot', 'algae'],
+           ['text', 'Text', 'flower']
          ];
 
      return (
        <Provider store={store}>
            <div>
-               <p>SCREENPLAY TITLE</p>
-               <nav>
+               {/*<h2>{screenplay.title}</h2>*/}
+               <nav className="button-container">
                   {
                     buttonTypes.map(elem => {
                       return (
-                        <button key={elem[0]}
+                        <button className={elem[2]}
+                                key={elem[0]}
                                 type="button"
                                 onClick={this.handleChange}
                                 value={elem[0]}>{elem[1]}
@@ -105,13 +107,12 @@ export default class Editor extends Component {
                     })
                   }
                 </nav>
-               <p>🔥🔥</p>
+               <p>🔥🔥 SCREENPLAY TITLE</p>
                <Script />
            </div>
       </Provider>
      )
   }
-
 }
 
 // DROP DOWN
