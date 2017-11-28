@@ -56,6 +56,7 @@ function itemReducer(item={}, action) {
   return item
 }
 
+export default reducer
 /*
 get components rendering off of this state
 dispatch (dialogue, push new dialogue)

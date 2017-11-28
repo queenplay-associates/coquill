@@ -9,14 +9,14 @@ import {db} from '~/public/secrets'
 function main() {
   render(
   <AppContainer>
-    {/*<Editor fireRef={db.ref('screenplay')}>*/}
-      {/*<Script />*/}
-    {/*</Editor>*/}
-    <App />
+    <Editor fireRef={db.ref('screenplay')}>
+      <Script />
+    </Editor>
+    {/*<App />*/}
   </AppContainer>,
   document.getElementById('main'))
 }
 
 main();
 
-module.hot && module.hot.accept('~/client/App', main);
+module.hot && module.hot.accept('~/App', main);
