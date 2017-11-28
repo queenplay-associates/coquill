@@ -1,44 +1,17 @@
 import React, {Component} from 'react';
-import ReactQuill from 'react-quill';
+import QuillEditor from './QuillEditor';
 import {connect} from 'react-redux';
-import {setContent, applyDelta} from '~/client/store/reducer';
-//import Delta from 'quill-delta';
-//import fire from '~/public/secrets';
-//const db = fire.database().ref('screenplay');
-
+import {setContent, setValue} from '~/client/store/reducer';
 
 class ScriptComponent extends Component {
   constructor(props) {
     super(props);
-    //Quill props
-    // this.quillRef = null;
-    // this.reactQuillRef = null;
-    // this.attachQuillRefs = this.attachQuillRefs.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-/*
-  doc = new Delta;
-  
-  deltaFilter(delta) {
-    const {quill, editor} = this;
-    if (quill.isEqualValue(delta, quill.lastDeltaChangeSet)) {
-      this.doc = editor.getContents();
-      return
-    }
-    this.doc = this.doc.compose(delta);
-    editor.setContents(this.doc, 'silent')
-  }
- */
   handleChange(value) {
-    this.props.applyDelta(value);
+    this.props.setValue(value);
   }
-
-  // attachQuillRefs() {
-  //   if (typeof this.reactQuillRef.getEditor !== 'function') return
-  //   const quillRef = this.reactQuillRef.getEditor();
-  //   if(quillRef) { this.quillRef = quillRef };
-  // }
 
   quillDidMount = quill => {
     this.quill = quill;
@@ -48,8 +21,7 @@ class ScriptComponent extends Component {
   render() {
     return (
       <div>
-        {/* <QuillEditor */}
-         <ReactQuill
+        <QuillEditor
             ref={this.quillDidMount}
             //ref={ el => this.reactQuillRef = el}
             defaultValue=''
@@ -67,8 +39,8 @@ export default connect(
     setContent(content) {
       return dispatch(setContent(content, id))
     },
-    applyDelta(value) {
-      return dispatch(applyDelta(value, id))
+    setValue(value) {
+      return dispatch(setValue(value, id))
     }
   })
 )(ScriptComponent)

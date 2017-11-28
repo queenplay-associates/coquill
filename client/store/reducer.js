@@ -3,20 +3,20 @@ import { OrderedMap, fromJS } from 'immutable'
 
 const PUSH = 'PUSH',
       INSERT_BEFORE = 'INSERT_BEFORE',
-      APPLY_DELTA = 'APPLY_DELTA',
-      CHANGE_TYPE = 'CHANGE_TYPE'
+      SET_VALUE = 'SET_VALUE',
+      CHANGE_TYPE = 'CHANGE_TYPE';
 
 export const pushObject = (objectType) => ({
   type: PUSH,
   objectType
 })
-export const applyDelta = (value, index) => ({
-  type: APPLY_DELTA,
+export const setValue = (value, index) => ({
+  type: SET_VALUE,
   value,
   componentKey: index
 })
 export const setContent = (content, componentKey) => ({
-  type: APPLY_DELTA,
+  type: SET_VALUE,
   content, componentKey,
 })
 
@@ -38,7 +38,7 @@ const reducer = (state = OrderedMap(), action) => {
       })
       .merge(itemsAfter)
   // Add support for INSERT_BEFORE, INSERT_AFTER
-  case APPLY_DELTA:
+  case SET_VALUE:
   case CHANGE_TYPE:
     return state.update(action.componentKey, item => itemReducer(item, action))
 
@@ -47,23 +47,14 @@ const reducer = (state = OrderedMap(), action) => {
   }
 }
 
-// add an action: paste_subtext (set_value instead of apply_delta)
-  // basically a handleChange
 function itemReducer(item={}, action) {
   const {type} = action
-  if (type === APPLY_DELTA)
+  if (type === SET_VALUE)
     return {...item, value: action.value}
   if (type === CHANGE_TYPE)
     return {...item, type: action.objectType}
   return item
 }
-/*
-function deltaReducer(value=new Delta, action) {
-  if (action.content) return action.content
-  return value.compose(action.value)
-}
- */
-export default reducer
 
 /*
 get components rendering off of this state
@@ -93,7 +84,7 @@ delta math -> apply that delta into current delta inside reducer
   content: '',
 }
 
-APPLY_DELTA (key, delta) {
+SET_VALUE (key, delta) {
   key: '',
   delta: ''
 }
