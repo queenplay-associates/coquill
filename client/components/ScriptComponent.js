@@ -1,30 +1,30 @@
 import React, {Component} from 'react';
-import ReactQuill from 'react-quill';
+import QuillEditor from './QuillEditor';
+import {connect} from 'react-redux';
+import {setContent, setValue} from '~/client/store/reducer';
 
-export default class ScriptComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: '' }; // You can also pass a Quill Delta here
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.component.focus()
-  }
-
-  handleChange(value, delta) {
-    this.setState({ text: value })
-  }
+class ScriptComponent extends Component {
+  handleChange = evt =>
+    this.props.setValue(evt.target.value)
 
   render() {
-    return (
-      <div>
-         <ReactQuill
-            value={this.state.text}
+    const {value} = this.props
+    return <textarea
+            value={value}
             onChange={this.handleChange}
             className={this.props.type}
-            ref={component => this.component = component}/>
-     </div>
-    )
+          />
   }
 }
+
+export default connect(
+  (state, {id}) => state.get(id),
+  (dispatch, {id}) => ({
+    setContent(content) {
+      return dispatch(setContent(content, id))
+    },
+    setValue(value) {
+      return dispatch(setValue(value, id))
+    }
+  })
+)(ScriptComponent)

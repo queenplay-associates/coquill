@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import reducer from './reducer'
 import fire from '~/public/secrets';
 
-const firebaseMiddleware = store => next => {
+export const firebaseMiddleware = store => next => {
   const ref = fire.database().ref().child('screenplay');
   // const listener = ref.on('child_added', snap => next(snap.val()));
   // this.unsubscribe = () => ref.off('child_added', listener)
@@ -13,7 +13,6 @@ const firebaseMiddleware = store => next => {
   return action => {
     if (action.doNotSync) { return next(action) }
     const actionKey = ref.push().key;
-
     return ref.child(actionKey).set({actionKey, ...action})
   }
 };
@@ -21,8 +20,7 @@ const firebaseMiddleware = store => next => {
 // attach key here
       =>
 // hold state in store, create store in screenplay component
-*/
-
+window.store = store;
 const store = createStore(
   reducer,
   composeWithDevTools(
@@ -33,6 +31,7 @@ const store = createStore(
   )
 );
 
-window.store = store;
+// window.store = store;
 export default store
 export * from './reducer'
+*/
