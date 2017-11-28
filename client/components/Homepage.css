@@ -45,12 +45,8 @@ a:hover {
     transition: 0.15s ease-in;
 }
 
-a:active {
+a.active {
     color: #e0bd66;
-}
-
-img.carousel-image {
-    max-height: 950px;
 }
 
 /*need to figure out how to get this to be last at all media positions of a page*/
