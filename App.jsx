@@ -1,36 +1,31 @@
-import React, { Component } from 'react';
-import fire from './public/secrets';
-import store from '~/client/store/index'
+import React from 'react';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
-export default class App extends Component {
-  constructor() {
-    super();
-    this.state = { screenplay: {} };
-  }
+import Navbar from '~/client/components/Navbar'
+import Editor from '~/client/components/Editor'
+import Footer from '~/client/components/Footer'
+import About from '~/client/components/About'
+import Screenplays from '~/client/components/Screenplays'
 
-componentDidMount() {
-  const db = fire.database().ref().child('screenplay');
+import { db } from '~/public/secrets'
 
-  db.on('value', snap => {
-    this.setState({ screenplay: snap.val()})
-  });
-
-  // db.on('child_removed', snap => {
-  //  console.log('child element removed ---> val =', snap.val())
-  // })
-}
-
-render() {
-  const content = JSON.stringify(this.state.screenplay, null, 3)
-    , changedFire = JSON.stringify(this.state.screenplay.key, null, 3);
-
-
-  return (
+export default () =>
+  <Router>
     <div>
-      <h1> 🔥 Ready. </h1>
-      <h2>{content}</h2>
-      <p>🔥{changedFire}🔥</p>
+      <Navbar/>
+      <Footer />
+        <Switch>
+          <Route exact path='/' component={() =>
+            <Editor fireRef={db.ref('screenplays').child('welcome')}/>
+          }/>
+          <Route path='/screenplays' component={Screenplays}/>
+          <Route exact path='/screenplays/:screenplayId' component={
+            ({match: {params: {screenplayId}}}) =>
+              <Editor fireRef={db.ref('screenplays').child(screenplayId)}/>
+          }/>
+          <Route path="/about" component={About}/>
+        </Switch>
     </div>
-  );
-}
-}
+  </Router>
+
+// http://localhost:8080/screenplays/blah was working for the route above
