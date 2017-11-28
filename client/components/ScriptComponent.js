@@ -9,25 +9,13 @@ const db = fire.database().ref('screenplay');
 class ScriptComponent extends Component {
   constructor(props) {
     super(props)
-    this.state = { 
-      content: '',
-      doc: new Delta
-    }
     //Quill props
     this.quillRef = null;
     this.reactQuillRef = null;
     this.attachQuillRefs = this.attachQuillRefs.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    console.log("DELTA IN CONSTRUCTOR", props.delta);
   }
 
-  componentDidMount() {
-    //this.reactQuillRef.focus()
-    //db.on('child_added', snap => this.deltaFilter(snap.val()))
-    if(this.props.delta.delta) {
-      this.deltaFilter(this.props.delta.delta)
-    }
-  }
 
   doc = new Delta;
   
@@ -59,10 +47,11 @@ class ScriptComponent extends Component {
   render() {
     return (
       <div>
+        {/* <QuillEditor */}
          <ReactQuill
             ref={this.quillDidMount}
             //ref={ el => this.reactQuillRef = el}
-            defaultValue='' 
+            defaultValue={this.props.delta}
             onChange={this.handleChange}
             className={this.props.type}
         />

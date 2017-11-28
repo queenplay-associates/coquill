@@ -39,14 +39,14 @@ const reducer = (state = OrderedMap(), action) => {
   // Add support for INSERT_BEFORE, INSERT_AFTER
   case APPLY_DELTA:
   case CHANGE_TYPE:
-    return state.update(action.componentKey, {}, item => itemReducer(item, action))
+    return state.update(action.componentKey, item => itemReducer(item, action))
     
   default:
     return state
   }
 }
 
-function itemReducer(item, action) {
+function itemReducer(item={}, action) {
   const {type} = action
   if (type === APPLY_DELTA)
     return {...item, delta: deltaReducer(item.delta, action)}

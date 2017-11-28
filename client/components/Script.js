@@ -3,15 +3,14 @@ import {connect} from 'react-redux'
 
 import ScriptComponent from './ScriptComponent'
 
-const Script = ({script}) => {
-    console.log("SCRIPT", ...script);
-    return [...script].map((elem) => {
-        console.log("mapped keys", elem)
+const Script = ({ids}) => {
+    // console.log("SCRIPT", ...script);
+    return [...ids].map((id) => {
+        console.log("mapped keys", id)
         return <ScriptComponent 
-            key={elem[1].key} 
-            id={elem[1].key} 
-            delta={elem[1]}/>
+            key={id} 
+            id={id} />
     })
 }
 
-export default connect(script => ({script}))(Script)
+export default connect(script => ({ids: script.keys()}))(Script)
