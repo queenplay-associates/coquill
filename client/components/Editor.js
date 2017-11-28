@@ -9,8 +9,6 @@ import reducer from '../store/reducer';
 import Script from '~/client/components/Script';
 import './Editor.css'
 
-import "~/public/_buttons.scss";
-
 export default class Editor extends Component {
   constructor() {
     super();
