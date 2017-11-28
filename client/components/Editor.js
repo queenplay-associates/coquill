@@ -121,9 +121,3 @@ export default class Editor extends Component {
 //     <option value="dialogue">Dialogue</option>
 //     <option value="character">Character</option>
 // </select>
-
-/*
-    <Editor fireRef={db.ref('screenplay')}>
-      <Script />
-    </Editor>
- */

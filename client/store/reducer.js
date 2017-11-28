@@ -4,7 +4,8 @@ const PUSH = 'PUSH',
       INSERT_BEFORE = 'INSERT_BEFORE',
       INSERT_AFTER = 'INSERT_AFTER',
       SET_VALUE = 'SET_VALUE',
-      CHANGE_TYPE = 'CHANGE_TYPE';
+      CHANGE_TYPE = 'CHANGE_TYPE',
+      REMOVE_OBJECT = 'REMOVE_OBJECT';
 
 export const pushObject = (objectType) => ({
   type: PUSH,
@@ -20,6 +21,9 @@ export const insertAfter = (objectType, actionKey) => ({
   objectType,
   actionKey
 })
+export const removeObject = () => ({
+  type: REMOVE_OBJECT
+})
 
 const reducer = (state = OrderedMap(), action) => {
   switch (action.type) {
@@ -28,6 +32,9 @@ const reducer = (state = OrderedMap(), action) => {
       type: action.objectType,
       key: action.actionKey,
     });
+  
+  case REMOVE_OBJECT:
+    return state.set(action.actionKey);
 
   case INSERT_BEFORE:
     let itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)

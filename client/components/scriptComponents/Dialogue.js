@@ -2,16 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setContent, setValue, insertAfter} from '~/client/store/reducer';
 
-class SceneHeading extends Component {
+class Dialogue extends Component {
 
     componentDidMount() {
         this.text.focus();
     }
 
     handleChange = evt => {
-        // if(evt.target.value.includes('\n') && evt.target.value.length === 0) {this.props.removeObject()}
-        //evt.preventDefault();
-        if(evt.target.value.includes('\n')) {this.props.insertAfter('action', this.props.id)}
+        if(evt.target.value.includes('\n')) {this.props.insertAfter('character', this.props.id)}
+        else if(evt.target.value.includes('\t')) {this.props.insertAfter('parenthetical', this.props.id)}
         else {this.props.setValue(evt.target.value) }
     }
 
@@ -35,11 +34,8 @@ export default connect(
     setValue(value) {
         return dispatch(setValue(value, id))
     },
-    insertAfter(type, id) {
-        return dispatch(insertAfter(type, id))
-    },
-    removeObject() {
-        return dispatch(removeObject())
+    insertAfter(type, key) {
+        return dispatch(insertAfter(type, key))
     }
   })
-)(SceneHeading)
+)(Dialogue)
