@@ -103,39 +103,13 @@ export default class Editor extends Component {
                   })
                 }
               </nav>
-{/* 
-             <button type="button"
-                      onClick={this.handleChange}
-                      value ="sceneHeading">Scene Heading</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value ="character">Character</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value ="parenthetical">Parenthetical</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value="dialogue">Dialogue</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value ="action">Action</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value ="transition">Transition</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value ="shot">Shot</button>
-              <button type="button"
-                      onClick={this.handleChange}
-                      value ="text">Text</button>
-                       */}
              <p>🔥🔥</p>
              {this.props.children}
              
          </div>
      </Provider>
      )
- }
+  }
 
 }
 

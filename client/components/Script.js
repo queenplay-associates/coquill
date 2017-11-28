@@ -6,7 +6,6 @@ import ScriptComponent from './ScriptComponent'
 const Script = ({ids}) => {
     // console.log("SCRIPT", ...script);
     return [...ids].map((id) => {
-        console.log("mapped keys", id)
         return <ScriptComponent 
             key={id} 
             id={id} />
