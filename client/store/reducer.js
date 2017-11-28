@@ -4,7 +4,7 @@ import { OrderedMap, fromJS } from 'immutable'
 const PUSH = 'PUSH',
       INSERT_BEFORE = 'INSERT_BEFORE',
       APPLY_DELTA = 'APPLY_DELTA',
-      CHANGE_TYPE = 'CHANGE_TYPE'   
+      CHANGE_TYPE = 'CHANGE_TYPE'
 
 export const pushObject = (objectType) => ({
   type: PUSH,
@@ -41,12 +41,14 @@ const reducer = (state = OrderedMap(), action) => {
   case APPLY_DELTA:
   case CHANGE_TYPE:
     return state.update(action.componentKey, item => itemReducer(item, action))
-    
+
   default:
     return state
   }
 }
 
+// add an action: paste_subtext (set_value instead of apply_delta)
+  // basically a handleChange
 function itemReducer(item={}, action) {
   const {type} = action
   if (type === APPLY_DELTA)
@@ -55,11 +57,11 @@ function itemReducer(item={}, action) {
     return {...item, type: action.objectType}
   return item
 }
-/* 
+/*
 function deltaReducer(value=new Delta, action) {
   if (action.content) return action.content
   return value.compose(action.value)
-} 
+}
  */
 export default reducer
 
