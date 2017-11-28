@@ -79,12 +79,12 @@ export default class Editor extends Component {
 
          const buttonTypes = [
            ['sceneHeading', 'Scene Heading'],
+           ['action', 'Action'],
            ['character', 'Character'],
            ['parenthetical', 'Parenthetical'],
            ['dialogue', 'Dialogue'],
-           ['action', 'Action'],
-           ['transition', 'Transition'],
            ['shot', 'Shot'],
+           ['transition', 'Transition'],
            ['text', 'Text']
          ];
 

@@ -6,9 +6,12 @@ import ScriptComponent from './ScriptComponent'
 const Script = ({ids}) => {
     // console.log("SCRIPT", ...script);
     return [...ids].map((id) => {
-        return <ScriptComponent 
+        console.log("id", id);
+        
+/*         return <ScriptComponent 
             key={id} 
-            id={id} />
+            id={id} /> 
+*/
     })
 }
 
