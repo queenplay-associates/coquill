@@ -3,7 +3,6 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 import Navbar from '~/client/components/Navbar'
 import Editor from '~/client/components/Editor'
-import Footer from '~/client/components/Footer'
 import About from '~/client/components/About'
 import Screenplays from '~/client/components/Screenplays'
 
@@ -13,7 +12,6 @@ export default () =>
   <Router>
     <div>
       <Navbar/>
-      <Footer />
         <Switch>
           <Route exact path='/' component={() =>
             <Editor fireRef={db.ref('screenplays').child('welcome')}/>

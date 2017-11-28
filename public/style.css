@@ -1,3 +1,14 @@
+textarea {
+  resize: none;
+  position: relative;
+  left: 5%;
+  border: dotted;
+  outline: none;
+  width: 90%;
+  overflow: hidden;
+  height: auto;
+}
+
 .sceneHeading {
   text-transform: uppercase;
 }
