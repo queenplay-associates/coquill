@@ -3,6 +3,7 @@ import { OrderedMap, fromJS } from 'immutable'
 
 const PUSH = 'PUSH',
       INSERT_BEFORE = 'INSERT_BEFORE',
+      INSERT_AFTER = 'INSERT_AFTER',
       SET_VALUE = 'SET_VALUE',
       CHANGE_TYPE = 'CHANGE_TYPE';
 
@@ -31,12 +32,25 @@ const reducer = (state = OrderedMap(), action) => {
   case INSERT_BEFORE:
     const itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
     const itemsAfter = state.skipUntil(({key}) => key === action.beforeKey)
-    //state.takeLast(state.count - itemsBefore.count)
     return itemsBefore
       .set(action.actionKey, {
-        type: action.objectType
+        type: action.objectType,
+        key: action.actionKey,
       })
       .merge(itemsAfter)
+  
+  case INSERT_AFTER:
+      const itemsBefore = state.takeUntil(({key}) => key === action.afterKey)
+      const after = state.get(action.afterKey)
+      const itemsAfter = state.skipUntil(({key}) => key === action.afterKey)
+                              .delete(action.afterKey)
+      return itemsBefore             // Everything before afterKey
+        .set(action.afterKey, after) // The thing at afterKey
+        .set(action.actionKey, {     // The new node we're inserting
+          type: action.objectType,
+          key: action.actionKey,
+        })
+        .merge(itemsAfter)           // Everything else
   // Add support for INSERT_BEFORE, INSERT_AFTER
   case SET_VALUE:
   case CHANGE_TYPE:

@@ -934,25 +934,36 @@
   color: #06c;
 }
 
+textarea {
+  resize: none;
+  position: relative;
+  left: 5%;
+  border: dotted;
+  outline: none;
+  width: 90%;
+  overflow: hidden;
+  height: auto;
+}
+
 /* CUSTOM STYLE */
 .ql-container.ql-snow {
   border-left: 1px solid black;
   outline: none;
   font-size: 24;
 }
-.quill.sceneHeading {
+.sceneHeading {
   text-transform: uppercase;
 }
-.quill.character {
+.character {
   text-transform: uppercase;
   position: relative;
   left: 45%;
 }
-.quill.parenthetical {
+.parenthetical {
   position: relative;
   left: 45%;
 }
-.quill.dialogue {
+.dialogue {
   position: relative;
   left: 20%;
 }

@@ -91,6 +91,7 @@ export default class Editor extends Component {
      return (
        <Provider store={store}>
            <div>
+              <br />
                <p>SCREENPLAY TITLE</p>
                <nav>
                   {
