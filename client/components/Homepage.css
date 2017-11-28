@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Questrial');
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Questrial|Roboto+Mono|Space+Mono');
 
 * {
     font-family: 'Space Mono', 'Roboto Mono', Questrial, Monospace, sans-serif;
@@ -36,18 +35,22 @@ nav.nav-bar {
     transition: 0.15s ease;
 }
 
-h3:hover {
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
     color: #e0bd66;
     transition: 0.15s ease-in;
 }
 
-h3:active {
+a:active {
     color: #e0bd66;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
+img.carousel-image {
+    max-height: 950px;
 }
 
 /*need to figure out how to get this to be last at all media positions of a page*/

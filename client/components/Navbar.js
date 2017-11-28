@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './Navbar.css'
+import './Homepage.css'
 
 const logo = 'http://www.emoji.co.uk/files/mozilla-emojis/animals-nature-mozilla/11611-fire.png';
 
