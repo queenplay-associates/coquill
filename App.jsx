@@ -1,6 +1,5 @@
 import React from 'react';
 import fire from './public/secrets';
-import store from '~/client/store/index'
 
 export default () => {
   const content = JSON.stringify(this.state.screenplay, null, 3)
