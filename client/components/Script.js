@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-//import ScriptComponent from './ScriptComponent';
 import SceneHeading from './scriptComponents/SceneHeading';
 import Action from './scriptComponents/Action';
 import Character from './scriptComponents/Character';
@@ -14,7 +13,6 @@ import Text from './scriptComponents/Text';
 const Script = ({script, store}) => {
     console.log("SCRIPT", ...script)
     console.log("store", store)
-
 
     return [...script.keys()].map((key) => {
         console.log("key", key)
