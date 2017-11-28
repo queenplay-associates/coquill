@@ -6,7 +6,7 @@ import Carousel from '~/client/components/Carousel'
 import Editor from '~/client/components/Editor'
 import Footer from '~/client/components/Footer'
 
-import {db} from '~/public/secrets'
+import { db } from '~/public/secrets'
 
 export default () =>
   <Router>
@@ -22,3 +22,5 @@ export default () =>
         </Switch>
     </div>
   </Router>
+
+// http://localhost:8080/screenplays/blah was working for the route above
