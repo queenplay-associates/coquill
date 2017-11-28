@@ -1,15 +1,24 @@
 import React from 'react';
-import fire from './public/secrets';
+import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 
-export default () => {
-  const content = JSON.stringify(this.state.screenplay, null, 3)
-    //, changedFire = JSON.stringify(this.state.screenplay.key, null, 3);
+import Navbar from '~/client/components/Navbar'
+import Carousel from '~/client/components/Carousel'
+import Editor from '~/client/components/Editor'
+import Footer from '~/client/components/Footer'
 
-  return (
+import {db} from '~/public/secrets'
+
+export default () =>
+  <Router>
     <div>
-      <h1> 🔥 Ready.Guang bb go </h1>
-      <h2>{content}</h2>
-      <p>🔥{}🔥</p>
+      <Navbar/>
+      <Footer />
+        <Switch>
+          <Route exact path='/' component={Carousel}/>
+          <Route exact path='/screenplays/:screenplayId' component={
+            ({match: {params: {screenplayId}}}) =>
+              <Editor fireRef={db.ref('screenplays').child(screenplayId)}/>
+          }/>
+        </Switch>
     </div>
-  );
-};
+  </Router>
