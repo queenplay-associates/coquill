@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
-import './Editor.css';
+import './style/Editor.css';
 
 export default class Editor extends Component {
   constructor() {
@@ -32,11 +32,11 @@ export default class Editor extends Component {
     if(this.state && this.state.store) {
       this.unsubscribe && this.unsubscribe()
       this.unsubscribe = null;
-
+console.log("screenplay title: ", this,state);
       this.setState({store:null})
       return process.nextTick( () => this.mountStoreAtRef(ref))
     }
-
+    
     const store = createStore(
       reducer,
       composeWithDevTools(
@@ -91,7 +91,6 @@ export default class Editor extends Component {
      return (
        <Provider store={store}>
            <div>
-               {/*<h2>{screenplay.title}</h2>*/}
                <nav className="button-container">
                   {
                     buttonTypes.map(elem => {
@@ -107,6 +106,7 @@ export default class Editor extends Component {
                   }
                 </nav>
                <p className="title">SCREENPLAY TITLE</p>
+               {/* {console.log("screenplay title: ", ref)} */}
                <Script />
            </div>
       </Provider>
