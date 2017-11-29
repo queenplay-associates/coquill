@@ -13,7 +13,6 @@ export default () =>
   <Router>
     <div>
       <Navbar/>
-      <Footer />
         <Switch>
           <Route exact path='/' component={() =>
             <Editor fireRef={db.ref('screenplays').child('welcome')}/>

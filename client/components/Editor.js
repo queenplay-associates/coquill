@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
-import './Editor.css'
+import './Editor.css';
 
 export default class Editor extends Component {
   constructor() {
@@ -79,14 +79,14 @@ export default class Editor extends Component {
      const content = JSON.stringify(this.state.screenplay, null, 3);
 
          const buttonTypes = [
-           ['sceneHeading', 'Scene Heading', 'regular'],
-           ['character', 'Character', 'dark'],
-           ['parenthetical', 'Parenthetical', 'green'],
-           ['dialogue', 'Dialogue', 'blue'],
-           ['action', 'Action', 'salmon'],
-           ['transition', 'Transition', 'sun'],
-           ['shot', 'Shot', 'algae'],
-           ['text', 'Text', 'flower']
+           ['sceneHeading', 'Scene Heading'],
+           ['action', 'Action'],
+           ['character', 'Character'],
+           ['parenthetical', 'Parenthetical'],
+           ['dialogue', 'Dialogue'],
+           ['shot', 'Shot'],
+           ['transition', 'Transition'],
+           ['text', 'Text']
          ];
 
      return (
@@ -107,7 +107,7 @@ export default class Editor extends Component {
                     })
                   }
                 </nav>
-               <p>🔥🔥 SCREENPLAY TITLE</p>
+               <p className="title">SCREENPLAY TITLE</p>
                <Script />
            </div>
       </Provider>
@@ -121,9 +121,3 @@ export default class Editor extends Component {
 //     <option value="dialogue">Dialogue</option>
 //     <option value="character">Character</option>
 // </select>
-
-/*
-    <Editor fireRef={db.ref('screenplay')}>
-      <Script />
-    </Editor>
- */
