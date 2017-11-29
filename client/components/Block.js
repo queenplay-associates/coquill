@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {setContent, setValue, insertAfter, removeObject} from '~/client/store/reducer';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { setContent, setValue, insertAfter, removeObject } from '~/client/store/reducer'
 
 import '~/public/assets/Components.css';
 
@@ -14,9 +14,6 @@ class Block extends Component {
     }
 
     handleKeyPress = evt => {
-        console.log('EVNT TYPE', evt.key)
-        console.log('EVNT KEYCODE', evt.keyCode)
-
         if (evt.keyCode === 9) evt.preventDefault()
         if (evt.key === 'Enter') {
             evt.preventDefault()
@@ -43,6 +40,9 @@ class Block extends Component {
     }
 }
 
+// const setVal = (dispatch, {id}) =>
+//   setValue(val => dispatch(setValue(val, id)));
+
 export const Action = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
@@ -66,6 +66,9 @@ export const Parenthetical = connect(
     },
     insertNext() {
         return dispatch(insertAfter('dialogue', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
@@ -78,6 +81,9 @@ export const SceneHeading = connect(
     },
     insertNext() {
         return dispatch(insertAfter('action', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
@@ -90,6 +96,9 @@ export const Text = connect(
     },
     insertNext() {
         return dispatch(insertAfter('text', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
@@ -102,6 +111,9 @@ export const Dialogue = connect(
     },
     insertNext() {
         return dispatch(insertAfter('character', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
@@ -114,6 +126,9 @@ export const Character = connect(
     },
     insertNext() {
         return dispatch(insertAfter('dialogue', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
@@ -126,6 +141,9 @@ export const Shot = connect(
     },
     insertNext() {
         return dispatch(insertAfter('action', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
@@ -138,6 +156,9 @@ export const Transition = connect(
     },
     insertNext() {
         return dispatch(insertAfter('sceneHeading', id))
+    },
+    deleteObject() {
+      return dispatch(removeObject(id))
     }
   })
 )(Block)
