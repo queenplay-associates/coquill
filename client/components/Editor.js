@@ -7,6 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
+import './Editor.css'
 
 export default class Editor extends Component {
   constructor() {
@@ -93,11 +94,13 @@ export default class Editor extends Component {
            <div>
               <br />
                <p>SCREENPLAY TITLE</p>
-               <nav>
+               {/*<h2>{screenplay.title}</h2>*/}
+               <nav className="button-container">
                   {
                     buttonTypes.map(elem => {
                       return (
-                        <button key={elem[0]}
+                        <button className={elem[2]}
+                                key={elem[0]}
                                 type="button"
                                 onClick={this.handleChange}
                                 value={elem[0]}>{elem[1]}
@@ -106,13 +109,12 @@ export default class Editor extends Component {
                     })
                   }
                 </nav>
-               <p>🔥🔥</p>
+               <p>🔥🔥 SCREENPLAY TITLE</p>
                <Script />
            </div>
       </Provider>
      )
   }
-
 }
 
 // DROP DOWN
