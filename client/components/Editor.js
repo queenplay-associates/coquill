@@ -99,7 +99,7 @@ export default class Editor extends Component {
              )
            }
          </nav>
-         <p className="title">SCREENPLAY TITLE</p>
+         <p className="title">{(this.props.title).toUpperCase()}</p>
          {/* {console.log("screenplay title: ", ref)} */}
          <Script />
       </div>
