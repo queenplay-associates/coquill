@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
-import './Editor.css'
+import './Editor.css';
 
 export default class Editor extends Component {
   constructor() {
@@ -92,8 +92,6 @@ export default class Editor extends Component {
      return (
        <Provider store={store}>
            <div>
-              <br />
-               <p>SCREENPLAY TITLE</p>
                {/*<h2>{screenplay.title}</h2>*/}
                <nav className="button-container">
                   {
@@ -109,7 +107,7 @@ export default class Editor extends Component {
                     })
                   }
                 </nav>
-               <p>🔥🔥 SCREENPLAY TITLE</p>
+               <p className="title">SCREENPLAY TITLE</p>
                <Script />
            </div>
       </Provider>

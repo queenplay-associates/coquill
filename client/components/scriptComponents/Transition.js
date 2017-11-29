@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setContent, setValue, insertAfter} from '~/client/store/reducer';
 
+import './Components.css';
+
 class Transition extends Component {
 
     componentDidMount() {

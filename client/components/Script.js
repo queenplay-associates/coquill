@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-//import ScriptComponent from './ScriptComponent';
 import SceneHeading from './scriptComponents/SceneHeading';
 import Action from './scriptComponents/Action';
 import Character from './scriptComponents/Character';
@@ -12,12 +11,7 @@ import Transition from './scriptComponents/Transition';
 import Text from './scriptComponents/Text';
 
 const Script = ({script}) => {
-    //console.log("SCRIPT", ...script)
-    //console.log("store", store)
-    
-
     return [...script.keys()].map((key) => {
-        //console.log("key", key)
         if (script.get(key).type === 'sceneHeading') { return <SceneHeading key={key} id={key} />}
         if (script.get(key).type === 'action') { return <Action key={key} id={key} />}
         if (script.get(key).type === 'character') { return <Character key={key} id={key} />}
@@ -33,8 +27,6 @@ const Script = ({script}) => {
 
 export default connect(script => 
       {
-          //console.log(script.get().type)
-          //console.log("script from connect", [...script.keys()])
         return {script}
       }
     )(Script)

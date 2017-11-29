@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setContent, setValue, insertAfter} from '~/client/store/reducer';
 
+import './Components.css';
+
 class Action extends Component {
 
     componentDidMount() {
@@ -10,11 +12,8 @@ class Action extends Component {
 
     handleChange = evt => {
         evt.preventDefault()        
-        if(evt.target.value.includes('\n')) {
-            console.log("insert before action ------------------>",this.props.id)
-            
-            this.props.insertAfter('action', this.props.id) // insert action com
-            
+        if(evt.target.value.includes('\n')) {         
+            this.props.insertAfter('action', this.props.id) // insert action com      
         }
         else {this.props.setValue(evt.target.value) }
     }
