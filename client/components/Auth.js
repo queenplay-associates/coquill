@@ -11,24 +11,25 @@ export default class Auth extends Component {
     }
     componentDidMount(){
         this.props.fireRef.on('value', snapshot => {
-           
+
         })
     }
 
     handleGoogleClick = evt => {
         evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
-        
+
         firebase.auth().signInWithPopup(provider).then(result => {
             const token = result.credential.accessToken;
             const user = result.user;
             this.props.fireRef.once('value', snap => {
-               // check (!user.uid) 
+               // checkUser (!user.uid)
                 const {email, displayName, photoURL} = user
                 const permissions = [
                     {id: 'blah', access: 'read'},
                     {id: 'screen', access: 'admin'}
                 ] // key or id
+
                 snap.ref.push({
                     email,
                     displayName,
@@ -42,21 +43,18 @@ export default class Auth extends Component {
         });
     }
 
-    handleAnonymousClick =evt => {
+    handleAnonymousClick = evt => {
         evt.preventDefault()
         //FIXME: this can be a promise thing
         firebase.auth().signInAnonymously().then(
-            firebase.auth().onAuthStateChanged(function (user) {
+            firebase.auth().onAuthStateChanged(user => {
                 let isAnonymous, uid;
                 user
                     ? (isAnonymous = user.isAnonymous,
                         uid = user.uid)
-                    :
-                    console.log("user singed out")
-            })
-        ).catch(function (error) {
-            console.log(error.code, error.message)
-        })
+                    : console.log("user signed out")
+            }))
+          .catch(error => console.log(error.code, error.message))
     }
 
     handleSignOutClick = evt => {
