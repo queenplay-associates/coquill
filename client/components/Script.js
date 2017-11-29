@@ -13,15 +13,14 @@ import {
 } from './Block';
 
 const Script = ({script}) => {
+    let i = 0;
     return [...script.keys()].map(key => {
         const keyType = script.get(key).type;
-        let i = 0;
 
         if (keyType === 'sceneHeading') {
             i++;
-          return <span className="sceneNumber">{i}
-             <SceneHeading key={key} id={key}/>
-          </span>
+          return [<span className="sceneNumber">{i}</span>,
+             <SceneHeading key={key} id={key}/>]
         }
         if (keyType === 'action') return <Action key={key} id={key} />
         if (keyType === 'character') return <Character key={key} id={key} />

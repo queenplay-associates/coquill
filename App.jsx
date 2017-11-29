@@ -16,7 +16,7 @@ export default () =>
           <Route exact path='/' component={() =>
             <Editor title={'🔥 Welcome to Coquill 🔥'} fireRef={db.ref('screenplays').child('welcome')}/>
           }/>
-          {/* <Route path='/screenplays' component={Screenplays}/> */}
+           <Route exact path='/screenplays' component={Screenplays}/>  
           <Route exact path='/screenplays/:screenplayId' component={
             ({match: {params: {screenplayId}}}) =>
               <Editor title={screenplayId} fireRef={db.ref('screenplays').child(screenplayId)}/>
