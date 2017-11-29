@@ -28,8 +28,9 @@ export const insertBefore = (objectType, beforeKey) => ({
   beforeKey
 })
 
-export const removeObject = () => ({
-  type: REMOVE_OBJECT
+export const removeObject = (id) => ({
+  type: REMOVE_OBJECT,
+  id
 })
 
 const reducer = (state = OrderedMap(), action) => {
@@ -42,7 +43,7 @@ const reducer = (state = OrderedMap(), action) => {
     });
   
   case REMOVE_OBJECT:
-    return state.set(action.actionKey);
+    return state.delete(action.id);
 
   case INSERT_BEFORE:
     let itemsBefore = state.takeUntil(({key}) => key === action.beforeKey)
