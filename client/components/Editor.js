@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import {Provider} from 'react-redux'
-import {pushObject} from '~/client/store/reducer';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux'
+import { pushObject } from '~/client/store/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
@@ -12,8 +12,7 @@ import '~/public/assets/Editor.css';
 export default class Editor extends Component {
   constructor() {
     super();
-    this.state = { };
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {};
   }
 
   componentDidMount() {
@@ -29,12 +28,12 @@ export default class Editor extends Component {
   }
 
   mountStoreAtRef(ref) {
-    if(this.state && this.state.store) {
+    if (this.state && this.state.store) {
       this.unsubscribe && this.unsubscribe()
-      this.unsubscribe = null;
-console.log("screenplay title: ", this,state);
+        this.unsubscribe = null;
+      console.log("screenplay title:", this,state);
       this.setState({store:null})
-      return process.nextTick( () => this.mountStoreAtRef(ref))
+      return process.nextTick(() => this.mountStoreAtRef(ref))
     }
 
     const store = createStore(
@@ -52,7 +51,7 @@ console.log("screenplay title: ", this,state);
             this.unsubscribe = () => ref.off('child_added', dispatchSnapshot)
 
             return action => {
-              if(action.doNotSync) { return next(action) }
+              if(action.doNotSync) return next(action)
               const actionKey = ref.push().key;
               return ref.child(actionKey).set({actionKey, ...action})
             }
@@ -63,7 +62,7 @@ console.log("screenplay title: ", this,state);
     this.setState({store})
   }
 
-  handleChange(evt) {
+  handleChange = evt => {
     this.state.store.dispatch(pushObject(evt.target.value))
   }
 
@@ -73,44 +72,38 @@ console.log("screenplay title: ", this,state);
       ? ( {screenplay} =  this.state, {store} = this.state )
       : screenplay = {}
 
-     if (!store) return null
+    if (!store) return null
 
-     const content = JSON.stringify(this.state.screenplay, null, 3);
+    const buttonTypes = [
+      ['sceneHeading', 'Scene Heading'],
+      ['action', 'Action'],
+      ['character', 'Character'],
+      ['parenthetical', 'Parenthetical'],
+      ['dialogue', 'Dialogue'],
+      ['shot', 'Shot'],
+      ['transition', 'Transition'],
+      ['text', 'Text']
+    ];
 
-         const buttonTypes = [
-           ['sceneHeading', 'Scene Heading'],
-           ['action', 'Action'],
-           ['character', 'Character'],
-           ['parenthetical', 'Parenthetical'],
-           ['dialogue', 'Dialogue'],
-           ['shot', 'Shot'],
-           ['transition', 'Transition'],
-           ['text', 'Text']
-         ];
-
-     return (
-       <Provider store={store}>
-           <div>
-               <nav className="button-container">
-                  {
-                    buttonTypes.map(elem => {
-                      return (
-                        <button className={elem[2]}
-                                key={elem[0]}
-                                type="button"
-                                onClick={this.handleChange}
-                                value={elem[0]}>{elem[1]}
-                        </button>
-                      )
-                    })
-                  }
-                </nav>
-               <p className="title">SCREENPLAY TITLE</p>
-               {/* {console.log("screenplay title: ", ref)} */}
-               <Script />
-           </div>
-      </Provider>
-     )
+    return <Provider store={store}>
+      <div>
+         <nav className="button-container">
+           {
+             buttonTypes.map(elem =>
+               <button className={elem[2]}
+                       key={elem[0]}
+                       type="button"
+                       onClick={this.handleChange}
+                       value={elem[0]}>{elem[1]}
+               </button>
+             )
+           }
+         </nav>
+         <p className="title">SCREENPLAY TITLE</p>
+         {/* {console.log("screenplay title: ", ref)} */}
+         <Script />
+      </div>
+    </Provider>
   }
 }
 
