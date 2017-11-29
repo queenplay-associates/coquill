@@ -9,6 +9,7 @@ import { db } from '~/public/secrets'
 
 export default () =>
   {
+    console.log('screenplays', db.ref('screenplays'))
     db.ref('screenplays').map(screenplay =>
       <div>
         <h3>{`${screenplay.id}. ${screenplay.title.toUpperCase()}`}</h3>
