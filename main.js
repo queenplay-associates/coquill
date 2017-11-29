@@ -3,10 +3,11 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader';
 import App from '~/App'
 
-function main() {
+
+const main = () => {
   render(
   <AppContainer>
-    <App/>
+    <App />
   </AppContainer>,
   document.getElementById('main'))
 }
