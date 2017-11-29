@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
-import '~/public/assets/Editor.css';
+import '~/public/assets/Buttons.css';
 
 export default class Editor extends Component {
   constructor() {
