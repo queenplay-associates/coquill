@@ -15,8 +15,14 @@ import {
 const Script = ({script}) => {
     return [...script.keys()].map(key => {
         const keyType = script.get(key).type;
+        let i = 0;
 
-        if (keyType === 'sceneHeading') return <SceneHeading key={key} id={key} />
+        if (keyType === 'sceneHeading') {
+            i++;
+          return <span className="sceneNumber">{i}
+             <SceneHeading key={key} id={key}/>
+          </span>
+        }
         if (keyType === 'action') return <Action key={key} id={key} />
         if (keyType === 'character') return <Character key={key} id={key} />
         if (keyType === 'parenthetical') return <Parenthetical key={key} id={key} />
