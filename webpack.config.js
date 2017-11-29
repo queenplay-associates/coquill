@@ -27,7 +27,7 @@ const config = env => ({
     },
     {
       test: /\.css$/,
-      use: ['assets-loader', 'css-loader']
+      use: ['style-loader', 'css-loader']
     },
     {
       test: /\.(txt|md|markdown)$/,
