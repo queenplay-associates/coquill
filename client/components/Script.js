@@ -1,7 +1,7 @@
-import React from 'react';
-import {connect} from 'react-redux';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import { 
+import {
     SceneHeading,
     Action,
     Character,
@@ -13,21 +13,20 @@ import {
 } from './Block';
 
 const Script = ({script}) => {
-    return [...script.keys()].map((key) => {
-        if (script.get(key).type === 'sceneHeading') { return <SceneHeading key={key} id={key} />}
-        if (script.get(key).type === 'action') { return <Action key={key} id={key} />}
-        if (script.get(key).type === 'character') { return <Character key={key} id={key} />}
-        if (script.get(key).type === 'parenthetical') { return <Parenthetical key={key} id={key} />}
-        if (script.get(key).type === 'dialogue') { return <Dialogue key={key} id={key} />}
-        if (script.get(key).type === 'shot') { return <Shot key={key} id={key} />}
-        if (script.get(key).type === 'transition') { return <Transition key={key} id={key} />}
-        if (script.get(key).type === 'text') { return <Text key={key} id={key} />}
+    return [...script.keys()].map(key => {
+        const keyType = script.get(key).type;
+
+        if (keyType === 'sceneHeading') return <SceneHeading key={key} id={key} />
+        if (keyType === 'action') return <Action key={key} id={key} />
+        if (keyType === 'character') return <Character key={key} id={key} />
+        if (keyType === 'parenthetical') return <Parenthetical key={key} id={key} />
+        if (keyType === 'dialogue') return <Dialogue key={key} id={key} />
+        if (keyType === 'shot') return <Shot key={key} id={key} />
+        if (keyType === 'transition') return <Transition key={key} id={key} />
+        if (keyType === 'text') return <Text key={key} id={key} />
     })
 }
-
-//export default connect(script => ({script}))(Script)
 
 export default connect(script => {
     return {script}
 })(Script)
-

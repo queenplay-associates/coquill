@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setContent, setValue, insertAfter, removeObject} from '~/client/store/reducer';
 
-import './style/Components.css';
+import '~/public/assets/Components.css';
 
 class Block extends Component {
     componentDidMount() {

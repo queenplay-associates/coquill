@@ -3,7 +3,6 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 
 import Navbar from '~/client/components/Navbar'
 import Editor from '~/client/components/Editor'
-import Footer from '~/client/components/Footer'
 import About from '~/client/components/About'
 import Screenplays from '~/client/components/Screenplays'
 
@@ -26,5 +25,3 @@ export default () =>
         </Switch>
     </div>
   </Router>
-
-// http://localhost:8080/screenplays/blah was working for the route above

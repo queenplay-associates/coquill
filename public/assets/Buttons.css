@@ -1,6 +1,6 @@
 nav.button-container {
     display: flex;
-    margin: 60px auto;
+    margin: 60px 0;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -30,61 +30,19 @@ button {
     flex: 0 0 160px;
     flex-direction: column;
 
+    color: #202129;
+    background-color: #f2f2f2;
     box-shadow: 2px 5px 10px #e4e4e4;
 }
 
-.regular {
-    color: #202129;
-    background-color: #f2f2f2;
-}
-
-.regular:hover {
-  color: #202129;
+button:hover {
+  color: #e0bd66;
   background-color: #e1e2e2;
   opacity: 1;
 }
 
-.regular:active {
-     background-color: #d5d6d6;
+/*for more editor functionality (bold, etc.)*/
+button:active {
+     background-color: #e0bd66;
      opacity: 1;
- }
-
-.dark {
-    color: #FFFFFF;
-    background: #161616;
-}
-
-.dark:focus {
-    outline: 1px dotted white;
-    outline-offset: -4px;
-}
-
-.green {
-    color: #FFFFFF;
-    background: #3dd28d;
-}
-
-.blue {
-    color: #FFFFFF;
-    background: #416dea;
-}
-
-.salmon {
-    color: #FFFFFF;
-    background: #F32C52;
-}
-
-.sun {
-    color: #f15c5c;
-    background: #feee7d;
-}
-
-.algae {
-    color: #e7ff20;
-    background: #7999a9;
-}
-
-.flower {
-    color: #FE8CDF;
-    background: #353866;
 }
