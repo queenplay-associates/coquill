@@ -9,8 +9,13 @@ class Action extends Component {
     }
 
     handleChange = evt => {
-        console.log("insert before action ----->",this.props.id)
-        if(evt.target.value.includes('\n')) {this.props.insertAfter('action', this.props.id)}
+        evt.preventDefault()        
+        if(evt.target.value.includes('\n')) {
+            console.log("insert before action ------------------>",this.props.id)
+            
+            this.props.insertAfter('action', this.props.id) // insert action com
+            
+        }
         else {this.props.setValue(evt.target.value) }
     }
 

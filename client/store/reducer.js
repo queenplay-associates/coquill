@@ -25,7 +25,12 @@ export const removeObject = () => ({
   type: REMOVE_OBJECT
 })
 
-const reducer = (state = OrderedMap(), action) => {
+const reducer = (state = OrderedMap(), actionX) => {
+  let action;
+  actionX.actionKey ? action = actionX : action = {}   
+  console.log("reducer action debugg actionKey--->", actionX)
+  
+
   switch (action.type) {
   case PUSH:
     return state.set(action.actionKey, {
