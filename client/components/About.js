@@ -8,7 +8,7 @@ const carouselImages = [
   'https://quilljs.com/assets/images/features/scale.svg'
 ];
 
-import './About.css'
+import './style/About.css'
 
 export default () =>
   <div>
