@@ -31,6 +31,7 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "assets-loader": "^0.5.1",
     "chokidar": "^1.7.0",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.5",

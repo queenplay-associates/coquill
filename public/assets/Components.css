@@ -12,6 +12,7 @@ textarea {
 
 .sceneHeading {
     text-transform: uppercase;
+    background-color: lightgray;
 }
 
 .character {
