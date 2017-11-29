@@ -1,6 +1,6 @@
 nav.button-container {
     display: flex;
-    margin: 50px auto;
+    margin: 60px auto;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -9,8 +9,8 @@ button {
     font-family: Roboto, Helvetica, sans-serif;
     display: flex;
     overflow: hidden;
-    /* margin: 2px; */
-    padding: 4px 4px;
+    margin: 10px;
+    padding: 12px 12px;
     cursor: pointer;
     transition: all 150ms linear;
     text-align: center;
@@ -19,7 +19,7 @@ button {
     text-transform: capitalize;
 
     border: 0 none;
-    border-radius: 2px;
+    border-radius: 4px;
 
     font-size: 14px;
     font-weight: 500;
@@ -30,7 +30,7 @@ button {
     flex: 0 0 160px;
     flex-direction: column;
 
-    box-shadow: 2px 3px 6px #e4e4e4;
+    box-shadow: 2px 5px 10px #e4e4e4;
 }
 
 .regular {
@@ -87,8 +87,4 @@ button {
 .flower {
     color: #FE8CDF;
     background: #353866;
-}
-
-.title {
-    text-align: center;
 }
