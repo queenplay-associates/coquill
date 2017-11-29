@@ -7,6 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
+import './Editor.css';
 
 export default class Editor extends Component {
   constructor() {
@@ -79,24 +80,25 @@ export default class Editor extends Component {
 
          const buttonTypes = [
            ['sceneHeading', 'Scene Heading'],
+           ['action', 'Action'],
            ['character', 'Character'],
            ['parenthetical', 'Parenthetical'],
            ['dialogue', 'Dialogue'],
-           ['action', 'Action'],
-           ['transition', 'Transition'],
            ['shot', 'Shot'],
+           ['transition', 'Transition'],
            ['text', 'Text']
          ];
 
      return (
        <Provider store={store}>
            <div>
-               <p>SCREENPLAY TITLE</p>
-               <nav>
+               {/*<h2>{screenplay.title}</h2>*/}
+               <nav className="button-container">
                   {
                     buttonTypes.map(elem => {
                       return (
-                        <button key={elem[0]}
+                        <button className={elem[2]}
+                                key={elem[0]}
                                 type="button"
                                 onClick={this.handleChange}
                                 value={elem[0]}>{elem[1]}
@@ -105,13 +107,12 @@ export default class Editor extends Component {
                     })
                   }
                 </nav>
-               <p>🔥🔥</p>
+               <p className="title">SCREENPLAY TITLE</p>
                <Script />
            </div>
       </Provider>
      )
   }
-
 }
 
 // DROP DOWN
@@ -120,9 +121,3 @@ export default class Editor extends Component {
 //     <option value="dialogue">Dialogue</option>
 //     <option value="character">Character</option>
 // </select>
-
-/*
-    <Editor fireRef={db.ref('screenplay')}>
-      <Script />
-    </Editor>
- */

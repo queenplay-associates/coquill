@@ -1,0 +1,27 @@
+textarea {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    border: none;
+    resize: none;
+}
+
+.sceneHeading {
+    text-transform: uppercase;
+}
+.character {
+    text-transform: uppercase;
+    position: center;
+    text-align: center;
+}
+.parenthetical {
+    position: center;
+    text-align: center;
+}
+.dialogue {
+    position: relative;
+    left: 10%;
+    max-width: 800px;
+}
