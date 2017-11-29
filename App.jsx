@@ -14,7 +14,7 @@ export default () =>
       <Navbar/>
         <Switch>
           <Route exact path='/' component={() =>
-            <Editor title={'Welcome'} fireRef={db.ref('screenplays').child('welcome')}/>
+            <Editor title={'🔥 Welcome to Coquill 🔥'} fireRef={db.ref('screenplays').child('welcome')}/>
           }/>
           {/* <Route path='/screenplays' component={Screenplays}/> */}
           <Route exact path='/screenplays/:screenplayId' component={
