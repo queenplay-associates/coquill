@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {setContent, setValue, insertAfter, removeObject} from '~/client/store/reducer';
 
-import './style/Components.css';
+import '~/public/assets/Components.css';
 
 class Block extends Component {
     componentDidMount() {
@@ -15,10 +15,8 @@ class Block extends Component {
 
     handleKeyPress = evt => {
         if (evt.key !== 'Enter') return
-
         evt.preventDefault()
         this.props.insertNext()
-        console.log('EVNT TYPE', evt.key)
     }
 
     render() {

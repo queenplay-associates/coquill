@@ -7,7 +7,7 @@ import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
 
 import Script from '~/client/components/Script';
-import './style/Editor.css';
+import '~public/assets/Editor.css';
 
 export default class Editor extends Component {
   constructor() {
@@ -36,7 +36,7 @@ console.log("screenplay title: ", this,state);
       this.setState({store:null})
       return process.nextTick( () => this.mountStoreAtRef(ref))
     }
-    
+
     const store = createStore(
       reducer,
       composeWithDevTools(
