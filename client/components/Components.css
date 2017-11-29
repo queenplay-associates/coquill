@@ -7,21 +7,24 @@ textarea {
     border: none;
     resize: none;
     outline: none;
-    overflow: none;
+    overflow: hidden;
 }
 
 .sceneHeading {
     text-transform: uppercase;
 }
+
 .character {
     text-transform: uppercase;
     position: center;
     text-align: center;
 }
+
 .parenthetical {
     position: center;
     text-align: center;
 }
+
 .dialogue {
     position: relative;
     left: 10%;

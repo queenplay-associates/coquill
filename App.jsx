@@ -25,5 +25,3 @@ export default () =>
         </Switch>
     </div>
   </Router>
-
-// http://localhost:8080/screenplays/blah was working for the route above
