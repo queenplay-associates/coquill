@@ -10,7 +10,6 @@ import Auth from '~/client/components/Auth'
 //TODO: make fire thing into promises
 import firebase from 'firebase';
 
-
 export default class App extends Component {
   constructor() {
     super()
