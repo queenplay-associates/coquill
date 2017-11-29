@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import QuillEditor from './QuillEditor';
 import {connect} from 'react-redux';
 import {setContent, setValue} from '~/client/store/reducer';
 

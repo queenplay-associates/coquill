@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import ScriptComponent from './ScriptComponent';
-import fire from '~/public/secrets';
 import {Provider} from 'react-redux'
 import {pushObject} from '~/client/store/reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
 import reducer from '../store/reducer';
+
+import Script from '~/client/components/Script';
 
 export default class Editor extends Component {
   constructor() {
@@ -69,12 +69,14 @@ export default class Editor extends Component {
   render() {
 
     let screenplay, store
-    ( this.state ) ? ( {screenplay} =  this.state, {store} = this.state ) : screenplay = {} 
- 
+    this.state
+      ? ( {screenplay} =  this.state, {store} = this.state )
+      : screenplay = {}
+
      if (!store) return null
 
      const content = JSON.stringify(this.state.screenplay, null, 3);
-     
+
          const buttonTypes = [
            ['sceneHeading', 'Scene Heading'],
            ['character', 'Character'],
@@ -87,35 +89,40 @@ export default class Editor extends Component {
          ];
 
      return (
-     <Provider store={store}>
-         <div>
-             <p>SCREENPLAY TITLE</p>
-             <nav>
-                {
-                  buttonTypes.map(elem => {
-                    return (
-                      <button key={elem[0]}
-                              type="button"
-                              onClick={this.handleChange}
-                              value={elem[0]}>{elem[1]}
-                      </button>
-                    )
-                  })
-                }
-              </nav>
-             <p>🔥🔥</p>
-             {this.props.children}
-             
-         </div>
-     </Provider>
+       <Provider store={store}>
+           <div>
+               <p>SCREENPLAY TITLE</p>
+               <nav>
+                  {
+                    buttonTypes.map(elem => {
+                      return (
+                        <button key={elem[0]}
+                                type="button"
+                                onClick={this.handleChange}
+                                value={elem[0]}>{elem[1]}
+                        </button>
+                      )
+                    })
+                  }
+                </nav>
+               <p>🔥🔥</p>
+               <Script />
+           </div>
+      </Provider>
      )
   }
 
 }
 
 // DROP DOWN
-  // <select onChange={this.handleChange}>
-  //     <option value="">Select</option>
-  //     <option value="dialogue">Dialogue</option>
-  //     <option value="character">Character</option>
-  // </select>
+// <select onChange={this.handleChange}>
+//     <option value="">Select</option>
+//     <option value="dialogue">Dialogue</option>
+//     <option value="character">Character</option>
+// </select>
+
+/*
+    <Editor fireRef={db.ref('screenplay')}>
+      <Script />
+    </Editor>
+ */

@@ -3,10 +3,9 @@ import React, {Component} from 'react'
 import firebase from 'firebase';
 //import {db} from '~/public/secrets'
 //FIXME: Uncoment out Editor.js line: 47 : passing fire ref as well.
-//Not using props yet. 
 
 
-class Auth  extends Component {  
+class Auth extends Component {  
     constructor(props) {
         super(props);
         this.handlanonymousClick = this.handlanonymousClick.bind(this)
@@ -34,8 +33,7 @@ class Auth  extends Component {
             console.log("credential", credential)
             
             // ...
-          });
-        
+          });   
       }
 
     handlanonymousClick(evt){
@@ -64,12 +62,10 @@ class Auth  extends Component {
           }, function(error) {
             console.error('Sign Out Error', error);
           });
-
     }
 
     render() {
-        console.log("props-->", this.props)
-        
+        console.log("props-->", this.props)        
        let {userName} = this.props
 
         return (<div className="Auth">
@@ -77,8 +73,7 @@ class Auth  extends Component {
             <h1>{userName}</h1>
             <button onClick={this.handlanonymousClick}> anonymous-auth 🤣 </button>
             <button onClick={this.handlGoogleClick}> google auth 🤣 </button>   
-            <button onClick={this.handlSingOUtClick}> sign out 🤣 </button>            
-            
+            <button onClick={this.handlSingOUtClick}> sign out 🤣 </button>                      
         </div>
         )
     }
