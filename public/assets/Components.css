@@ -3,16 +3,21 @@ textarea {
     flex-wrap: wrap;
     width: 80%;
     height: auto;
-    margin: 0 auto;
+    /* margin: 0 auto;  */
+    margin: 0 100px;
     border: none;
     resize: none;
     outline: none;
     overflow: hidden;
+    vertical-align: middle;
 }
 
 .sceneHeading {
     text-transform: uppercase;
     background-color: lightgray;
+    display: inline;
+    margin-left: 50px;
+    
 }
 
 .character {
@@ -30,4 +35,10 @@ textarea {
     position: relative;
     left: 10%;
     max-width: 800px;
+}
+
+.sceneNumber {
+    vertical-align: middle;
+    display: inline;
+    margin-left: 20px; 
 }
