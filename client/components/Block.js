@@ -14,9 +14,18 @@ class Block extends Component {
     }
 
     handleKeyPress = evt => {
-        if (evt.key !== 'Enter') return
-        evt.preventDefault()
-        this.props.insertNext()
+        console.log('EVNT TYPE', evt.key)
+        console.log('EVNT KEYCODE', evt.keyCode)
+
+        if (evt.keyCode === 9) evt.preventDefault()
+        if (evt.key === 'Enter') {
+            evt.preventDefault()
+            this.props.insertNext()
+        }
+
+        if (evt.keyCode === 8 && evt.target.value.length === 0) {
+            this.props.deleteObject()
+        }
     }
 
     render() {
@@ -28,7 +37,7 @@ class Block extends Component {
                 onChange={this.handleChange}
                 className={this.props.type}
                 rows={value.split('\n').length}
-                onKeyPress={this.handleKeyPress}
+                onKeyDown={this.handleKeyPress}
             />
         )
     }
@@ -42,6 +51,9 @@ export const Action = connect(
     },
     insertNext() {
         return dispatch(insertAfter('action', id))
+    },
+    deleteObject() {
+        return dispatch(removeObject(id))
     }
   })
 )(Block)
