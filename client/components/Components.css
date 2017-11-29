@@ -6,6 +6,8 @@ textarea {
     margin: 0 auto;
     border: none;
     resize: none;
+    outline: none;
+    overflow: none;
 }
 
 .sceneHeading {

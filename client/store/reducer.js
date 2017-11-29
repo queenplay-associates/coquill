@@ -16,18 +16,23 @@ export const setValue = (value, index) => ({
   value,
   componentKey: index
 })
-export const insertAfter = (objectType, actionKey) => ({
+export const insertAfter = (objectType, afterKey) => ({
   type: INSERT_AFTER,
   objectType,
-  actionKey
+  afterKey
 })
+
+export const insertBefore = (objectType, beforeKey) => ({
+  type: INSERT_BEFORE,
+  objectType,
+  beforeKey
+})
+
 export const removeObject = () => ({
   type: REMOVE_OBJECT
 })
 
-const reducer = (state = OrderedMap(), actionX) => {
-  let action;
-  actionX.actionKey ? action = actionX : action = {}   
+const reducer = (state = OrderedMap(), action) => {
 
   switch (action.type) {
   case PUSH:
