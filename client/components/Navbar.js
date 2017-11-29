@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import './Homepage.css'
 
-const logo = 'http://www.emoji.co.uk/files/mozilla-emojis/animals-nature-mozilla/11611-fire.png';
+const logo = 'https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cutie_mark_final_version_by_burntquill-d8j1is9.png';
 
 const Navbar = () =>
     <nav className="nav-bar">
