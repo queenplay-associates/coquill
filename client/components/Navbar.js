@@ -19,5 +19,3 @@ export default class Navbar extends Component {
     </nav>
   }
 }
-
-const test = 'test'
