@@ -4,6 +4,7 @@ import '~/public/assets/Buttons.css';
 import { Link } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
+import '~/public/assets/Screenplays.css'
 // grab screenplays from database
   // list id, title, owners, short description (?)
   // make a func to get rid of last comma of authors array
@@ -20,14 +21,12 @@ export default class Screenplays extends Component {
 
   handleChange = evt => {
     this.setState({value: evt.target.value})
-    console.log('input value', evt.target.value)
   }
 
   handleSubmit = evt => {
     // evt.preventDefault()
     const { value } = this.state,
             history = createHistory();
-    console.log('input value', value)
     history.push(`/screenplays/${value}`)
   }
 
@@ -37,7 +36,11 @@ export default class Screenplays extends Component {
         <ul>
           <li><Link to='/screenplays/hop'>Hop</Link></li>
           <li><Link to='/screenplays/her'>Her</Link></li>
-          <li><form onSubmit={this.handleSubmit}><input onChange={this.handleChange} value={this.state.value} /></form></li>
+          <li>
+            <form onSubmit={this.handleSubmit}>
+              <input className='input' onChange={this.handleChange} value={this.state.value} />
+            <button type='button' onClick={this.handleSubmit}>Create</button></form>
+          </li>
         </ul>
       </div>
   }
