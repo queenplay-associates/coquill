@@ -1,8 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import '~/public/assets/Buttons.css';
-
 import {
     SceneHeading,
     Action,
@@ -18,6 +16,7 @@ const Script = ({script}) => {
     let i = 0;
     return [...script.keys()].map(key => {
         const keyType = script.get(key).type;
+
         if (keyType === 'sceneHeading') {
             i++;
             return [<span className="sceneNumber">{i}</span>,
