@@ -26,8 +26,6 @@ export default class Screenplays extends Component {
       value: '',
       screenplays: []
     }
-
-    this.handleState = this.handleState.bind(this)
   }
 
   componentDidMount() {
