@@ -26,16 +26,14 @@ export default class Screenplays extends Component {
       value: '',
       screenplays: []
     }
+
+    this.handleState = this.handleState.bind(this)
   }
 
   componentDidMount() {
-    let arr = []
     db.ref('screenplays').on('child_added', snapshot => {
-     arr.push(snapshot.key)
+     this.setState({screenplays: [...this.state.screenplays, snapshot.key]})
     })
-
-    this.setState({screenplays: arr})
-    console.log('SCREENPLAYS IN COMPONENTDIDMOUNT', this.state.screenplays)
   }
 
   handleChange = evt => {
@@ -50,11 +48,11 @@ export default class Screenplays extends Component {
   }
 
   render() {
+
     return <div className = "demo">
         <h3>List of Screenplays</h3>
         <ul>
-          {console.log('SCREENPLAYS IN RENDER', this.state.screenplays)}
-          {this.state.screenplays.map(name => <li>{name}</li>)}
+          {this.state.screenplays.length > 0 && this.state.screenplays.map(name => <li><Link to={`/screenplays/${name}`}>{name}</Link></li>)}
           <li>
             <form onSubmit={this.handleSubmit}>
               <input className='input' onChange={this.handleChange} value={this.state.value} />
