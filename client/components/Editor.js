@@ -44,7 +44,7 @@ export default class Editor extends Component {
           store => next => {
             function dispatchSnapshot(snap) {
                 const action = snap.val()
-                //next(action)
+                next(action)
             }
 
             ref.on('child_added', dispatchSnapshot)

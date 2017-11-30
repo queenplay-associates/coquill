@@ -34,7 +34,7 @@ export default class Auth extends Component {
                 ref = snapshot.ref
                 for (const prop in snapshot.val()) {
                     let existatedEmail = snapshot.val()[prop].email
-                    console.log("----promise ===>", snapshot.val()[prop].email)
+                    //console.log("----promise ===>", snapshot.val()[prop].email)
                     if (existatedEmail === email) {
                         bool = true
                         break
@@ -87,7 +87,7 @@ export default class Auth extends Component {
         firebase.auth().signOut().then(() => {
             this.setState({ userName: "Stranger", userFace: "" })
         }, error => {
-            console.error('Sign Out Error', error);
+            //console.error('Sign Out Error', error);
         });
     }
 

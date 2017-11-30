@@ -29,14 +29,15 @@ export default class App extends Component {
         ? name = 'Anonymous'
         : name = user.displayName
       this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+      console.log("who is loged in-- user and uid-> ", name, user.uid)
+      
     })
-    console.log("who is loged in---> ", name)
   }
 
   render() {
     return <Router>
       <div>
-        <Navbar logInStatus={this.state.loginStatus}/>
+        <Navbar logInStatus={this.state.loginStatus} userName={this.state.userName}/>
         <Switch>
           <Route exact path='/' component={() =>
             <Editor title={'🔥 Welcome to Coquill 🔥'}
