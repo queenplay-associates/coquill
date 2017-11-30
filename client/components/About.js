@@ -12,7 +12,7 @@ import '~/public/assets/About.css'
 
 export default () =>
   <div>
-    <Carousel infiniteLoop={true}
+    {/* <Carousel infiniteLoop={true}
               showThumbs={false}
               showArrows={false}
               useKeyboardArrows={true}
@@ -26,7 +26,7 @@ export default () =>
                       alt={`image ${i}`}/>
         })
       }
-    </Carousel>
+    </Carousel> */}
     <div className='about'>
       <p>
         Coquill is a real-time collaborative text editor for writing
