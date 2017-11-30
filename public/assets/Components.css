@@ -16,7 +16,7 @@ textarea {
     text-transform: uppercase;
     background-color: lightgray;
     display: inline;
-    margin-left: 50px;
+    margin-left: 45px;
     
 }
 
@@ -40,5 +40,5 @@ textarea {
 .sceneNumber {
     vertical-align: middle;
     display: inline;
-    margin-left: 20px; 
+    margin-left: 25px; 
 }
