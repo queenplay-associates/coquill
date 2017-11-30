@@ -15,7 +15,7 @@ export default class Auth extends Component {
         this.props.db.ref('users').on('value', snapshot => {         
         })
     }
-
+    
     handleGoogleClick = evt => {
         evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -23,6 +23,7 @@ export default class Auth extends Component {
         firebase.auth().signInWithPopup(provider).then(result => {
             const token = result.credential.accessToken;
             const user = result.user;
+            //console.log("uid----iO7oe8L7dKRr8zoVvKzyqhhgqby1----->>>>>", user.uid)
             return user
         })
         .then(user => {
@@ -47,12 +48,13 @@ export default class Auth extends Component {
         }).catch()
 
         const regiesterUser = (data, ref) => {
-            const { email, displayName, photoURL } = data
+            const { email, displayName, photoURL, uid } = data
             const permissions = [
                 { id: 'blah', access: 'read' },
                 { id: 'screen', access: 'admin' }
             ]
             ref.push({
+                uid,
                 email,
                 displayName,
                 photoURL,

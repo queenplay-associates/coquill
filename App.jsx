@@ -30,6 +30,7 @@ export default class App extends Component {
         : name = user.displayName
       this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
     })
+    console.log("who is loged in---> ", name)
   }
 
   render() {
