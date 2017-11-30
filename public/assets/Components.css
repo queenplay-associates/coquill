@@ -34,7 +34,7 @@ textarea {
 .dialogue {
     position: relative;
     left: 10%;
-    max-width: 800px;
+    max-width: 65%;
 }
 
 .sceneNumber {
