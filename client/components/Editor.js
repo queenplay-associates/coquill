@@ -31,7 +31,6 @@ export default class Editor extends Component {
     if (this.state && this.state.store) {
       this.unsubscribe && this.unsubscribe()
         this.unsubscribe = null;
-      console.log("screenplay title:", this,state);
       this.setState({store:null})
       return process.nextTick(() => this.mountStoreAtRef(ref))
     }
@@ -44,7 +43,7 @@ export default class Editor extends Component {
           store => next => {
             function dispatchSnapshot(snap) {
                 const action = snap.val()
-                //next(action)
+                next(action)
             }
 
             ref.on('child_added', dispatchSnapshot)

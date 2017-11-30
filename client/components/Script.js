@@ -18,7 +18,6 @@ const Script = ({script}) => {
     let i = 0;
     return [...script.keys()].map(key => {
         const keyType = script.get(key).type;
-
         if (keyType === 'sceneHeading') {
             i++;
             return [<span className="sceneNumber">{i}</span>,
