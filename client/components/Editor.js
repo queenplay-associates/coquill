@@ -31,7 +31,6 @@ export default class Editor extends Component {
     if (this.state && this.state.store) {
       this.unsubscribe && this.unsubscribe()
         this.unsubscribe = null;
-      console.log("screenplay title:", this,state);
       this.setState({store:null})
       return process.nextTick(() => this.mountStoreAtRef(ref))
     }
