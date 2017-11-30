@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { checkUser } from './authHelper'
 
+//TODO: reduce ref to a var and resue it 
+
 export default class Auth extends Component {
     constructor(props) {
         super(props);
@@ -10,36 +12,55 @@ export default class Auth extends Component {
         this.state = { userName, userFace };
     }
     componentDidMount(){
-        this.props.fireRef.on('value', snapshot => {
-           
+        this.props.db.ref('users').on('value', snapshot => {         
         })
     }
 
     handleGoogleClick = evt => {
         evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
-        
+
         firebase.auth().signInWithPopup(provider).then(result => {
             const token = result.credential.accessToken;
             const user = result.user;
-            this.props.fireRef.once('value', snap => {
-               // check (!user.uid) 
-                const {email, displayName, photoURL} = user
-                const permissions = [
-                    {id: 'blah', access: 'read'},
-                    {id: 'screen', access: 'admin'}
-                ] // key or id
-                snap.ref.push({
-                    email,
-                    displayName,
-                    photoURL,
-                    permissions
-                })
-            })
+            return user
+        })
+        .then(user => {
+            let email = user.email
+            let bool = false    //FIXME: change name    
+            let ref ;    
+            firebase.database().ref('users').once("value", snapshot => {
+                ref = snapshot.ref
+                for (const prop in snapshot.val()) {
+                    let existatedEmail = snapshot.val()[prop].email
+                    console.log("----promise ===>", snapshot.val()[prop].email)
+                    if (existatedEmail === email) {
+                        bool = true
+                        break
+                        }
+                    }
+                 })
+                return [bool, user, ref]
+             })
+          .then(data => {
+            if (!data[0]) regiesterUser(data[1], data[2]) // refactor this
+        }).catch()
 
-        }).catch(error => {
-            console.log("error", error.code, error.message)
-        });
+        const regiesterUser = (data, ref) => {
+            const { email, displayName, photoURL } = data
+            const permissions = [
+                { id: 'blah', access: 'read' },
+                { id: 'screen', access: 'admin' }
+            ]
+            ref.push({
+                email,
+                displayName,
+                photoURL,
+                permissions
+            }).catch(error => {
+                console.log("error", error.code, error.message)
+            });
+        }
     }
 
     handleAnonymousClick =evt => {
@@ -69,10 +90,8 @@ export default class Auth extends Component {
     }
 
     render() {
-        //console.log("props-->", this.props)
         const { status } = this.props
         const { userName, userFace } = this.state
-
         return (<div className="Auth">
             <p>Auth Page Hello </p>
             <h1>{userName}</h1>

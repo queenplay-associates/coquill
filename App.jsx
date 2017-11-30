@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import Screenplays from '~/client/components/Screenplays'
 
 import Navbar from '~/client/components/Navbar'
 import Editor from '~/client/components/Editor'
@@ -16,7 +17,7 @@ export default class App extends Component {
     this.state = {
       loginStatus: false,
       userName: 'Stranger🤷🏻‍',
-      faceUrl: ""
+      faceUrl: ''
     }
   }
 
@@ -48,7 +49,7 @@ export default class App extends Component {
           }/>
           <Route path="/about" component={About}/>
           <Route path="/login" component={() =>
-            <Auth fireRef={db.ref('users')} userName={this.state.userName} userFace={this.state.faceUrl}
+            <Auth db={db} userName={this.state.userName} userFace={this.state.faceUrl}
                   status={this.state.loginStatus}/>
           }/>
         </Switch>

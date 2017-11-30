@@ -1,6 +1,6 @@
 var firebase = require("firebase");
 
-export const checkUser = () => 
+export const checkUser = (uid) => 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
           this.setState({ loginStatus: true, userName: user.displayName })
@@ -8,5 +8,6 @@ export const checkUser = () =>
         } else {
           // No user is signed in.
         }
-      })
+   })
+
 
