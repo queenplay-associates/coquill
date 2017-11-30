@@ -11,7 +11,7 @@ nav.button-container {
     margin-right: auto;
     margin-left: auto;
     background-color: white;
-    z-index: 10;
+    z-index: 1;
 }
 
 button {
