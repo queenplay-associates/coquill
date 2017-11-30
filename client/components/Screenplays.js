@@ -39,7 +39,7 @@ export default class Screenplays extends Component {
           <li>
             <form onSubmit={this.handleSubmit}>
               <input className='input' onChange={this.handleChange} value={this.state.value} />
-            <button type='button' onClick={this.handleSubmit}>Create</button></form>
+            <button type='submit'>Create</button></form>
           </li>
         </ul>
       </div>
