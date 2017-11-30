@@ -1,22 +1,39 @@
 import React, { Component } from 'react'
-// import { db } from '~/public/secrets'
 import '~/public/assets/Buttons.css';
 import { Link } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
 import '~/public/assets/Screenplays.css'
+
+import { db } from '~/public/secrets'
 // grab screenplays from database
   // list id, title, owners, short description (?)
   // make a func to get rid of last comma of authors array
   // what about anon users?
   // grab elements properly (map prob won't work here)
 
+    // db.ref('screenplays').map(screenplay =>
+    //   <div>
+    //     <h3>{`${screenplay.id}. ${screenplay.title.toUpperCase()}`}</h3>
+    //     <h6>{`Screenplay by ${screenplay.authors.join(', ').trim()}`}</h6>
+    //   </div>
+    // )
+
 export default class Screenplays extends Component {
   constructor() {
     super()
     this.state = {
-      value: ''
+      value: '',
+      screenplays: []
     }
+
+    this.handleState = this.handleState.bind(this)
+  }
+
+  componentDidMount() {
+    db.ref('screenplays').on('child_added', snapshot => {
+     this.setState({screenplays: [...this.state.screenplays, snapshot.key]})
+    })
   }
 
   handleChange = evt => {
@@ -31,11 +48,11 @@ export default class Screenplays extends Component {
   }
 
   render() {
+
     return <div className = "demo">
         <h3>List of Screenplays</h3>
         <ul>
-          <li><Link to='/screenplays/hop'>Hop</Link></li>
-          <li><Link to='/screenplays/her'>Her</Link></li>
+          {this.state.screenplays.length > 0 && this.state.screenplays.map(name => <li><Link to={`/screenplays/${name}`}>{name}</Link></li>)}
           <li>
             <form onSubmit={this.handleSubmit}>
               <input className='input' onChange={this.handleChange} value={this.state.value} />
