@@ -19,7 +19,7 @@ const Script = ({script}) => {
 
         if (keyType === 'sceneHeading') {
             i++;
-            return [<span className="sceneNumber">{i}</span>,
+            return [<span className="sceneNumber" key={i}>{i}</span>,
                 <SceneHeading key={key} id={key}/>]
         }
         if (keyType === 'action') return <Action key={key} id={key} />
