@@ -68,7 +68,7 @@ export default class Editor extends Component {
   render() {
     let screenplay, store
     this.state
-      ? ( {screenplay} =  this.state, {store} = this.state )
+      ? ({screenplay} =  this.state, {store} = this.state)
       : screenplay = {}
 
     if (!store) return null
@@ -108,10 +108,3 @@ export default class Editor extends Component {
     </Provider>
   }
 }
-
-// DROP DOWN
-// <select onChange={this.handleChange}>
-//     <option value="">Select</option>
-//     <option value="dialogue">Dialogue</option>
-//     <option value="character">Character</option>
-// </select>
