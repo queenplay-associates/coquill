@@ -3,10 +3,25 @@ import { connect } from 'react-redux'
 import { setContent, setValue, insertAfter, removeObject } from '~/client/store/reducer'
 
 import '~/public/assets/Components.css';
+import firebase from 'firebase';
 
 class Block extends Component {
-    componentDidMount() {
-        this.text.focus();
+    constructor(){
+        super()
+        this.state = {userName: '', showWriter: false}
+    }
+
+    componentDidMount() {    
+        this.text.focus()
+        //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) return
+            let name;
+            user.isAnonymous
+              ? name = 'Anonymous'
+              : name = user.displayName
+            this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+          })
     }
 
     handleChange = evt => {
@@ -19,15 +34,28 @@ class Block extends Component {
             evt.preventDefault()
             this.props.insertNext()
         }
+        if (evt.keyCode == 32) {
+            this.setState(prevState => ({
+                showWriter: !prevState.showWriter
+            }))
+            console.log("down pressed who is editing--->", this.state.showWriter, this.state.userName)
+            
+        }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
             this.props.deleteObject()
         }
     }
+    renderWriter(){
+        this.setState({showWriter:!this.state.showWriter})
+        return <p>{this.state.userName}</p>
+    }
 
     render() {
         const {value = ''} = this.props;
-        return (
+        return ( 
+            <div>
+            <span>{this.state.showWriter ? this.state.userName : ""}...</span>
         <textarea
                 ref={name => this.text = name}
                 value={value}
@@ -36,6 +64,7 @@ class Block extends Component {
                 rows={value.split('\n').length}
                 onKeyDown={this.handleKeyPress}
             />
+            </div>
         )
     }
 }

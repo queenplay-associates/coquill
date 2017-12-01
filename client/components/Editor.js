@@ -46,16 +46,16 @@ export default class Editor extends Component {
         .equalTo(this.props.title)
         .once('value')
         .then(snap => {
-          const value = snap.val()
-          let names = ''
-          snap.forEach( data => {
-            const {displayName, photoURL } = data.val()
-            names += displayName + ','
-            this.setState({names})
+            const value = snap.val()
+            let names = ''
+            snap.forEach(data => {
+              const { displayName, photoURL } = data.val()
+              names += displayName + ','
+              this.setState({ names })
             })
           //console.log(this.state.names)
-          })
-        }
+        })
+    }
   }
 
   componentWillReceiveProps(incoming, outgoing) {
@@ -64,12 +64,6 @@ export default class Editor extends Component {
 
   componentWillUnmount() {
     this.unsubscribe && this.unsubscribe();
-  }
-
-  renderWriters(names) {
-    return <div className='writers'>
-      <p>so far wrote by: {this.writers}</p>
-    </div>
   }
 
   mountStoreAtRef(ref) {
