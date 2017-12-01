@@ -40,7 +40,7 @@ export default class Screenplays extends Component {
   render() {
     const { screenplays, value } = this.state;
 
-    return <div className = "demo">
+    return <div className="demo">
         <h3>List of Screenplays</h3>
         <ul>
           {screenplays.length > 0 && screenplays.map((name, i) =>

@@ -78,9 +78,6 @@ class Block extends Component {
     }
 }
 
-//   const setValue = (val, userName) =>
-//        dispatch(setValue(val, id, userName));
-
 export const Action = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
