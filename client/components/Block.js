@@ -11,7 +11,7 @@ class Block extends Component {
         this.state = {userName: '', showWriter: false}
     }
 
-    componentDidMount() {    
+    componentDidMount() {
         this.text.focus()
         //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
         firebase.auth().onAuthStateChanged(user => {
@@ -24,47 +24,41 @@ class Block extends Component {
           })
     }
 
-    // handleChange = evt => {
-    //     this.props.setValue(evt.target.value)
-    // }
-
     handleChange = evt => {
         this.props.setValue(evt.target.value, this.state.userName)
     }
 
     handleKeyPress = evt => {
+        const { showWriter, userName } = this.state;
+
         if (evt.keyCode === 9) evt.preventDefault()
         if (evt.key === 'Enter') {
             evt.preventDefault()
             this.props.insertNext()
         }
        // if (evt.keyCode == 32) { //keydown
-            this.setState(prevState => ({
-                showWriter: !prevState.showWriter
-            }))
-            console.log("down pressed who is editing--->", this.state.showWriter, this.state.userName)
-            
+        this.setState(prevState => ({
+            showWriter: !prevState.showWriter
+        }))
+        console.log("down pressed who is editing--->", showWriter, userName)
+
        // }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
             this.props.deleteObject()
         }
     }
-    // renderWriter(){
-    //     this.setState({showWriter:!this.state.showWriter})
-    //     return <p>{this.state.userName}</p>
-    // }
 
     render() {
-        const {value = ''} = this.props;
-        return ( 
+        const {value = '', name, type } = this.props;
+        return (
             <div>
-            <span>{/*this.state.showWriter ? this.props.name : ""*/}{ this.props.name}...</span>
+            <span>{name}</span>
         <textarea
                 ref={name => this.text = name}
                 value={value}
                 onChange={this.handleChange}
-                className={this.props.type}
+                className={type}
                 rows={value.length/81 + 1}
                 onKeyDown={this.handleKeyPress}
             />
@@ -73,8 +67,8 @@ class Block extends Component {
     }
 }
 
-// const setVal = (dispatch, {id}) =>
-//   setValue(val => dispatch(setValue(val, id)));
+//   const setValue = (val, userName) =>
+//        dispatch(setValue(val, id, userName));
 
 export const Action = connect(
   (state, {id}) => state.get(id),

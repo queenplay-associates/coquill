@@ -27,36 +27,45 @@ export default class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (!user) return
       let name;
+
       user.isAnonymous
         ? name = 'Anonymous'
         : name = user.displayName
-      this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL, uid: user.uid})
-      console.log("who is loged in---> ", name, user.uid)
+
+      this.setState({
+        loginStatus: true,
+        userName: name,
+        faceUrl: user.photoURL,
+        uid: user.uid
+      })
     })
   }
 
   render() {
-    return (<Router>
+    const { loginStatus, userName, faceUrl } = this.state;
+    return <Router>
       <div>
-        <Navbar logInStatus={this.state.loginStatus} userName={this.state.userName}/>
+        <Navbar logInStatus={loginStatus} userName={userName}/>
         <Switch>
           <Route exact path='/' component={() =>
             <Editor title={'🔥 Welcome to Coquill 🔥'}
                     fireRef={db.ref('screenplays')
-                                .child('welcome')}/>
-          } />
-           <Route exact path='/screenplays' component={Screenplays}/>  
-           <Route exact path='/screenplays/:screenplayId' component={
-            ({match: {params: {screenplayId}}}) =>
-                <Editor title={screenplayId} fireRef={db.ref('screenplays').child(screenplayId)} user={this.state.userName} uid={this.state.uid}/> 
-          } />
+                               .child('welcome')}/>
+          }/>
+          <Route exact path='/screenplays' component={Screenplays}/>
+          <Route exact path='/screenplays/:screenplayId'
+                 component={({match: {params: {screenplayId}}}) =>
+                    <Editor title={screenplayId}
+                            fireRef={db.ref('screenplays')
+                                       .child(screenplayId)}/>}/>
           <Route path="/about" component={About}/>
           <Route path="/login" component={() =>
-            <Auth db={db} userName={this.state.userName} userFace={this.state.faceUrl}
-                  status={this.state.loginStatus}/>
-          } />
+            <Auth db={db} userName={userName}
+                  userFace={faceUrl}
+                  status={loginStatus}/>
+          }/>
         </Switch>
       </div>
-    </Router>)
+    </Router>
   }
 }

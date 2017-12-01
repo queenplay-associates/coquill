@@ -12,15 +12,15 @@ import '~/public/assets/Buttons.css';
 import firebase from 'firebase';
 import { db } from '~/public/secrets'
 
-//TODO: 
+//TODO:
 /*
-when loading check who owns this screen play and or attached 
+when loading check who owns this screen play and or attached
 for the time being, the ownership is injected separeact from the store, should be part of store
-check if already have a screen play owner, otherwise attach the current auth 
-line 73 bug! 
+check if already have a screen play owner, otherwise attach the current auth
+line 73 bug!
 */
 
-//db screenplays/'childNode' 
+//db screenplays/'childNode'
 const contributedScreenPlays = "contributedScreenPlays"
 
 export default class Editor extends Component {
@@ -35,7 +35,7 @@ export default class Editor extends Component {
     //if user dont have screenplays, then added this current one
     if (this.props.uid) {
       db.ref(`users/${this.props.uid}`).once('value', snap => {
-        if (!snap.hasChild(contributedScreenPlays)) 
+        if (!snap.hasChild(contributedScreenPlays))
           snap.ref.update({ [contributedScreenPlays]: this.props.title })
       })
     }
@@ -53,13 +53,12 @@ export default class Editor extends Component {
               names += displayName + ','
               this.setState({ names })
             })
-          //console.log(this.state.names)
         })
     }
   }
 
   componentWillReceiveProps(incoming, outgoing) {
-    this.mountStoreAtRef(incoming.fireRef);    
+    this.mountStoreAtRef(incoming.fireRef);
   }
 
   componentWillUnmount() {
@@ -107,7 +106,7 @@ export default class Editor extends Component {
   render() {
     let screenplay, store
     this.state
-      ? ( {screenplay} =  this.state, {store} = this.state )
+      ? ({screenplay} =  this.state, {store} = this.state)
       : screenplay = {}
 
     if (!store) return null
@@ -123,6 +122,9 @@ export default class Editor extends Component {
       ['text', 'Text']
     ];
 
+    const { title } = this.props,
+          { names } = this.state
+
     return <Provider store={store}>
       <div>
          <nav className="button-container">
@@ -137,21 +139,14 @@ export default class Editor extends Component {
              )
            }
          </nav>
-         <nav className="scriptBox">
-          <p className="title">{(this.props.title).toUpperCase()}</p>
+         <div className="scriptBox">
+          <p className="title">{title.toUpperCase()}</p>
           <div className='writers'>
-            <p>wrote by: {this.state.names}</p>
+            <p>Screenplay written by: {names}</p>
           </div>
           <Script />
-         </nav>
+         </div>
       </div>
     </Provider>
   }
 }
-
-// DROP DOWN
-// <select onChange={this.handleChange}>
-//     <option value="">Select</option>
-//     <option value="dialogue">Dialogue</option>
-//     <option value="character">Character</option>
-// </select>
