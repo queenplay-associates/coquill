@@ -100,10 +100,10 @@ export default class Editor extends Component {
              )
            }
          </nav>
-         <nav className="scriptBox">
+         <div className="scriptBox">
           <p className="title">{title.toUpperCase()}</p>
           <Script />
-         </nav>
+         </div>
       </div>
     </Provider>
   }

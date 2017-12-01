@@ -1,5 +1,5 @@
-.scriptBox {
-    margin: 0 auto;
+div.scriptBox {
+    margin: 0 0 0 calc(20% - 12%);
 }
 
 textarea {
