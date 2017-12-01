@@ -58,6 +58,7 @@ button:active {
 
 .title {
     margin: 0 100px;
+    padding: 20px;
     text-align: center;
     width: 80%;
     font-size: 25px;
