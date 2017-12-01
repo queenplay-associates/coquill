@@ -7,7 +7,7 @@ const logo = 'https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cut
 
 const Navbar = (props) => {
 
-    const logInStatus = props.logInStatus ? "Log out" : "Log in"
+    const logInStatus = props.logInStatus ? "Logout" : "Login"
     console.log("logInStatus---->", logInStatus)
 
     return <nav className="nav-bar">
