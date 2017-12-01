@@ -30,13 +30,13 @@ textarea {
     position: center;
     text-align: center;
     font-size: 16px;
-    margin: 0px, 100px; padding: 0px 0px;
+    margin: 0 100px; padding: 0;
 }
 
 .parenthetical {
     position: center;
     text-align: center;
-    margin: 0px, 100px; padding: 0px 0px;
+    margin: 0 100px; padding: 0;
 }
 
 .dialogue {
@@ -48,7 +48,7 @@ textarea {
 .sceneNumber {
     vertical-align: middle;
     display: inline;
-    margin-left: 25px; 
+    margin-left: 25px;
 }
 
 .tooltiptext {
@@ -60,7 +60,7 @@ textarea {
     padding: 2px 0;
     border-radius: 6px;
     font-size: 12px;
- 
+
     /* Position the tooltip text - see examples below! */
     position: absolute;
     left: 80%;
@@ -69,4 +69,9 @@ textarea {
 .tooltip:hover .tooltiptext {
     visibility: visible;
     margin-left: 25px;
+}
+
+img.userFace {
+    max-width: 3%;
+    max-height: 3%;
 }
