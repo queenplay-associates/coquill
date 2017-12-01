@@ -15,7 +15,7 @@ export default class Auth extends Component {
         this.props.db.ref('users').on('value', snapshot => {         
         })
     }
-    
+
     handleGoogleClick = evt => {
         evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -23,7 +23,6 @@ export default class Auth extends Component {
         firebase.auth().signInWithPopup(provider).then(result => {
             const token = result.credential.accessToken;
             const user = result.user;
-            //console.log("uid----iO7oe8L7dKRr8zoVvKzyqhhgqby1----->>>>>", user.uid)
             return user
         })
         .then(user => {
@@ -34,7 +33,6 @@ export default class Auth extends Component {
                 ref = snapshot.ref
                 for (const prop in snapshot.val()) {
                     let existatedEmail = snapshot.val()[prop].email
-                    console.log("----promise ===>", snapshot.val()[prop].email)
                     if (existatedEmail === email) {
                         bool = true
                         break
@@ -44,7 +42,7 @@ export default class Auth extends Component {
                 return [bool, user, ref]
              })
           .then(data => {
-            if (!data[0]) regiesterUser(data[1], data[2]) // refactor this
+            if (!data[0]) regiesterUser(data[1], data[2]) // refactor this check if user exists or not then add to db
         }).catch()
 
         const regiesterUser = (data, ref) => {
@@ -53,15 +51,12 @@ export default class Auth extends Component {
                 { id: 'blah', access: 'read' },
                 { id: 'screen', access: 'admin' }
             ]
-            ref.push({
-                uid,
+            ref.update({[uid]: {
                 email,
                 displayName,
                 photoURL,
                 permissions
-            }).catch(error => {
-                console.log("error", error.code, error.message)
-            });
+            } })
         }
     }
 
@@ -87,7 +82,7 @@ export default class Auth extends Component {
         firebase.auth().signOut().then(() => {
             this.setState({ userName: "Stranger", userFace: "" })
         }, error => {
-            console.error('Sign Out Error', error);
+            //console.error('Sign Out Error', error);
         });
     }
 

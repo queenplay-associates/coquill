@@ -3,16 +3,33 @@ import { connect } from 'react-redux'
 import { setContent, setValue, insertAfter, removeObject } from '~/client/store/reducer'
 
 import '~/public/assets/Components.css';
+import firebase from 'firebase';
 
 class Block extends Component {
-    componentDidMount() {
-        this.text.focus();
+    constructor(){
+        super()
+        this.state = {userName: '', showWriter: false}
     }
 
+    componentDidMount() {    
+        this.text.focus()
+        //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
+        firebase.auth().onAuthStateChanged(user => {
+            if (!user) return
+            let name;
+            user.isAnonymous
+              ? name = 'Anonymous'
+              : name = user.displayName
+            this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+          })
+    }
+
+    // handleChange = evt => {
+    //     this.props.setValue(evt.target.value)
+    // }
+
     handleChange = evt => {
-        this.props.setValue(evt.target.value)
-        console.log("value", (evt.target.value).length)
-        console.log("rows", evt.target.rows)
+        this.props.setValue(evt.target.value, this.state.userName)
     }
 
     handleKeyPress = evt => {
@@ -21,15 +38,28 @@ class Block extends Component {
             evt.preventDefault()
             this.props.insertNext()
         }
+       // if (evt.keyCode == 32) { //keydown
+            this.setState(prevState => ({
+                showWriter: !prevState.showWriter
+            }))
+            console.log("down pressed who is editing--->", this.state.showWriter, this.state.userName)
+            
+       // }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
             this.props.deleteObject()
         }
     }
+    // renderWriter(){
+    //     this.setState({showWriter:!this.state.showWriter})
+    //     return <p>{this.state.userName}</p>
+    // }
 
     render() {
         const {value = ''} = this.props;
-        return (
+        return ( 
+            <div>
+            <span>{/*this.state.showWriter ? this.props.name : ""*/}{ this.props.name}...</span>
         <textarea
                 ref={name => this.text = name}
                 value={value}
@@ -38,6 +68,7 @@ class Block extends Component {
                 rows={value.length/81 + 1}
                 onKeyDown={this.handleKeyPress}
             />
+            </div>
         )
     }
 }
@@ -48,8 +79,8 @@ class Block extends Component {
 export const Action = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('action', id))
@@ -63,8 +94,8 @@ export const Action = connect(
 export const Parenthetical = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('dialogue', id))
@@ -74,12 +105,12 @@ export const Parenthetical = connect(
     }
   })
 )(Block)
-
+//did not added username to action following
 export const SceneHeading = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('action', id))
@@ -93,8 +124,8 @@ export const SceneHeading = connect(
 export const Text = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('text', id))
@@ -108,8 +139,8 @@ export const Text = connect(
 export const Dialogue = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('character', id))
@@ -123,8 +154,8 @@ export const Dialogue = connect(
 export const Character = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('dialogue', id))
@@ -138,8 +169,8 @@ export const Character = connect(
 export const Shot = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('action', id))
@@ -153,8 +184,8 @@ export const Shot = connect(
 export const Transition = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value) {
-        return dispatch(setValue(value, id))
+    setValue(value,userName) {
+        return dispatch(setValue(value, id,userName))
     },
     insertNext() {
         return dispatch(insertAfter('sceneHeading', id))
