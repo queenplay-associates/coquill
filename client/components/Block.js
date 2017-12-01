@@ -53,7 +53,7 @@ class Block extends Component {
         const {value = '', name, type } = this.props;
         return (
             <div>
-            <span>{name}...</span>
+            <span>{name}</span>
         <textarea
                 ref={name => this.text = name}
                 value={value}
