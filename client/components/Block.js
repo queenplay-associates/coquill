@@ -29,6 +29,7 @@ class Block extends Component {
               faceUrl: user.photoURL
             })
           })
+        // this.text.focus();
     }
 
     handleChange = evt => {
@@ -61,8 +62,7 @@ class Block extends Component {
 
     render() {
         const {value = '', name, type } = this.props;
-        return (
-        <div className="tooltip">
+        return <div className="tooltip">
           <span>{name}</span>
           <textarea
                   ref={name => this.text = name}
@@ -74,7 +74,6 @@ class Block extends Component {
               />
             <span className="tooltiptext">{type}</span>
           </div>
-        )
     }
 }
 
@@ -186,8 +185,8 @@ export const Shot = connect(
 export const Transition = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value,userName) {
-        return dispatch(setValue(value, id,userName))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('sceneHeading', id))

@@ -53,7 +53,7 @@ const reducer = (state = OrderedMap(), action) => {
       type: action.objectType,
       key: action.actionKey,
     });
-  
+
   case REMOVE_OBJECT:
     return state.delete(action.id);
 
@@ -66,7 +66,7 @@ const reducer = (state = OrderedMap(), action) => {
         key: action.actionKey,
       })
       .merge(itemsAfter)
-  
+
   case INSERT_AFTER:
       itemsBefore = state.takeUntil(({key}) => key === action.afterKey)
       const after = state.get(action.afterKey)
@@ -91,10 +91,8 @@ const reducer = (state = OrderedMap(), action) => {
 
 function itemReducer(item={}, action) {
   const {type} = action
-  // if (type === SET_VALUE)
-  //   return {...item, value: action.value}
   if (type === SET_VALUE)
-  return {...item, value: action.value, name: action.name}
+    return {...item, value: action.value, name: action.name}
   if (type === CHANGE_TYPE)
     return {...item, type: action.objectType}
   return item
