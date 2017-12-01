@@ -8,8 +8,9 @@ import About from '~/client/components/About'
 import { db } from '~/public/secrets'
 import Auth from '~/client/components/Auth'
 
-//TODO: make fire thing into promises
 import firebase from 'firebase';
+
+////TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
 
 export default class App extends Component {
   constructor() {
@@ -17,7 +18,8 @@ export default class App extends Component {
     this.state = {
       loginStatus: false,
       userName: 'Stranger🤷🏻‍',
-      faceUrl: ''
+      faceUrl: '',
+      uid: ''
     }
   }
 
@@ -25,33 +27,42 @@ export default class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       if (!user) return
       let name;
+
       user.isAnonymous
         ? name = 'Anonymous'
         : name = user.displayName
-      this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+
+      this.setState({
+        loginStatus: true,
+        userName: name,
+        faceUrl: user.photoURL,
+        uid: user.uid
+      })
     })
-    console.log("who is loged in---> ", name)
   }
 
   render() {
+    const { loginStatus, userName, faceUrl } = this.state;
     return <Router>
       <div>
-        <Navbar logInStatus={this.state.loginStatus}/>
+        <Navbar logInStatus={loginStatus} userName={userName}/>
         <Switch>
           <Route exact path='/' component={() =>
             <Editor title={'🔥 Welcome to Coquill 🔥'}
                     fireRef={db.ref('screenplays')
-                                .child('welcome')}/>
+                               .child('welcome')}/>
           }/>
-           <Route exact path='/screenplays' component={Screenplays}/>  
-          <Route exact path='/screenplays/:screenplayId' component={
-            ({match: {params: {screenplayId}}}) =>
-              <Editor title={screenplayId} fireRef={db.ref('screenplays').child(screenplayId)}/>
-          }/>
+          <Route exact path='/screenplays' component={Screenplays}/>
+          <Route exact path='/screenplays/:screenplayId'
+                 component={({match: {params: {screenplayId}}}) =>
+                    <Editor title={screenplayId}
+                            fireRef={db.ref('screenplays')
+                                       .child(screenplayId)}/>}/>
           <Route path="/about" component={About}/>
           <Route path="/login" component={() =>
-            <Auth db={db} userName={this.state.userName} userFace={this.state.faceUrl}
-                  status={this.state.loginStatus}/>
+            <Auth db={db} userName={userName}
+                  userFace={faceUrl}
+                  status={loginStatus}/>
           }/>
         </Switch>
       </div>
