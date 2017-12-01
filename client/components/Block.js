@@ -29,13 +29,7 @@ class Block extends Component {
     // }
 
     handleChange = evt => {
-<<<<<<< HEAD
         this.props.setValue(evt.target.value, this.state.userName)
-=======
-        this.props.setValue(evt.target.value)
-        console.log("value", (evt.target.value).length)
-        console.log("rows", evt.target.rows)
->>>>>>> master
     }
 
     handleKeyPress = evt => {
