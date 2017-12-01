@@ -6,7 +6,7 @@ import '~/public/assets/Components.css';
 
 class Block extends Component {
     componentDidMount() {
-        this.text.focus();
+        // this.text.focus();
     }
 
     handleChange = evt => {
@@ -29,7 +29,7 @@ class Block extends Component {
         const {value = ''} = this.props;
         return (
         <textarea
-                ref={name => this.text = name}
+                ref={'grandchild'}
                 value={value}
                 onChange={this.handleChange}
                 className={this.props.type}
