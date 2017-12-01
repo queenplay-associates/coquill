@@ -8,8 +8,9 @@ import About from '~/client/components/About'
 import { db } from '~/public/secrets'
 import Auth from '~/client/components/Auth'
 
-//TODO: make fire thing into promises
 import firebase from 'firebase';
+
+////TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
 
 export default class App extends Component {
   constructor() {
@@ -17,7 +18,8 @@ export default class App extends Component {
     this.state = {
       loginStatus: false,
       userName: 'Stranger🤷🏻‍',
-      faceUrl: ''
+      faceUrl: '',
+      uid: ''
     }
   }
 
@@ -33,17 +35,17 @@ export default class App extends Component {
       this.setState({
         loginStatus: true,
         userName: name,
-        faceUrl: user.photoURL
+        faceUrl: user.photoURL,
+        uid: user.uid
       })
     })
-    console.log("who is logged in---> ", name)
   }
 
   render() {
     const { loginStatus, userName, faceUrl } = this.state;
     return <Router>
       <div>
-        <Navbar logInStatus={loginStatus}/>
+        <Navbar logInStatus={loginStatus} userName={userName}/>
         <Switch>
           <Route exact path='/' component={() =>
             <Editor title={'🔥 Welcome to Coquill 🔥'}
