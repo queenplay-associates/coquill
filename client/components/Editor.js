@@ -98,6 +98,7 @@ export default class Editor extends Component {
              )
            }
          </nav>
+         <button type="button" onClick={this.toggleMouseover}>See stuff</button>
          <nav className="scriptBox">
           <p className="title">{(this.props.title).toUpperCase()}</p>
           <Script />

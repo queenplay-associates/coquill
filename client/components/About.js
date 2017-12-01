@@ -35,5 +35,7 @@ export default () =>
         have created a screenplay, the editor will project colors on the page
         which map to the context of your text.
       </p>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/"><img src="/assets/facebook_circle.png" height="30px" /></a>
+      <a href="https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/"><img src="/assets/twitter_circle.png" height="30px" /></a>
     </div>
   </div>

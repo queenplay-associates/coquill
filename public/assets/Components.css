@@ -50,3 +50,27 @@ textarea {
     display: inline;
     margin-left: 25px; 
 }
+
+ /* .tooltip {
+    position: relative;
+}  */
+
+.tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 3px 0;
+    border-radius: 6px;
+    font-size: 12px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    left: 80%;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
