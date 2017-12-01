@@ -44,7 +44,7 @@ export default class Auth extends Component {
                 return [bool, user, ref]
              })
           .then(data => {
-            if (!data[0]) regiesterUser(data[1], data[2]) // refactor this
+            if (!data[0]) regiesterUser(data[1], data[2]) // refactor this check if user exists or not then add to db
         }).catch()
 
         const regiesterUser = (data, ref) => {
@@ -53,15 +53,12 @@ export default class Auth extends Component {
                 { id: 'blah', access: 'read' },
                 { id: 'screen', access: 'admin' }
             ]
-            ref.push({
-                uid,
+            ref.update({[uid]: {
                 email,
                 displayName,
                 photoURL,
                 permissions
-            }).catch(error => {
-                console.log("error", error.code, error.message)
-            });
+            } })
         }
     }
 

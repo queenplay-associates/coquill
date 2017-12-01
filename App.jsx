@@ -8,8 +8,9 @@ import About from '~/client/components/About'
 import { db } from '~/public/secrets'
 import Auth from '~/client/components/Auth'
 
-//TODO: make fire thing into promises
 import firebase from 'firebase';
+
+////TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
 
 export default class App extends Component {
   constructor() {
@@ -17,7 +18,8 @@ export default class App extends Component {
     this.state = {
       loginStatus: false,
       userName: 'Stranger🤷🏻‍',
-      faceUrl: ''
+      faceUrl: '',
+      uid: ''
     }
   }
 
@@ -28,14 +30,13 @@ export default class App extends Component {
       user.isAnonymous
         ? name = 'Anonymous'
         : name = user.displayName
-      this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+      this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL, uid: user.uid})
       console.log("who is loged in-- user and uid-> ", name, user.uid)
-      
     })
   }
 
   render() {
-    return <Router>
+    return (<Router>
       <div>
         <Navbar logInStatus={this.state.loginStatus} userName={this.state.userName}/>
         <Switch>
@@ -43,19 +44,19 @@ export default class App extends Component {
             <Editor title={'🔥 Welcome to Coquill 🔥'}
                     fireRef={db.ref('screenplays')
                                 .child('welcome')}/>
-          }/>
+          } />
            <Route exact path='/screenplays' component={Screenplays}/>  
-          <Route exact path='/screenplays/:screenplayId' component={
+           <Route exact path='/screenplays/:screenplayId' component={
             ({match: {params: {screenplayId}}}) =>
-              <Editor title={screenplayId} fireRef={db.ref('screenplays').child(screenplayId)}/>
-          }/>
+                <Editor title={screenplayId} fireRef={db.ref('screenplays').child(screenplayId)} user={this.state.userName} uid={this.state.uid}/> 
+          } />
           <Route path="/about" component={About}/>
           <Route path="/login" component={() =>
             <Auth db={db} userName={this.state.userName} userFace={this.state.faceUrl}
                   status={this.state.loginStatus}/>
-          }/>
+          } />
         </Switch>
       </div>
-    </Router>
+    </Router>)
   }
 }
