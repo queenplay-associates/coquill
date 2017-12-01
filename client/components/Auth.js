@@ -98,12 +98,18 @@ export default class Auth extends Component {
               { userName, userFace } = this.state
 
         return <div className="Auth">
-              <p>Auth Page Hello</p>
-              <h1>🤷🏻‍♀️‍{userName}</h1>
-              <button onClick={this.handleAnonymousClick}> anonymous-auth 🤣 </button>
-              <button onClick={this.handleGoogleClick}> google auth 🤣 </button>
-              <button onClick={this.handleSignOutClick}> sign out 🤣 </button>
-              <img className="userFace" src={userFace} />
-          </div>
+          <p>Auth Page Hello</p>
+          <h1>🤷🏻‍♀️‍{userName}</h1>
+          <img className="userFace" src={userFace} />
+          <button onClick={this.handleAnonymousClick}>
+            anonymous-auth 🤣
+          </button>
+          <button onClick={this.handleGoogleClick}>
+            google auth 🤣
+          </button>
+          <button onClick={this.handleSignOutClick}>
+            sign out 🤣
+          </button>
+        </div>
     }
 }
