@@ -1,16 +1,16 @@
+.scriptBox {
+    margin: 0 auto;
+}
+
 textarea {
     display: flex;
     flex-wrap: wrap;
-    width: 80%;
-    height: auto;
-    /* margin: 0 auto;  */
-    margin: 0 100px;
-    border: none;
-    resize: none;
-    outline: none;
-    overflow: hidden;
+    width: 80%; height: auto;
+    margin: 5px 100px; padding: 5px 10px;
+    border: none; outline: none;
     vertical-align: middle;
-    padding: 10px;
+    resize: none;
+    overflow: hidden;
     font-size: 14px;
 }
 
@@ -36,7 +36,7 @@ textarea {
 .parenthetical {
     position: center;
     text-align: center;
-    padding: 0px;
+    padding: 0;
 }
 
 .dialogue {
@@ -48,5 +48,5 @@ textarea {
 .sceneNumber {
     vertical-align: middle;
     display: inline;
-    margin-left: 25px; 
+    margin-left: 25px;
 }

@@ -18,7 +18,7 @@ nav.nav-bar {
     width: 100%;
     height: 25px;
     margin: 0; padding: 0.5rem 0;
-    background-color: ghostwhite;
+    background-color: #74a6ff;
     color: rgba(0, 0, 0, 0.9);
     border-radius: 0 0 15px 15px;
 }

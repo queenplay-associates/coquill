@@ -20,7 +20,7 @@ export default class Editor extends Component {
   }
 
   componentWillReceiveProps(incoming, outgoing) {
-    this.mountStoreAtRef(incoming.fireRef);    
+    this.mountStoreAtRef(incoming.fireRef);
   }
 
   componentWillUnmount() {
@@ -84,6 +84,8 @@ export default class Editor extends Component {
       ['text', 'Text']
     ];
 
+    const { title } = this.props
+
     return <Provider store={store}>
       <div>
          <nav className="button-container">
@@ -99,7 +101,7 @@ export default class Editor extends Component {
            }
          </nav>
          <nav className="scriptBox">
-          <p className="title">{(this.props.title).toUpperCase()}</p>
+          <p className="title">{title.toUpperCase()}</p>
           <Script />
          </nav>
       </div>
