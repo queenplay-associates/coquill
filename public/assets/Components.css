@@ -58,17 +58,16 @@ textarea {
 .tooltiptext {
     visibility: hidden;
     width: 100px;
-    background-color: black;
-    color: #fff;
+    background-color: rgba(247, 247, 247, 0.5);
+    color: black;
     text-align: center;
-    padding: 3px 0;
+    padding: 2px 0;
     border-radius: 6px;
     font-size: 12px;
  
     /* Position the tooltip text - see examples below! */
     position: absolute;
-    left: 80%;
-    z-index: 1;
+    left: 85%;
 }
 
 .tooltip:hover .tooltiptext {

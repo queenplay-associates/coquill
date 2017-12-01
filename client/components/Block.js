@@ -30,7 +30,7 @@ class Block extends Component {
     render() {
         const {value = ''} = this.props;
         return (
-        <div className="tooltip">
+        <span className="tooltip">
             <textarea
                     ref={name => this.text = name}
                     value={value}
@@ -39,8 +39,8 @@ class Block extends Component {
                     rows={value.length/81 + 1}
                     onKeyDown={this.handleKeyPress}
                 />
-            <span className="tooltiptext">{this.props.type}</span>
-        </div>
+            <div className="tooltiptext">{this.props.type}</div>
+        </span>
         )
     }
 }
