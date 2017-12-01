@@ -52,17 +52,18 @@ class Block extends Component {
     render() {
         const {value = '', name, type } = this.props;
         return (
-            <div>
-            <span>{name}</span>
-        <textarea
-                ref={name => this.text = name}
-                value={value}
-                onChange={this.handleChange}
-                className={type}
-                rows={value.length/81 + 1}
-                onKeyDown={this.handleKeyPress}
-            />
-            </div>
+        <div className="tooltip">
+          <span>{name}</span>
+          <textarea
+                  ref={name => this.text = name}
+                  value={value}
+                  onChange={this.handleChange}
+                  className={type}
+                  rows={value.length/81 + 1}
+                  onKeyDown={this.handleKeyPress}
+              />
+            <span className="tooltiptext">{type}</span>
+          </div>
         )
     }
 }
