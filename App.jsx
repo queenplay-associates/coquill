@@ -17,7 +17,7 @@ export default class App extends Component {
     super()
     this.state = {
       loginStatus: false,
-      userName: 'Stranger🤷🏻‍',
+      userName: 'Stranger‍',
       faceUrl: '',
       uid: ''
     }
