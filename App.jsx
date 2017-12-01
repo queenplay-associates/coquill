@@ -31,7 +31,7 @@ export default class App extends Component {
         ? name = 'Anonymous'
         : name = user.displayName
       this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL, uid: user.uid})
-      console.log("who is loged in-- user and uid-> ", name, user.uid)
+      console.log("who is loged in---> ", name, user.uid)
     })
   }
 

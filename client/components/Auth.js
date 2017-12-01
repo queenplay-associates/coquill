@@ -15,7 +15,7 @@ export default class Auth extends Component {
         this.props.db.ref('users').on('value', snapshot => {         
         })
     }
-    
+
     handleGoogleClick = evt => {
         evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
@@ -23,7 +23,6 @@ export default class Auth extends Component {
         firebase.auth().signInWithPopup(provider).then(result => {
             const token = result.credential.accessToken;
             const user = result.user;
-            //console.log("uid----iO7oe8L7dKRr8zoVvKzyqhhgqby1----->>>>>", user.uid)
             return user
         })
         .then(user => {
@@ -34,7 +33,6 @@ export default class Auth extends Component {
                 ref = snapshot.ref
                 for (const prop in snapshot.val()) {
                     let existatedEmail = snapshot.val()[prop].email
-                    //console.log("----promise ===>", snapshot.val()[prop].email)
                     if (existatedEmail === email) {
                         bool = true
                         break
