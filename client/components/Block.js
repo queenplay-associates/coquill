@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setContent, setValue, insertAfter, removeObject } from '~/client/store/reducer'
+import { setContent, setValue, insertAfter, removeObject } from '../store/reducer'
 
 import '~/public/assets/Components.css';
 import firebase from 'firebase';
@@ -13,39 +13,49 @@ class Block extends Component {
 
     componentDidMount() {
         this.text.focus()
+
         //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return
             let name;
+
             user.isAnonymous
               ? name = 'Anonymous'
               : name = user.displayName
-            this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+
+            this.setState({
+              loginStatus: true,
+              userName: name,
+              faceUrl: user.photoURL
+            })
           })
     }
 
     handleChange = evt => {
-        this.props.setValue(evt.target.value, this.state.userName)
+        const { setValue } = this.props,
+              { userName } = this.state;
+
+        setValue(evt.target.value, userName)
     }
 
     handleKeyPress = evt => {
-        const { showWriter, userName } = this.state;
+        const { insertNext, deleteObject } = this.props;
 
         if (evt.keyCode === 9) evt.preventDefault()
+
         if (evt.key === 'Enter') {
             evt.preventDefault()
-            this.props.insertNext()
+            insertNext()
         }
+
        // if (evt.keyCode == 32) { //keydown
         this.setState(prevState => ({
             showWriter: !prevState.showWriter
         }))
-        console.log("down pressed who is editing--->", showWriter, userName)
-
        // }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
-            this.props.deleteObject()
+            deleteObject()
         }
     }
 

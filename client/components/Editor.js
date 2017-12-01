@@ -14,8 +14,8 @@ import { db } from '~/public/secrets'
 
 //TODO:
 /*
-when loading check who owns this screen play and or attached
-for the time being, the ownership is injected separeact from the store, should be part of store
+when loading check who owns this screenplay and or attached
+for the time being, the ownership is injected separately from the store, should be part of store
 check if already have a screen play owner, otherwise attach the current auth
 line 73 bug!
 */
@@ -30,24 +30,26 @@ export default class Editor extends Component {
   }
 
   componentDidMount() {
-    this.mountStoreAtRef(this.props.fireRef)
+    const { fireRef, uid, title } = this.props
 
-    //if user dont have screenplays, then added this current one
-    if (this.props.uid) {
-      db.ref(`users/${this.props.uid}`).once('value', snap => {
+    this.mountStoreAtRef(fireRef)
+
+    //if user doesn't have screenplays, then add current one
+    if (uid) {
+      db.ref(`users/${uid}`).once('value', snap => {
         if (!snap.hasChild(contributedScreenPlays))
-          snap.ref.update({ [contributedScreenPlays]: this.props.title })
+          snap.ref.update({ [contributedScreenPlays]: title })
       })
     }
 
-    //Get lists of users contribute to this screenPlay
-    if (this.props.title) {
+    //Get list of users who contribute to this screenplay
+    if (title) {
       db.ref('users').orderByChild(contributedScreenPlays)
-        .equalTo(this.props.title)
+        .equalTo(title)
         .once('value')
         .then(snap => {
-            const value = snap.val()
             let names = ''
+
             snap.forEach(data => {
               const { displayName, photoURL } = data.val()
               names += displayName + ','
@@ -66,10 +68,10 @@ export default class Editor extends Component {
   }
 
   mountStoreAtRef(ref) {
-
     if (this.state && this.state.store) {
       this.unsubscribe && this.unsubscribe()
-        this.unsubscribe = null;
+
+      this.unsubscribe = null;
       this.setState({store:null})
       return process.nextTick(() => this.mountStoreAtRef(ref))
     }
@@ -84,6 +86,7 @@ export default class Editor extends Component {
                 const action = snap.val()
                 next(action)
             }
+
             ref.on('child_added', dispatchSnapshot)
             this.unsubscribe = () => ref.off('child_added', dispatchSnapshot)
 
@@ -96,6 +99,7 @@ export default class Editor extends Component {
         )
       )
     )
+
     this.setState({store})
   }
 
