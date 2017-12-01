@@ -65,7 +65,7 @@ class Block extends Component {
                 value={value}
                 onChange={this.handleChange}
                 className={this.props.type}
-                rows={value.split('\n').length}
+                rows={value.length/81 + 1}
                 onKeyDown={this.handleKeyPress}
             />
             </div>
