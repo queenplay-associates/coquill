@@ -53,13 +53,13 @@ class Block extends Component {
         const {value = '', name, type } = this.props;
         return (
             <div>
-            <span>{name}</span>
+            {/* <span>{name}</span> */}
         <textarea
                 ref={name => this.text = name}
                 value={value}
                 onChange={this.handleChange}
                 className={type}
-                rows={value.length/81 + 1}
+                rows={value.length/75 + 1}
                 onKeyDown={this.handleKeyPress}
             />
             </div>

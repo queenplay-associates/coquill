@@ -64,6 +64,12 @@ button:active {
     font-size: 25px;
 }
 
+.writers {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
 .scriptBox {
     padding-top: 120px;
 }
