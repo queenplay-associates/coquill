@@ -50,7 +50,7 @@ export default class Screenplays extends Component {
     return <div className = "demo">
         <h3>List of Screenplays</h3>
         <ul>
-          {this.state.screenplays.length > 0 && this.state.screenplays.map((name, i) => <li><Link key={i} to={`/screenplays/${name}`}>{name}</Link></li>)}
+          {this.state.screenplays.length > 0 && this.state.screenplays.map((name, i) => <li key={i}><Link to={`/screenplays/${name}`}>{name}</Link></li>)}
           <li>
             <form onSubmit={this.handleSubmit}>
               <input className='input' onChange={this.handleChange} value={this.state.value} />

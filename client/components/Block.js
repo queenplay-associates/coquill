@@ -40,8 +40,6 @@ class Block extends Component {
         this.setState(prevState => ({
             showWriter: !prevState.showWriter
         }))
-        console.log("down pressed who is editing--->", showWriter, userName)
-
        // }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {

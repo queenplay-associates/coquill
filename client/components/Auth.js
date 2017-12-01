@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 import { checkUser } from './authHelper'
+// import createHistory from 'history/createBrowserHistory';
 
 //TODO: reduce ref to a var and resue it 
 
@@ -70,7 +71,7 @@ export default class Auth extends Component {
                     ? (isAnonymous = user.isAnonymous,
                         uid = user.uid)
                     :
-                    console.log("user singed out")
+                        "Stranger"
             })
         ).catch(function (error) {
             console.log(error.code, error.message)
@@ -78,24 +79,25 @@ export default class Auth extends Component {
     }
 
     handleSignOutClick = evt => {
-        evt.preventDefault()
+        // evt.preventDefault()
         firebase.auth().signOut().then(() => {
             this.setState({ userName: "Stranger", userFace: "" })
-        }, error => {
-            //console.error('Sign Out Error', error);
-        });
+            console.log("user signed out 7890")
+        }, error => { });
+        // const history = createHistory();
+        // history.push(`/`);
+        console.log("user signed out 1234");
     }
 
     render() {
         const { status } = this.props
         const { userName, userFace } = this.state
         return (<div className="Auth">
-            <p>Auth Page Hello </p>
-            <h1>{userName}</h1>
-            <button onClick={this.handleAnonymousClick}> anonymous-auth 🤣 </button>
-            <button onClick={this.handleGoogleClick}> google auth 🤣 </button>
-            <button onClick={this.handleSignOutClick}> sign out 🤣 </button>
-            <h1>🤷🏻‍{userName}</h1>
+            <p>Login Page</p>
+            <h1>Hello, {userName}!</h1>
+            <button onClick={this.handleAnonymousClick}> Sign in as Anonymous 🤣 </button>
+            <button onClick={this.handleGoogleClick}> Sign in with Google 🤣 </button>
+            <button onClick={this.handleSignOutClick}> Log out 🤣 </button>
             <img className="userFace" src={userFace} />
         </div>
         )
