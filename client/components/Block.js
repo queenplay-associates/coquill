@@ -24,10 +24,6 @@ class Block extends Component {
           })
     }
 
-    // handleChange = evt => {
-    //     this.props.setValue(evt.target.value)
-    // }
-
     handleChange = evt => {
         this.props.setValue(evt.target.value, this.state.userName)
     }
@@ -50,10 +46,6 @@ class Block extends Component {
             this.props.deleteObject()
         }
     }
-    // renderWriter(){
-    //     this.setState({showWriter:!this.state.showWriter})
-    //     return <p>{this.state.userName}</p>
-    // }
 
     render() {
         const {value = ''} = this.props;
@@ -73,8 +65,6 @@ class Block extends Component {
     }
 }
 
-// const setVal = (dispatch, {id}) =>
-//   setValue(val => dispatch(setValue(val, id)));
 
 export const Action = connect(
   (state, {id}) => state.get(id),

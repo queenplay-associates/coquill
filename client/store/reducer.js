@@ -12,14 +12,6 @@ export const pushObject = (objectType) => ({
   objectType
 })
 
-/*
-export const setValue = (value, index) => ({
-  type: SET_VALUE,
-  value,
-  componentKey: index
-})
-*/
-
 export const setValue = (value, index, name) => ({
   type: SET_VALUE,
   value,
@@ -91,8 +83,6 @@ const reducer = (state = OrderedMap(), action) => {
 
 function itemReducer(item={}, action) {
   const {type} = action
-  // if (type === SET_VALUE)
-  //   return {...item, value: action.value}
   if (type === SET_VALUE)
   return {...item, value: action.value, name: action.name}
   if (type === CHANGE_TYPE)
