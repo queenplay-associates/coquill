@@ -17,11 +17,15 @@ class Block extends Component {
         //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return
-            let name;
 
-            user.isAnonymous
-              ? name = 'Anonymous'
-              : name = user.displayName
+            const nameid = user.displayName;
+            const initials = nameid.indexOf(' ')
+            ? nameid.charAt(0).toUpperCase() + nameid.charAt(nameid.indexOf(' ')+1).toUpperCase()
+            : nameid.charAt(0).toUpperCase();
+
+            const name = user.isAnonymous
+              ? '🤷🏻‍'
+              : initials
 
             this.setState({
               loginStatus: true,
@@ -34,7 +38,7 @@ class Block extends Component {
     handleChange = evt => {
         const { setValue } = this.props,
               { userName } = this.state;
-      console.log('evt value', typeof evt.target.value)
+      
         setValue(evt.target.value, userName)
     }
 
@@ -48,11 +52,11 @@ class Block extends Component {
             insertNext()
         }
 
-       // if (evt.keyCode == 32) { //keydown
+       if (evt.keyCode == 16) { //keydown of shift
         this.setState(prevState => ({
             showWriter: !prevState.showWriter
         }))
-       // }
+       }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
             deleteObject()
@@ -62,7 +66,7 @@ class Block extends Component {
     render() {
         const {value = '', name, type } = this.props;
         return <div className="tooltip">
-          <span>{name}</span>
+          <span className="tooltipauthor">{name}</span>
           <textarea
                   ref={name => this.text = name}
                   value={value}

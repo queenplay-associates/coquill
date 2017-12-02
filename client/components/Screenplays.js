@@ -29,7 +29,7 @@ export default class Screenplays extends Component {
     this.setState({value: evt.target.value})
   }
 
-  handleSubmit() {
+  handleSubmit = () => { //Eleni, don't deconstruct this function! don't break it!
     const { value } = this.state,
             history = createHistory();
     history.push(`/screenplays/${value}`)
@@ -46,14 +46,10 @@ export default class Screenplays extends Component {
               <Link key={i} to={`/screenplays/${name}`}>{name}</Link>
             </li>
           )}
-          <li>
-            <form onSubmit={this.handleSubmit}>
-              <input className='input'
-                     onChange={this.handleChange}
-                     value={value}/>
+            <form className='input-container' onSubmit={this.handleSubmit}>
+              <input value={value} onChange={this.handleChange}/>
               <button type='submit'>Create</button>
             </form>
-          </li>
         </ul>
       </div>
   }

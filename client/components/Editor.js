@@ -151,7 +151,6 @@ export default class Editor extends Component {
             <p>Screenplay written by: {names}</p>
           </div>
           <Script />
-         </div>
          <div className="share">
            <hr />
           <span>❤️ your screenplay? Share it!</span>
