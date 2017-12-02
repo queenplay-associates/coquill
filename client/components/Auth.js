@@ -2,7 +2,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 import { checkUser } from './authHelper'
-// import createHistory from 'history/createBrowserHistory';
 
 //TODO: reduce ref to a var and reuse it
 
@@ -14,9 +13,12 @@ export default class Auth extends Component {
     }
 
     componentDidMount() {
+        /*
+        there was a reason and I forgot. Keep it for now.
         this.props.db.ref('users').on('value', snap => {
           // we're not doing anything here yet
         })
+        */
     }
 
     handleGoogleClick = evt => {
@@ -90,11 +92,7 @@ export default class Auth extends Component {
         // evt.preventDefault()
         firebase.auth().signOut().then(() => {
             this.setState({ userName: "Stranger", userFace: "" })
-            console.log("user signed out 7890")
-        }, error => { });
-        // const history = createHistory();
-        // history.push(`/`);
-        console.log("user signed out 1234");
+        }, error =>  console.log(error.message));
     }
 
     render() {
@@ -121,3 +119,13 @@ export default class Auth extends Component {
         </div>
     }
 }
+
+
+// <select name="teachableSelector" className="select-tutor" >
+
+//         {
+//            teachables.map(ele => (
+//             <option value={ele.id} key={ele.id}>{ele.name + ' $' + ele.price + '.00'}</option>
+//             ))
+//         }
+//         </select>
