@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Questrial|Roboto+Mono|Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Space+Mono');
 
 * {
-    font-family: 'Space Mono', 'Roboto Mono', Questrial, Monospace, sans-serif;
+    font-family: 'Space Mono', 'Roboto Mono', Monospace, sans-serif;
 }
 
 body {

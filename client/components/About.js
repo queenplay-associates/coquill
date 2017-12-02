@@ -25,6 +25,8 @@ export default () =>
         the editor will project colors on the page which map to the context of
         your text.
       </p>
-    <Link className='start-button' to='/screenplays'>Get Started Now!</Link>
+    <Link to='/screenplays'>
+      <button className='start-button'>Get Started Now!</button>
+    </Link>
     </div>
   </div>
