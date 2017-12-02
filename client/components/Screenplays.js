@@ -6,11 +6,9 @@ import createHistory from 'history/createBrowserHistory';
 import '~/public/assets/Screenplays.css'
 
 import { db } from '~/public/secrets'
-// grab screenplays from database
-  // list title, owners, short description (?)
-  // make a func to get rid of last comma of authors array
-  // what about anon users?
-  // grab elements properly (map prob won't work here)
+// list short description (?)
+// make a func to get rid of last comma of authors array
+// what about anon users?
 
 export default class Screenplays extends Component {
   constructor() {
@@ -40,7 +38,7 @@ export default class Screenplays extends Component {
   render() {
     const { screenplays, value } = this.state;
 
-    return <div className="demo">
+    return <div className="list-of-screenplays">
         <h3>List of Screenplays</h3>
         <ul>
           {screenplays.length > 0 && screenplays.map((name, i) =>

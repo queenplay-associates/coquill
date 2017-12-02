@@ -134,8 +134,7 @@ export default class Editor extends Component {
          <nav className="button-container">
            {
              buttonTypes.map(elem =>
-               <button className={elem[2]}
-                       key={elem[0]}
+               <button key={elem[0]}
                        type="button"
                        onClick={this.handleChange}
                        value={elem[0]}>{elem[1]}
@@ -152,8 +151,12 @@ export default class Editor extends Component {
          </div>
          <span>❤️ your screenplay? Share it!</span>
          <br />
-         <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}><img src="/assets/facebook_circle.png" height="30px" /></a>
-        <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}><img src="/assets/twitter_circle.png" height="30px" /></a>
+         <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+           <img src="/assets/facebook_circle.png" height="30px" />
+         </a>
+        <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+          <img src="/assets/twitter_circle.png" height="30px" />
+        </a>
       </div>
     </Provider>
   }
