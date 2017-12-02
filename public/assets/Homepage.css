@@ -18,8 +18,8 @@ nav.nav-bar {
     width: 100%;
     height: 25px;
     margin: 0; padding: 0.5rem 0;
-    background-color: #74a6ff;
-    color: rgba(0, 0, 0, 0.9);
+    background-color: #d45145;
+    color: rgba(255, 255, 255, 0.9);
     border-radius: 0 0 15px 15px;
 }
 
@@ -37,7 +37,7 @@ nav.nav-bar {
 a {
     text-decoration: none;
     color: inherit;
-    margin: 0 20px;
+    margin: 0 40px;
 }
 
 a:hover {
@@ -46,7 +46,7 @@ a:hover {
 }
 
 a.active {
-    color: #e0bd66;
+    color: #feecab;
 }
 
 span {
