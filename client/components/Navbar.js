@@ -10,12 +10,12 @@ class Navbar extends React.Component {
   
   render() {
   const logInStatus = this.props.logInStatus ? "Logout" : "Login"
-    let navName
-    //console.log("index", this.props.userName.indexOf(' '))
+
+    console.log("index", this.props.userName.indexOf(' '))
     
-    (this.props.userName.indexOf(' ')>0) 
-      ? navName = this.props.userName.substr(0, this.props.userName.indexOf(' '))
-      : navName = this.props.userName
+    const navName = (this.props.userName.indexOf(' ')) 
+      ? this.props.userName.substr(0, this.props.userName.indexOf(' '))
+      : this.props.userName
 
   return (<nav className="nav-bar">
     <NavLink to='/'>
