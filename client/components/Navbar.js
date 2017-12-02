@@ -10,11 +10,9 @@ export default class Navbar extends Component {
   render() {
     const { userName } = this.props;
     const logInStatus = this.props.logInStatus ? "Logout" : "Login";
-    let navName;
-
-    userName.indexOf(' ') > 0
-      ? navName = userName.substr(0, userName.indexOf(' '))
-      : navName = userName;
+    const navName = userName.indexOf(' ')
+      ? userName.substr(0, userName.indexOf(' '))
+      : userName;
 
     return <nav className="nav-bar">
       <NavLink to='/'>
