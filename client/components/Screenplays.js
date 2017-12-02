@@ -21,7 +21,9 @@ export default class Screenplays extends Component {
 
   componentDidMount() {
     db.ref('screenplays').on('child_added', snap => {
-     this.setState({screenplays: [...this.state.screenplays, snap.key]})
+      this.setState({
+        screenplays: [...this.state.screenplays, snap.key]
+      })
     })
   }
 

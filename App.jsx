@@ -55,7 +55,8 @@ export default class App extends Component {
                  component={({match: {params: {screenplayId}}}) =>
                     <Editor title={screenplayId}
                             fireRef={db.ref('screenplays')
-                                       .child(screenplayId)}/>}/>
+                                       .child(screenplayId)}/>}
+          />
           <Route path="/login" component={() =>
             <Auth db={db}
                   userName={userName}
