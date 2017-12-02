@@ -39,10 +39,10 @@ export default class Screenplays extends Component {
     const { screenplays, value } = this.state;
 
     return <div className="list-of-screenplays">
-        <h3>List of Screenplays</h3>
+        <h1 className="screenplays-header">Screenplays</h1>
         <ul>
           {screenplays.length > 0 && screenplays.map((name, i) =>
-            <li>
+            <li key={i}>
               <Link key={i} to={`/screenplays/${name}`}>{name}</Link>
             </li>
           )}
