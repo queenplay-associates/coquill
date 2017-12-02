@@ -146,22 +146,23 @@ export default class Editor extends Component {
            }
          </nav>
          <div className="scriptBox">
-          <p className="title">{title.toUpperCase()}</p>
-          <div className='writers'>
-            <p>Screenplay written by: {names}</p>
+            <p className="title">{title.toUpperCase()}</p>
+            <div className='writers'>
+              <p>Screenplay written by: {names}</p>
+            </div>
+            <Script />
+            <div className="share">
+              <hr />
+              <span>❤️ your screenplay? Share it!</span>
+              <br />
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+                <img src="/assets/facebook_circle.png" height="30px" />
+              </a>
+              <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+                <img src="/assets/twitter_circle.png" height="30px" />
+              </a>
+            </div>
           </div>
-          <Script />
-         <div className="share">
-           <hr />
-          <span>❤️ your screenplay? Share it!</span>
-          <br />
-          <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
-            <img src="/assets/facebook_circle.png" height="30px" />
-          </a>
-          <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
-            <img src="/assets/twitter_circle.png" height="30px" />
-          </a>
-        </div>
       </div>
     </Provider>
   }
