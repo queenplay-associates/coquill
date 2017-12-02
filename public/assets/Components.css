@@ -1,0 +1,77 @@
+div.scriptBox {
+    margin: 0 0 0 calc(20% - 12%);
+}
+
+textarea {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%; height: auto;
+    margin: 5px 100px; padding: 5px 10px;
+    border: none; outline: none;
+    vertical-align: middle;
+    resize: none;
+    overflow: hidden;
+    font-size: 14px;
+}
+
+.sceneHeading {
+    text-transform: uppercase;
+    background-color: lightgray;
+    display: inline;
+    margin-left: 45px;
+}
+
+.transition {
+    text-transform: uppercase;
+}
+
+.character {
+    text-transform: uppercase;
+    position: center;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 100px; padding: 0;
+}
+
+.parenthetical {
+    position: center;
+    text-align: center;
+    margin: 0 100px; padding: 0;
+}
+
+.dialogue {
+    position: relative;
+    left: 15%;
+    max-width: 55%;
+}
+
+.sceneNumber {
+    vertical-align: middle;
+    display: inline;
+    margin-left: 25px;
+}
+
+.tooltiptext {
+    visibility: hidden;
+    width: 100px;
+    background-color: rgba(247, 247, 247, 0.5);
+    color: #fff;
+    text-align: center;
+    padding: 2px 0;
+    border-radius: 6px;
+    font-size: 12px;
+
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    left: 80%;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    margin-left: 25px;
+}
+
+img.userFace {
+    max-width: 3%;
+    max-height: 3%;
+}

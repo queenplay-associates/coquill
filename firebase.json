@@ -1,5 +1,9 @@
 {
   "hosting": {
+    "rewrites": [ {
+      "source": "**",
+      "destination": "/index.html"
+    } ],
     "public": "public",
     "ignore": [
       "firebase.json",
@@ -9,10 +13,6 @@
   },
   "database": {
     "rules": "database.rules.json"
-  },
-  "firestore": {
-    "rules": "firestore.rules",
-    "indexes": "firestore.indexes.json"
   },
   "storage": {
     "rules": "storage.rules"

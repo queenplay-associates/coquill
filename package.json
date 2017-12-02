@@ -16,6 +16,12 @@
   },
   "keywords": [],
   "author": "Ashi Krishnan <hi@ashi.io>",
+  "contributors": [
+    "Eleni Arvanitis",
+    "Christina Ng",
+    "Samantha Zhang",
+    "Guang Zhu"
+  ],
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -31,21 +37,28 @@
     "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
+    "assets-loader": "^0.5.1",
     "chokidar": "^1.7.0",
     "color": "^2.0.1",
+    "css-loader": "^0.28.7",
+    "file-loader": "^1.1.5",
     "firebase": "^4.6.2",
     "immutable": "^3.8.2",
     "minimist": "^1.2.0",
-    "quill": "^1.3.4",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0",
-    "react-quill": "^1.1.0",
+    "node-sass": "^4.7.2",
+    "raw-loader": "^0.5.1",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-entypo": "^1.3.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
     "sentiment": "^4.1.0",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
     "webpack": "^3.8.1"
   }
 }

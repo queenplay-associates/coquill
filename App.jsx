@@ -1,36 +1,69 @@
 import React, { Component } from 'react';
-import fire from './public/secrets';
-import store from '~/client/store/index'
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import Screenplays from '~/client/components/Screenplays'
+
+import Navbar from '~/client/components/Navbar'
+import Editor from '~/client/components/Editor'
+import About from '~/client/components/About'
+import { db } from '~/public/secrets'
+import Auth from '~/client/components/Auth'
+
+import firebase from 'firebase'
+
+//TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
+//TODO: make a function that makes anonymous names and images
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = { screenplay: {} };
+    this.state = {
+      loginStatus: false,
+      userName: 'Stranger‍',
+      faceUrl: '',
+      uid: ''
+    }
   }
 
-componentDidMount() {
-  const db = fire.database().ref().child('screenplay');
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) this.setState({ userName: "Stranger" });
+      let name;
 
-  db.on('value', snap => {
-    this.setState({ screenplay: snap.val()})
-  });
+      // cannot read type isAnonymous of null
+      (user.isAnonymous)
+        ? name = 'Anonymous'
+        : name = user.displayName;
 
-  // db.on('child_removed', snap => {
-  //  console.log('child element removed ---> val =', snap.val())
-  // })
-}
+      this.setState({
+        loginStatus: true,
+        userName: name,
+        faceUrl: user.photoURL,
+        uid: user.uid
+      })
+    })
+  }
 
-render() {
-  const content = JSON.stringify(this.state.screenplay, null, 3)
-    , changedFire = JSON.stringify(this.state.screenplay.key, null, 3);
-
-
-  return (
-    <div>
-      <h1> 🔥 Ready. </h1>
-      <h2>{content}</h2>
-      <p>🔥{changedFire}🔥</p>
-    </div>
-  );
-}
+  render() {
+    const { loginStatus, userName, faceUrl } = this.state;
+    return <Router>
+      <div>
+        <Navbar logInStatus={loginStatus} userName={userName}/>
+        <Switch>
+          <Route exact path="/" component={About}/>
+          <Route exact path='/screenplays' component={Screenplays}/>
+          <Route exact path='/screenplays/:screenplayId'
+                 component={({match: {params: {screenplayId}}}) =>
+                    <Editor title={screenplayId}
+                            fireRef={db.ref('screenplays')
+                                       .child(screenplayId)}/>}/>
+          <Route path="/login" component={() =>
+            <Auth db={db}
+                  userName={userName}
+                  userFace={faceUrl}
+                  status={loginStatus}/>
+          }/>
+        </Switch>
+      </div>
+    </Router>
+  }
 }
