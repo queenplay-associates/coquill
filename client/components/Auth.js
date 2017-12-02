@@ -109,6 +109,6 @@ export default class Auth extends Component {
             <button onClick={this.handleGoogleClick}> Sign in with Google 🤣 </button>
             <button onClick={this.handleSignOutClick}> Log out 🤣 </button>
             <img className="userFace" src={userFace} />
-        </div>
+        </div>)
     }
 }
