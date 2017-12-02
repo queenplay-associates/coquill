@@ -98,7 +98,6 @@ export default class Auth extends Component {
     render() {
         const { status } = this.props
         const { userName, userFace } = this.state
-
         return <div className="auth">
           <span>
             <h3 className="hello">Hello, {userName}!</h3>
