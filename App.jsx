@@ -48,12 +48,6 @@ export default class App extends Component {
       <div>
         <Navbar logInStatus={loginStatus} userName={userName}/>
         <Switch>
-          {/* <Route exact path='/' component={() =>
-            <Editor title={'🔥 Welcome to Coquill 🔥'}
-                    fireRef={db.ref('screenplays')
-                               .child('welcome')}/>
-          }/>
-          <Route path="/about" component={About}/> */}
           <Route exact path="/" component={About}/>
           <Route exact path='/screenplays' component={Screenplays}/>
           <Route exact path='/screenplays/:screenplayId'
@@ -62,7 +56,8 @@ export default class App extends Component {
                             fireRef={db.ref('screenplays')
                                        .child(screenplayId)}/>}/>
           <Route path="/login" component={() =>
-            <Auth db={db} userName={userName}
+            <Auth db={db}
+                  userName={userName}
                   userFace={faceUrl}
                   status={loginStatus}/>
           }/>
