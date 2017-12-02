@@ -19,6 +19,7 @@ textarea {
     background-color: lightgray;
     display: inline;
     margin-left: 45px;
+    font-weight: bold;
 }
 
 .transition {
@@ -31,6 +32,7 @@ textarea {
     text-align: center;
     font-size: 16px;
     margin: 0 100px; padding: 0;
+    font-weight: bold;
 }
 
 .parenthetical {
@@ -74,4 +76,8 @@ textarea {
 img.userFace {
     max-width: 3%;
     max-height: 3%;
+}
+
+.share {
+    padding-top: 5%;
 }

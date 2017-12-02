@@ -111,13 +111,13 @@ export default class Auth extends Component {
 
           <div className="login-buttons">
             <button onClick={this.handleAnonymousClick}>
-              Sign in as Anonymous 🤣
+              Sign in as Anonymous
             </button>
             <button onClick={this.handleGoogleClick}>
-              Sign in with Google 🤣
+              Sign in with Google
             </button>
             <button onClick={this.handleSignOutClick}>
-              Log out 🤣
+              Log out
             </button>
           </div>
         </div>

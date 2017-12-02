@@ -29,13 +29,12 @@ class Block extends Component {
               faceUrl: user.photoURL
             })
           })
-        // this.text.focus();
     }
 
     handleChange = evt => {
         const { setValue } = this.props,
               { userName } = this.state;
-
+      console.log('evt value', typeof evt.target.value)
         setValue(evt.target.value, userName)
     }
 
