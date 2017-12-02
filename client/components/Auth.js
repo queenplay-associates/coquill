@@ -23,27 +23,28 @@ export default class Auth extends Component {
         evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
 
-        firebase.auth().signInWithPopup(provider).then(result => {
+        firebase.auth().signInWithPopup(provider)
+          .then(result => {
             const token = result.credential.accessToken;
             return result.user;
-        })
-        .then(user => {
-            let email = user.email,
-                registeredUser = false,
-                ref;
+          })
+          .then(user => {
+              let email = user.email,
+                  registeredUser = false,
+                  ref;
 
-            firebase.database().ref('users').once("value", snap => {
-                ref = snap.ref
+              firebase.database().ref('users').once("value", snap => {
+                  ref = snap.ref;
 
-                for (const prop in snap.val()) {
-                    let emailExists = snap.val()[prop].email
+                  for (const prop in snap.val()) {
+                      let emailExists = snap.val()[prop].email;
 
-                    if (emailExists === email) {
-                        registeredUser = true
-                        break
-                    }
-                }
-            })
+                      if (emailExists === email) {
+                          registeredUser = true;
+                          break;
+                      }
+                  }
+              });
 
             return [registeredUser, user, ref]
         })
@@ -51,14 +52,14 @@ export default class Auth extends Component {
             if (!data[0]) registerUser(data[1], data[2])
             // refactor above if statement to check whether user exists then add to db
           })
-          .catch(err => console.error(err))
+          .catch(err => console.error(err));
 
         const registerUser = (data, ref) => {
-            const { email, displayName, photoURL, uid } = data
+            const { email, displayName, photoURL, uid } = data;
             const permissions = [
                 { id: 'blah', access: 'read' },
                 { id: 'screen', access: 'admin' }
-            ]
+            ];
 
             ref.update({
               [uid]: {
@@ -80,12 +81,9 @@ export default class Auth extends Component {
                 user
                     ? (isAnonymous = user.isAnonymous,
                         uid = user.uid)
-                    :
-                        "Stranger"
-            })
-        ).catch(function (error) {
-            console.log(error.code, error.message)
-        })
+                    : "Stranger"
+          }))
+          .catch(err => console.log(err.code, err.message))
     }
 
     handleSignOutClick = evt => {
@@ -102,13 +100,24 @@ export default class Auth extends Component {
     render() {
         const { status } = this.props
         const { userName, userFace } = this.state
-        return (<div className="Auth">
-            <p>Login Page</p>
-            <h1>Hello, {userName}!</h1>
-            <button onClick={this.handleAnonymousClick}> Sign in as Anonymous 🤣 </button>
-            <button onClick={this.handleGoogleClick}> Sign in with Google 🤣 </button>
-            <button onClick={this.handleSignOutClick}> Log out 🤣 </button>
-            <img className="userFace" src={userFace} />
-        </div>)
+
+        return <div className="auth">
+          <span>
+            <h3 className="hello">Hello, {userName}!</h3>
+            <img className="userFace" src={userFace}/>
+          </span>
+
+          <div className="login-buttons">
+            <button onClick={this.handleAnonymousClick}>
+              Sign in as Anonymous 🤣
+            </button>
+            <button onClick={this.handleGoogleClick}>
+              Sign in with Google 🤣
+            </button>
+            <button onClick={this.handleSignOutClick}>
+              Log out 🤣
+            </button>
+          </div>
+        </div>
     }
 }

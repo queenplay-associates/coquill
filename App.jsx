@@ -8,13 +8,14 @@ import About from '~/client/components/About'
 import { db } from '~/public/secrets'
 import Auth from '~/client/components/Auth'
 
-import firebase from 'firebase';
+import firebase from 'firebase'
 
 //TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
+//TODO: make a function that makes anonymous names and images
 
 export default class App extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       loginStatus: false,
       userName: 'Stranger‍',
@@ -25,13 +26,13 @@ export default class App extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) this.setState({userName:"Stranger"})
+      if (!user) this.setState({ userName: "Stranger" });
       let name;
 
-      //TODO: make a function that makes anonymous names and images
-      user.isAnonymous
+      // cannot read type isAnonymous of null
+      (user.isAnonymous)
         ? name = 'Anonymous'
-        : name = user.displayName
+        : name = user.displayName;
 
       this.setState({
         loginStatus: true,

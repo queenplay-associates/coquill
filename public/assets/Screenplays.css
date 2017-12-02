@@ -2,6 +2,28 @@
     display: inline;
 }
 
-button {
+button.submit {
     display: inline;
+}
+
+.title {
+    margin: 0 100px;
+    padding: 20px;
+    text-align: center;
+    width: 80%;
+    font-size: 25px;
+}
+
+.writers {
+    text-align: center;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.scriptBox {
+    padding-top: 120px;
+}
+
+.list-of-screenplays {
+    padding: 10%
 }
