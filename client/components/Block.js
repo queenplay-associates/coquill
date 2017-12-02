@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { setContent, setValue, insertAfter, removeObject } from '~/client/store/reducer'
+import { setContent, setValue, insertAfter, removeObject } from '../store/reducer'
 
 import '~/public/assets/Components.css';
 import firebase from 'firebase';
@@ -13,29 +13,42 @@ class Block extends Component {
 
     componentDidMount() {
         this.text.focus()
+
         //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return
             let name;
+
             user.isAnonymous
               ? name = 'Anonymous'
               : name = user.displayName
-            this.setState({loginStatus: true, userName: name, faceUrl: user.photoURL})
+
+            this.setState({
+              loginStatus: true,
+              userName: name,
+              faceUrl: user.photoURL
+            })
           })
+        // this.text.focus();
     }
 
     handleChange = evt => {
-        this.props.setValue(evt.target.value, this.state.userName)
+        const { setValue } = this.props,
+              { userName } = this.state;
+
+        setValue(evt.target.value, userName)
     }
 
     handleKeyPress = evt => {
-        const { showWriter, userName } = this.state;
+        const { insertNext, deleteObject } = this.props;
 
         if (evt.keyCode === 9) evt.preventDefault()
+
         if (evt.key === 'Enter') {
             evt.preventDefault()
-            this.props.insertNext()
+            insertNext()
         }
+
        // if (evt.keyCode == 32) { //keydown
         this.setState(prevState => ({
             showWriter: !prevState.showWriter
@@ -43,14 +56,13 @@ class Block extends Component {
        // }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
-            this.props.deleteObject()
+            deleteObject()
         }
     }
 
     render() {
         const {value = '', name, type } = this.props;
-        return (
-        <div className="tooltip">
+        return <div className="tooltip">
           <span>{name}</span>
           <textarea
                   ref={name => this.text = name}
@@ -62,12 +74,8 @@ class Block extends Component {
               />
             <span className="tooltiptext">{type}</span>
           </div>
-        )
     }
 }
-
-//   const setValue = (val, userName) =>
-//        dispatch(setValue(val, id, userName));
 
 export const Action = connect(
   (state, {id}) => state.get(id),
@@ -177,8 +185,8 @@ export const Shot = connect(
 export const Transition = connect(
   (state, {id}) => state.get(id),
   (dispatch, {id}) => ({
-    setValue(value,userName) {
-        return dispatch(setValue(value, id,userName))
+    setValue(value, userName) {
+        return dispatch(setValue(value, id, userName))
     },
     insertNext() {
         return dispatch(insertAfter('sceneHeading', id))

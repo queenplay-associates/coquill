@@ -10,14 +10,14 @@ import Auth from '~/client/components/Auth'
 
 import firebase from 'firebase';
 
-////TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
+//TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
 
 export default class App extends Component {
   constructor() {
     super()
     this.state = {
       loginStatus: false,
-      userName: 'Stranger🤷🏻‍',
+      userName: 'Stranger‍',
       faceUrl: '',
       uid: ''
     }
@@ -28,6 +28,7 @@ export default class App extends Component {
       if (!user) this.setState({userName:"Stranger"})
       let name;
 
+      //TODO: make a function that makes anonymous names and images
       user.isAnonymous
         ? name = 'Anonymous'
         : name = user.displayName

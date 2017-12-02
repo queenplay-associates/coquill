@@ -26,8 +26,7 @@ nav.nav-bar {
 .logo {
     display: flex;
     align-items: center;
-    width: 4%;
-    height: 4%;
+    width: 4%; height: 4%;
 }
 
 .logo:hover {

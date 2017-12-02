@@ -7,17 +7,10 @@ import '~/public/assets/Screenplays.css'
 
 import { db } from '~/public/secrets'
 // grab screenplays from database
-  // list id, title, owners, short description (?)
+  // list title, owners, short description (?)
   // make a func to get rid of last comma of authors array
   // what about anon users?
   // grab elements properly (map prob won't work here)
-
-    // db.ref('screenplays').map(screenplay =>
-    //   <div>
-    //     <h3>{`${screenplay.id}. ${screenplay.title.toUpperCase()}`}</h3>
-    //     <h6>{`Screenplay by ${screenplay.authors.join(', ').trim()}`}</h6>
-    //   </div>
-    // )
 
 export default class Screenplays extends Component {
   constructor() {
@@ -29,8 +22,8 @@ export default class Screenplays extends Component {
   }
 
   componentDidMount() {
-    db.ref('screenplays').on('child_added', snapshot => {
-     this.setState({screenplays: [...this.state.screenplays, snapshot.key]})
+    db.ref('screenplays').on('child_added', snap => {
+     this.setState({screenplays: [...this.state.screenplays, snap.key]})
     })
   }
 
@@ -38,23 +31,30 @@ export default class Screenplays extends Component {
     this.setState({value: evt.target.value})
   }
 
-  handleSubmit = evt => {
-    // evt.preventDefault()
+  handleSubmit() {
     const { value } = this.state,
             history = createHistory();
     history.push(`/screenplays/${value}`)
   }
 
   render() {
+    const { screenplays, value } = this.state;
 
-    return <div className = "demo">
+    return <div className="demo">
         <h3>List of Screenplays</h3>
         <ul>
-          {this.state.screenplays.length > 0 && this.state.screenplays.map((name, i) => <li key={i}><Link to={`/screenplays/${name}`}>{name}</Link></li>)}
+          {screenplays.length > 0 && screenplays.map((name, i) =>
+            <li>
+              <Link key={i} to={`/screenplays/${name}`}>{name}</Link>
+            </li>
+          )}
           <li>
             <form onSubmit={this.handleSubmit}>
-              <input className='input' onChange={this.handleChange} value={this.state.value} />
-            <button type='submit'>Create</button></form>
+              <input className='input'
+                     onChange={this.handleChange}
+                     value={value}/>
+              <button type='submit'>Create</button>
+            </form>
           </li>
         </ul>
       </div>
