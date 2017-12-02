@@ -1,18 +1,44 @@
-.about {
-    display: flex;
-    margin-left: 20%;
-    align-self: right;
-    flex-wrap: wrap;
-    max-width: 30%;
-    justify-content: flex-end;
-    margin-top: 10%;
+.about-container {
+    margin-top: 20%;
+    margin-left: 50%;
+    float: right;
 }
 
-/*img.about-img {*/
-    /*display: flex;*/
-    /*align-self: left;*/
-    /*max-width: 50%;*/
-/*}*/
+.about {
+    max-width: 70%;
+    text-align: justify;
+}
+
+.startbutton {
+    font-size: 25px;
+    color: #615858;
+}
+
 img.carousel-image {
     max-height: 950px;
+}
+
+.logo-container {
+    position: relative;
+    display: fixed;
+    margin-left: 10%;
+}
+
+.coquill {
+    font-family: Trattatello, Helvetica, sans-serif;
+    justify-content: center;
+    font-size: 80px;
+    position: absolute;
+    color: #615858;
+    padding-top: 15%;
+    margin-top: 12%;
+}
+
+img.about-img {
+    display: flex;
+    align-self: left;
+    max-width: 28%;
+    position: absolute;
+    padding-left: 10.5%;
+    margin-top: 9%;
 }
