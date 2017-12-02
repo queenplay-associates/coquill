@@ -88,13 +88,15 @@ export default class Auth extends Component {
 
     handleSignOutClick = evt => {
         // evt.preventDefault()
-        firebase.auth().signOut().then(() => {
-            this.setState({ userName: "Stranger", userFace: "" })
+        firebase.auth().signOut()
+          .then(() => {
+            this.setState({ userName: "Stranger", userFace: "" });
             console.log("user signed out 7890")
-        }, error => { });
+          })
+          .then(() => console.log("user signed out 1234"))
+          .catch(err => console.error(err));
         // const history = createHistory();
         // history.push(`/`);
-        console.log("user signed out 1234");
     }
 
     render() {
