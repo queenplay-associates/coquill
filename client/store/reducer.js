@@ -1,4 +1,4 @@
-import { OrderedMap, fromJS } from 'immutable'
+import { OrderedMap } from 'immutable'
 
 const PUSH = 'PUSH',
       INSERT_BEFORE = 'INSERT_BEFORE',
@@ -7,7 +7,7 @@ const PUSH = 'PUSH',
       CHANGE_TYPE = 'CHANGE_TYPE',
       REMOVE_OBJECT = 'REMOVE_OBJECT';
 
-export const pushObject = (objectType) => ({
+export const pushObject = objectType => ({
   type: PUSH,
   objectType
 })
@@ -40,7 +40,7 @@ export const insertBefore = (objectType, beforeKey) => ({
   beforeKey
 })
 
-export const removeObject = (id) => ({
+export const removeObject = id => ({
   type: REMOVE_OBJECT,
   id
 })
@@ -84,12 +84,11 @@ const reducer = (state = OrderedMap(), action) => {
   case CHANGE_TYPE:
     return state.update(action.componentKey, item => itemReducer(item, action))
 
-  default:
-    return state
+  default: return state
   }
 }
 
-function itemReducer(item={}, action) {
+function itemReducer(item = {}, action) {
   const {type} = action
   if (type === SET_VALUE)
     return {...item, value: action.value, name: action.name}
