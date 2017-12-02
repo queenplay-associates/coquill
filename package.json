@@ -16,6 +16,12 @@
   },
   "keywords": [],
   "author": "Ashi Krishnan <hi@ashi.io>",
+  "contributors": [
+    "Eleni Arvanitis",
+    "Christina Ng",
+    "Samantha Zhang",
+    "Guang Zhu"
+  ],
   "license": "ISC",
   "devDependencies": {
     "babel-core": "^6.26.0",
