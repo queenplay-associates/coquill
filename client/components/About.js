@@ -15,15 +15,18 @@ export default () =>
   <div>
     <div className="logo-container">
       <div className="coquill">COQUILL</div>
-      <img className="about-img" src={logo} alt="logo" /> 
+      <img className="about-img" src={logo} alt="logo" />
     </div>
     <div className='about-container'>
       <p className='about'>
-        Coquill is a real-time collaborative text editor for writing screenplays. 
-        Based on your selection, the editor will automatically format your text 
-        and provide text styling if need be. Once you have created a screenplay, the editor 
-        will project colors on the page which map to the context of your text.
+        Coquill is a real-time collaborative text editor for writing screenplays.
+        Based on your selection, the editor will automatically format your text
+        and provide text styling if need be. Once you have created a screenplay,
+        the editor will project colors on the page which map to the context of
+        your text.
       </p>
-    <Link className='startbutton' to='/screenplays'>Get Started Now!</Link>
+    <Link to='/screenplays'>
+      <button className='start-button'>Get Started Now!</button>
+    </Link>
     </div>
   </div>

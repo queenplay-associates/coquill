@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
 .about-container {
     margin-top: 20%;
     margin-left: 50%;
@@ -9,18 +11,16 @@
     text-align: justify;
 }
 
-.startbutton {
+.start-button {
+    font-family: Questrial, sans-serif;
     font-size: 25px;
     color: #615858;
-}
-
-img.carousel-image {
-    max-height: 950px;
+    padding: 0.7rem 0.9rem;
+    margin-left: 17%;
 }
 
 .logo-container {
     position: relative;
-    display: fixed;
     margin-left: 10%;
 }
 
