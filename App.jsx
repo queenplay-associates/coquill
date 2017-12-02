@@ -25,7 +25,7 @@ export default class App extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) return
+      if (!user) this.setState({userName:"Stranger"})
       let name;
 
       //TODO: make a function that makes anonymous names and images

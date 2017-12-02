@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import '~/public/assets/Homepage.css'
@@ -22,4 +22,28 @@ const Navbar = props => {
   </nav>
 }
 
-export default Navbar
+  render() {
+    const logInStatus = this.props.logInStatus ? "Logout" : "Login"
+    let navName
+    (this.props.userName.indexOf(' ')) 
+      ? navName = this.props.userName.substr(0, this.props.userName.indexOf(' '))
+      : navName = this.props.userName
+      console.log('loginstatus', logInStatus, 'navName', navName)
+
+    return (
+      <div>
+      <nav className="nav-bar">
+      <NavLink to='/'>
+        <img className="logo" src={logo} alt="fire-logo" />
+      </NavLink>
+      <NavLink to=''><h3>{navName}</h3></NavLink>
+      <NavLink to='/about'><h3>About</h3></NavLink>
+      <NavLink to='/screenplays'><h3>Screenplays</h3></NavLink>
+      <NavLink to='/login'>
+        <h3 className="login">{logInStatus}</h3>
+      </NavLink>
+      </nav>
+      </div>
+    )
+  }
+}
