@@ -1,17 +1,44 @@
-.about {
-    display: flex;
-    margin-left: 20%;
-    align-self: right;
-    flex-wrap: wrap;
-    max-width: 30%;
-    justify-content: flex-end;
+@import url('https://fonts.googleapis.com/css?family=Questrial');
+
+.about-container {
+    margin-top: 20%;
+    margin-left: 50%;
+    float: right;
 }
 
-/*img.about-img {*/
-    /*display: flex;*/
-    /*align-self: left;*/
-    /*max-width: 50%;*/
-/*}*/
-img.carousel-image {
-    max-height: 950px;
+.about {
+    max-width: 70%;
+    text-align: justify;
+}
+
+.start-button {
+    font-family: Questrial, sans-serif;
+    font-size: 25px;
+    color: #615858;
+    padding: 0.7rem 0.9rem;
+    margin-left: 17%;
+}
+
+.logo-container {
+    position: relative;
+    margin-left: 10%;
+}
+
+.coquill {
+    font-family: Trattatello, Helvetica, sans-serif;
+    justify-content: center;
+    font-size: 80px;
+    position: absolute;
+    color: #615858;
+    padding-top: 15%;
+    margin-top: 12%;
+}
+
+img.about-img {
+    display: flex;
+    align-self: left;
+    max-width: 28%;
+    position: absolute;
+    padding-left: 10.5%;
+    margin-top: 9%;
 }

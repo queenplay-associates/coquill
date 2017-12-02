@@ -9,18 +9,58 @@ import reducer from '../store/reducer';
 import Script from '~/client/components/Script';
 import '~/public/assets/Buttons.css';
 
+import firebase from 'firebase';
+import { db } from '~/public/secrets'
+
+//TODO:
+/*
+when loading check who owns this screenplay and or attached
+for the time being, the ownership is injected separately from the store, should be part of store
+check if already have a screen play owner, otherwise attach the current auth
+line 73 bug!
+*/
+
+//db screenplays/'childNode'
+const contributedScreenPlays = "contributedScreenPlays"
+
 export default class Editor extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {names:''};
   }
 
   componentDidMount() {
-    this.mountStoreAtRef(this.props.fireRef)
+    const { fireRef, uid, title } = this.props
+
+    this.mountStoreAtRef(fireRef)
+
+    //if user doesn't have screenplays, then add current one
+    if (uid) {
+      db.ref(`users/${uid}`).once('value', snap => {
+        if (!snap.hasChild(contributedScreenPlays))
+          snap.ref.update({ [contributedScreenPlays]: title })
+      })
+    }
+
+    //Get list of users who contribute to this screenplay
+    if (title) {
+      db.ref('users').orderByChild(contributedScreenPlays)
+        .equalTo(title)
+        .once('value')
+        .then(snap => {
+            let names = ''
+
+            snap.forEach(data => {
+              const { displayName, photoURL } = data.val()
+              names += displayName + ','
+              this.setState({ names })
+            })
+        })
+    }
   }
 
   componentWillReceiveProps(incoming, outgoing) {
-    this.mountStoreAtRef(incoming.fireRef);    
+    this.mountStoreAtRef(incoming.fireRef);
   }
 
   componentWillUnmount() {
@@ -30,8 +70,8 @@ export default class Editor extends Component {
   mountStoreAtRef(ref) {
     if (this.state && this.state.store) {
       this.unsubscribe && this.unsubscribe()
-        this.unsubscribe = null;
-      console.log("screenplay title:", this,state);
+
+      this.unsubscribe = null;
       this.setState({store:null})
       return process.nextTick(() => this.mountStoreAtRef(ref))
     }
@@ -44,7 +84,7 @@ export default class Editor extends Component {
           store => next => {
             function dispatchSnapshot(snap) {
                 const action = snap.val()
-                //next(action)
+                next(action)
             }
 
             ref.on('child_added', dispatchSnapshot)
@@ -59,6 +99,7 @@ export default class Editor extends Component {
         )
       )
     )
+
     this.setState({store})
   }
 
@@ -69,7 +110,7 @@ export default class Editor extends Component {
   render() {
     let screenplay, store
     this.state
-      ? ( {screenplay} =  this.state, {store} = this.state )
+      ? ({screenplay} =  this.state, {store} = this.state)
       : screenplay = {}
 
     if (!store) return null
@@ -85,13 +126,15 @@ export default class Editor extends Component {
       ['text', 'Text']
     ];
 
+    const { title } = this.props,
+          { names } = this.state
+
     return <Provider store={store}>
       <div>
          <nav className="button-container">
            {
              buttonTypes.map(elem =>
-               <button className={elem[2]}
-                       key={elem[0]}
+               <button key={elem[0]}
                        type="button"
                        onClick={this.handleChange}
                        value={elem[0]}>{elem[1]}
@@ -99,17 +142,22 @@ export default class Editor extends Component {
              )
            }
          </nav>
-         <p className="title">{(this.props.title).toUpperCase()}</p>
-         {/* {console.log("screenplay title: ", ref)} */}
-         <Script />
+         <div className="scriptBox">
+          <p className="title">{title.toUpperCase()}</p>
+          <div className='writers'>
+            <p>Screenplay written by: {names}</p>
+          </div>
+          <Script />
+         </div>
+         <span>❤️ your screenplay? Share it!</span>
+         <br />
+         <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+           <img src="/assets/facebook_circle.png" height="30px" />
+         </a>
+        <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+          <img src="/assets/twitter_circle.png" height="30px" />
+        </a>
       </div>
     </Provider>
   }
 }
-
-// DROP DOWN
-// <select onChange={this.handleChange}>
-//     <option value="">Select</option>
-//     <option value="dialogue">Dialogue</option>
-//     <option value="character">Character</option>
-// </select>

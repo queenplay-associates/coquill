@@ -1,4 +1,4 @@
-import { OrderedMap, fromJS } from 'immutable'
+import { OrderedMap } from 'immutable'
 
 const PUSH = 'PUSH',
       INSERT_BEFORE = 'INSERT_BEFORE',
@@ -7,15 +7,27 @@ const PUSH = 'PUSH',
       CHANGE_TYPE = 'CHANGE_TYPE',
       REMOVE_OBJECT = 'REMOVE_OBJECT';
 
-export const pushObject = (objectType) => ({
+export const pushObject = objectType => ({
   type: PUSH,
   objectType
 })
+
+/*
 export const setValue = (value, index) => ({
   type: SET_VALUE,
   value,
   componentKey: index
 })
+*/
+
+export const setValue = (value, index, name) => ({
+  type: SET_VALUE,
+  value,
+  componentKey: index,
+  name
+})
+
+
 export const insertAfter = (objectType, afterKey) => ({
   type: INSERT_AFTER,
   objectType,
@@ -28,7 +40,7 @@ export const insertBefore = (objectType, beforeKey) => ({
   beforeKey
 })
 
-export const removeObject = (id) => ({
+export const removeObject = id => ({
   type: REMOVE_OBJECT,
   id
 })
@@ -41,7 +53,7 @@ const reducer = (state = OrderedMap(), action) => {
       type: action.objectType,
       key: action.actionKey,
     });
-  
+
   case REMOVE_OBJECT:
     return state.delete(action.id);
 
@@ -54,7 +66,7 @@ const reducer = (state = OrderedMap(), action) => {
         key: action.actionKey,
       })
       .merge(itemsAfter)
-  
+
   case INSERT_AFTER:
       itemsBefore = state.takeUntil(({key}) => key === action.afterKey)
       const after = state.get(action.afterKey)
@@ -72,15 +84,14 @@ const reducer = (state = OrderedMap(), action) => {
   case CHANGE_TYPE:
     return state.update(action.componentKey, item => itemReducer(item, action))
 
-  default:
-    return state
+  default: return state
   }
 }
 
-function itemReducer(item={}, action) {
+function itemReducer(item = {}, action) {
   const {type} = action
   if (type === SET_VALUE)
-    return {...item, value: action.value}
+    return {...item, value: action.value, name: action.name}
   if (type === CHANGE_TYPE)
     return {...item, type: action.objectType}
   return item

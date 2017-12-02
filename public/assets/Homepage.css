@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Questrial|Roboto+Mono|Space+Mono');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono|Space+Mono');
 
 * {
-    font-family: 'Space Mono', 'Roboto Mono', Questrial, Monospace, sans-serif;
+    font-family: 'Space Mono', 'Roboto Mono', Monospace, sans-serif;
 }
 
 body {
@@ -10,24 +10,23 @@ body {
 
 nav.nav-bar {
     top: 0;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     position: fixed;
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 22px;
+    height: 25px;
     margin: 0; padding: 0.5rem 0;
-    background-color: ghostwhite;
-    color: rgba(0, 0, 0, 0.9);
+    background-color: #d45145;
+    color: rgba(255, 255, 255, 0.9);
     border-radius: 0 0 15px 15px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    width: 4%;
-    height: 4%;
+    width: 4%; height: 4%;
 }
 
 .logo:hover {
@@ -38,15 +37,16 @@ nav.nav-bar {
 a {
     text-decoration: none;
     color: inherit;
+    margin: 0 40px;
 }
 
 a:hover {
-    color: #e0bd66;
+    color: #feecab;
     transition: 0.15s ease-in;
 }
 
 a.active {
-    color: #e0bd66;
+    color: #feecab;
 }
 
 span {
