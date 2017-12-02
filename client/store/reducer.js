@@ -12,13 +12,6 @@ export const pushObject = objectType => ({
   objectType
 })
 
-/*
-export const setValue = (value, index) => ({
-  type: SET_VALUE,
-  value,
-  componentKey: index
-})
-*/
 
 export const setValue = (value, index, name) => ({
   type: SET_VALUE,

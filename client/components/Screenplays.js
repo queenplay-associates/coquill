@@ -7,7 +7,6 @@ import '~/public/assets/Screenplays.css'
 
 import { db } from '~/public/secrets'
 // list short description (?)
-// make a func to get rid of last comma of authors array
 // what about anon users?
 
 export default class Screenplays extends Component {
@@ -20,9 +19,13 @@ export default class Screenplays extends Component {
   }
 
   componentDidMount() {
-    db.ref('screenplays').on('child_added', snap => {
-     this.setState({screenplays: [...this.state.screenplays, snap.key]})
-    })
+    let obj = {};
+    db.ref('screenplays').once('value', snap => {
+      for ( let ele in snap.val()) {
+        this.setState({screenplays: [...this.state.screenplays, ele]})
+      }
+     }
+    )
   }
 
   handleChange = evt => {
@@ -37,7 +40,6 @@ export default class Screenplays extends Component {
 
   render() {
     const { screenplays, value } = this.state;
-
     return <div className="list-of-screenplays">
         <h1 className="screenplays-header">Screenplays</h1>
         <ul>
