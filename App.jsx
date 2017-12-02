@@ -26,20 +26,31 @@ export default class App extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) this.setState({ userName: "Stranger" });
-      let name;
+      console.log("user-->", user)
+      if (!user) {
+        this.setState({ userName: "Stranger" })
+        return
+      }
 
+      //let name;
       // cannot read type isAnonymous of null
-      (user.isAnonymous)
-        ? name = 'Anonymous'
-        : name = user.displayName;
+      // (user.isAnonymous)
+      //   ? name = 'Anonymous'
+      //   : this.setState({
+      //     loginStatus: true,
+      //     userName: name,
+      //     faceUrl: user.photoURL,
+      //     uid: user.uid
+      //   })
 
-      this.setState({
-        loginStatus: true,
-        userName: name,
-        faceUrl: user.photoURL,
-        uid: user.uid
-      })
+         user.isAnonymous
+              ? this.setState({userName: 'Anonymous'})
+              : this.setState({
+                loginStatus: true,
+                userName: user.displayName,
+                faceUrl: user.photoURL,
+                uid: user.uid
+              })
     })
   }
 
