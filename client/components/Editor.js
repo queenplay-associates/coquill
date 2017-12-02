@@ -150,7 +150,7 @@ export default class Editor extends Component {
           <Script />
          </div>
          <span>❤️ your screenplay? Share it!</span>
-         <br />
+         {/* <br /> */}
          <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
            <img src="/assets/facebook_circle.png" height="30px" />
          </a>
