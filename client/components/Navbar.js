@@ -10,17 +10,15 @@ export default class Navbar extends Component {
   render() {
     const { userName } = this.props;
     const logInStatus = this.props.logInStatus ? "Logout" : "Login";
-    let navName;
-
-    userName.indexOf(' ') > 0
-      ? navName = userName.substr(0, userName.indexOf(' '))
-      : navName = userName;
+    const navName = userName.indexOf(' ')
+      ? userName.substr(0, userName.indexOf(' '))
+      : userName;
 
     return <nav className="nav-bar">
       <NavLink to='/'>
         <img className="logo" src={logo} alt="logo"/>
       </NavLink>
-      <NavLink to=''><h3>{userName}</h3></NavLink>
+      <NavLink to=''><h3>{navName}</h3></NavLink>
       <NavLink to='/guides'><h3>Guides</h3></NavLink>
       <NavLink to='/screenplays'><h3>Screenplays</h3></NavLink>
       <NavLink to='/login'>
