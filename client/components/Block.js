@@ -38,6 +38,7 @@ class Block extends Component {
     handleChange = evt => {
         const { setValue } = this.props,
               { userName } = this.state;
+      
         setValue(evt.target.value, userName)
     }
 

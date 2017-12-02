@@ -44,6 +44,7 @@ export default class Editor extends Component {
 
     //Get list of users who contribute to this screenplay
     if (title) {
+      console.log('INSIDE THE IF STATEMENT')
       db.ref('users').orderByChild(contributedScreenPlays)
         .equalTo(title)
         .once('value')
@@ -51,6 +52,7 @@ export default class Editor extends Component {
             let names = ''
 
             snap.forEach(data => {
+              console.log('DATA VAL', data.val())
               const { displayName, photoURL } = data.val()
               names += displayName + ','
               this.setState({ names })
@@ -128,6 +130,7 @@ export default class Editor extends Component {
 
     const { title } = this.props,
           { names } = this.state
+          console.log('THE STATE', this.state)
 
     return <Provider store={store}>
       <div>
@@ -148,15 +151,17 @@ export default class Editor extends Component {
             <p>Screenplay written by: {names}</p>
           </div>
           <Script />
-         </div>
-         <span>❤️ your screenplay? Share it!</span>
-         {/* <br /> */}
-         <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
-           <img src="/assets/facebook_circle.png" height="30px" />
-         </a>
-        <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
-          <img src="/assets/twitter_circle.png" height="30px" />
-        </a>
+         <div className="share">
+           <hr />
+          <span>❤️ your screenplay? Share it!</span>
+          <br />
+          <a href={`https://www.facebook.com/sharer/sharer.php?u=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+            <img src="/assets/facebook_circle.png" height="30px" />
+          </a>
+          <a href={`https://twitter.com/home?status=https%3A//coquill-e559a.firebaseapp.com/screenplays/${title}`}>
+            <img src="/assets/twitter_circle.png" height="30px" />
+          </a>
+        </div>
       </div>
     </Provider>
   }
