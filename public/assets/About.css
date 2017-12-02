@@ -9,18 +9,16 @@
     text-align: justify;
 }
 
-.startbutton {
+.start-button {
     font-size: 25px;
     color: #615858;
-}
-
-img.carousel-image {
-    max-height: 950px;
+    position: relative;
+    text-align: center;
+    padding-left: 10%;
 }
 
 .logo-container {
     position: relative;
-    display: fixed;
     margin-left: 10%;
 }
 
