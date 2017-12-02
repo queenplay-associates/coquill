@@ -1,3 +1,5 @@
+import React from 'react'
+
 const anonAnimalsList = [
   'Alligator', 'Anteater', 'Armadillo', 'Auroch', 'Axolotl',
   'Badger', 'Bat', 'Beaver', 'Buffalo', 'Camel', 'Capybara',
@@ -13,12 +15,33 @@ const anonAnimalsList = [
   'Wolf', 'Wolverine', 'Wombat'
 ];
 
-// if a user is anonymous
-// make the user image an anonymous animal
-  // (grab from /public/assets/anonymous-animals/icons')
-// pick a random animal, corresponding to its image
-//
+// store a list of users and access the length of that list
+// if more users arrive, concat to list otherwise remove from list
+// make the name of the user not show up in nav-bar if s/he is anon
+  // no more 'stranger'
 
-/*
-<ul class="animal-list"><li class="animal-item"><img src="icons/Alligator.png" alt="Alligator" title="Alligator"></li>
-*/
+const randomAnonAnimal = currentCollaborators => {
+  let len = currentCollaborators.length;
+
+  while (len > 0) {
+
+  }
+};
+
+export default () => {
+  return <div className="active-collaborators">
+    <ul className="animal-list">
+      {
+        anonAnimalsList.map(animal => {
+          return <li className="animal-item">
+            <img src={`/public/anonymous-icons/icons/${animal}.png`}
+                 alt={`${animal}`}
+                 title={`${animal}`}>
+                {`Anonymous ${animal}`}
+            </img>
+          </li>
+        })
+      }
+    </ul>
+  </div>
+}
