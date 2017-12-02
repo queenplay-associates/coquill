@@ -7,8 +7,8 @@
     padding: 10%
 }
 
-.input {
-    display: inline;
+.input-container {
+    display: ruby;
 }
 
 button.submit {

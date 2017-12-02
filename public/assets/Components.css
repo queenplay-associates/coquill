@@ -19,6 +19,7 @@ textarea {
     background-color: lightgray;
     display: inline;
     margin-left: 45px;
+    font-weight: bold;
 }
 
 .transition {
@@ -31,17 +32,18 @@ textarea {
     text-align: center;
     font-size: 16px;
     margin: 0 100px; padding: 0;
+    font-weight: bold;
 }
 
 .parenthetical {
     position: center;
     text-align: center;
-    margin: 0 100px; padding: 0;
+    margin: 0px 100px; padding: 0px;
 }
 
 .dialogue {
     position: relative;
-    left: 15%;
+    left: 12%;
     max-width: 55%;
 }
 
@@ -55,7 +57,7 @@ textarea {
     visibility: hidden;
     width: 100px;
     background-color: rgba(247, 247, 247, 0.5);
-    color: #fff;
+    color: gray;
     text-align: center;
     padding: 2px 0;
     border-radius: 6px;
@@ -74,4 +76,8 @@ textarea {
 img.userFace {
     max-width: 3%;
     max-height: 3%;
+}
+
+.share {
+    padding-top: 5%;
 }
