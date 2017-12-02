@@ -21,7 +21,7 @@ export default class Screenplays extends Component {
   componentDidMount() {
     let obj = {};
     db.ref('screenplays').once('value', snap => {
-      for ( let ele in snap.val()) {
+      for (let ele in snap.val()) {
         this.setState({screenplays: [...this.state.screenplays, ele]})
       }
      }
@@ -32,7 +32,7 @@ export default class Screenplays extends Component {
     this.setState({value: evt.target.value})
   }
 
-  handleSubmit = () => { //Eleni, don't deconstruct this function! don't break it!
+  handleSubmit = () => {
     const { value } = this.state,
             history = createHistory();
     history.push(`/screenplays/${value}`)

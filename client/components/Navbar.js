@@ -10,7 +10,7 @@ const logo = 'https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cut
 export default class Navbar extends Component {
   render() {
     const { userName } = this.props;
-    //FIXME: log out should be fire button? 
+    //FIXME: log out should be fire button?
     const logInStatus = this.props.logInStatus ? "Logout" : "Login";
     const navName = userName.indexOf(' ')
       ? userName.substr(0, userName.indexOf(' '))
@@ -29,9 +29,3 @@ export default class Navbar extends Component {
     </nav>
   }
 }
-
-/*
-      <NavLink to='/login'>
-        <h3 className="login">{logInStatus}</h3>
-      </NavLink>
-*/
