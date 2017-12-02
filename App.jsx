@@ -54,7 +54,7 @@ export default class App extends Component {
                                .child('welcome')}/>
           }/>
           <Route path="/about" component={About}/> */}
-          <Route path="/" component={About}/>
+          <Route exact path="/" component={About}/>
           <Route exact path='/screenplays' component={Screenplays}/>
           <Route exact path='/screenplays/:screenplayId'
                  component={({match: {params: {screenplayId}}}) =>
