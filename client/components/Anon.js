@@ -18,7 +18,8 @@ const anonAnimalsList = [
 // store a list of users and access the length of that list
 // if more users arrive, concat to list otherwise remove from list
 // make the name of the user not show up in nav-bar if s/he is anon
-  // no more 'stranger'
+  // no more 'stranger', or prior image
+// make the login/logout section nicer/as a drop-down
 
 const randomAnonAnimal = currentCollaborators => {
   let len = currentCollaborators.length;
