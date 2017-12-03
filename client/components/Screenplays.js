@@ -45,7 +45,7 @@ export default class Screenplays extends Component {
         <ul>
           {screenplays.length > 0 && screenplays.map((name, i) =>
             <li key={i}>
-              <Link key={i} to={`/screenplays/${name}`}>{name}</Link>
+              <Link key={i} to={`/screenplays/${name}`} className="screenplay-item">{name}</Link>
             </li>
           )}
             <form className='input-container' onSubmit={this.handleSubmit}>
