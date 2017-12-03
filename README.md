@@ -7,9 +7,7 @@
 > provide text styling if need be. Once you have created a screenplay, 
 > the editor will project colors on the page which map to the context of your text.
 > 
-> Created by 
-> 
->   ❤️ [Eleni](https://github.com/DatGreekChick) 💜 [Sam](https://github.com/samsterzz)  💖 [Christin](https://github.com/cyng24) 💙 [Guang](https://github.com/guangLess)️
+> Created by ❤️ [Eleni](https://github.com/DatGreekChick) 💜 [Sam](https://github.com/samsterzz)  💖 [Christin](https://github.com/cyng24) 💙 [Guang](https://github.com/guangLess)️
 
 
 ### Tech
