@@ -59,3 +59,13 @@ a.active {
 span {
     padding: 0 10px;
 }
+
+.dropdown {
+    background-color: #d45145;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+    margin-right: 10px;
+}
