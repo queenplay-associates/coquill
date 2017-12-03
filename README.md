@@ -12,13 +12,13 @@
 ️
 
 ### Tech Stacks
-*****React, Redux, Firebase, Immutable.js, Webpack, Babel, React-hot-loader, Sentiment(in progress)*****
+*****React, Redux, Firebase, Immutable.js, Webpack, Babel, React-hot-loader, Sentiment (in progress)*****
 
 ##### Data Flow
   - Data from Coquill to Firebase 👆🏽🌪:              
-    - Typed words - - ->  Redux (locally stored as a tree structure) - - > dispatched to Firebase(stored as a flat-ish lists consist of Redux actions which carried the word character bits data)
+    - Typed words - - ->  Redux (locally stored as a tree structure) - - > dispatched to Firebase (stored as a flat-ish list consisting of Redux actions, which carry the word character bits data)
 - Data from the Firebase to Coquill 🌧☟:
-    - Database listens to each unique action key on change - - -> those listeners trigger Redux actions - - -> local state get updated - - -> React component renders individually- Within the formatting toolbar, each formatting type generates an individual React component, this component also contains a reference key to its type (Action, Dialog, Scenes, etc) Ex: A screenplay might have 50+ rendered blocks, the State has potential fixed amount of child nodes. (Action, Dialog, Scene Headings, etc)
+    - Database listens to each unique action key on change - - -> those listeners trigger Redux actions - - -> local state gets updated - - -> React component renders individually - Within the formatting toolbar, each formatting type generates an individual React component, this component also contains a reference key to its type (Action, Dialog, Scenes, etc) Ex: A screenplay might have 50+ rendered blocks, the State has potential fixed amount of child nodes. (Action, Dialog, Scene Headings, etc)
 The tree-like structure. The tree structure grows like that.
 - Each dispatched action with word content also carries writer's info which is passed on from firebase Auth, when writing in Coquill, writer notice the other writer's current editing place by pressing the 'tab' key.
 
