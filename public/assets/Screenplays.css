@@ -16,8 +16,9 @@ button.submit {
 }
 
 .title {
-    margin: 0 100px;
-    padding: 20px;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 15px;
     text-align: center;
     width: 80%;
     font-size: 25px;
@@ -26,7 +27,8 @@ button.submit {
 .writers {
     text-align: center;
     font-size: 16px;
-    padding-bottom: 10px;
+    padding-bottom: 30px;
+    margin-right: 5%;
 }
 
 .scriptBox {

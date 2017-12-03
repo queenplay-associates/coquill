@@ -17,11 +17,12 @@ const Script = ({script}) => {
     return [...script.keys()].map(key => {
         const keyType = script.get(key).type;
 
-        if (keyType === 'sceneHeading') {
-            i++;
-            return [<span className="sceneNumber" key={i}>{i}</span>,
-                <SceneHeading key={key} id={key}/>]
-        }
+        // if (keyType === 'sceneHeading') {
+        //     i++;
+        //     return [<span className="sceneNumber" key={i}>{i}</span>,
+        //         <SceneHeading key={key} id={key}/>]
+        // }
+        if (keyType === 'sceneHeading') return <SceneHeading key={key} id={key} />
         if (keyType === 'action') return <Action key={key} id={key} />
         if (keyType === 'character') return <Character key={key} id={key} />
         if (keyType === 'parenthetical') return <Parenthetical key={key} id={key} />
