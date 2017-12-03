@@ -32,12 +32,28 @@ export const setValue = (value, index, name) => ({
 ...
 const reducer = (state = OrderedMap(), action) => {
                     ...
-        case SET_VALUE:
-        case CHANGE_TYPE:
-            return state.update(action.componentKey, item => itemReducer(item, action))
-        default: return state
+    case INSERT_AFTER:
+        itemsBefore = state.takeUntil(({key}) => key === action.afterKey)
+        const after = state.get(action.afterKey)
+        itemsAfter = state.skipUntil(({key}) => key === action.afterKey)
+                              .delete(action.afterKey)
+      return itemsBefore             
+        .set(action.afterKey, after) 
+        .set(action.actionKey, {   
+          type: action.objectType,
+          key: action.actionKey,
+        })
+        .merge(itemsAfter)    
+            ...
+
+    case SET_VALUE:
+    case CHANGE_TYPE:
+      return state.update(action.componentKey, item => itemReducer(item, action))
+    
+    default: return state
          }
-        }
+    }
+...
 
 function itemReducer(item = {}, action) {
   const {type} = action
