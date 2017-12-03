@@ -12,8 +12,6 @@ class Block extends Component {
     }
 
     componentDidMount() {
-        this.text.focus()
-
         //FIXME: put this into a helper file
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return
