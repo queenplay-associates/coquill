@@ -5,6 +5,12 @@ import { checkUser } from './authHelper'
 
 //TODO: reduce ref to a var and reuse it
 
+const loginOption = { select : "Login Options",
+                      google: "google",
+                      anonymous : "anonymous",
+                      logout : "logout"
+                    }
+
 export default class Auth extends Component {
     constructor(props) {
         super(props);
@@ -20,8 +26,8 @@ export default class Auth extends Component {
         */
     }
 
-    handleGoogleClick = evt => {
-        evt.preventDefault()
+    handleGoogleClick = () => {
+        //evt.preventDefault()
         const provider = new firebase.auth.GoogleAuthProvider()
 
         firebase.auth().signInWithPopup(provider)
@@ -32,7 +38,7 @@ export default class Auth extends Component {
           .then(user => {
               let email = user.email,
                   registeredUser = false,
-                  ref;
+                  ref
 
               firebase.database().ref('users').once("value", snap => {
                   ref = snap.ref;
@@ -42,15 +48,15 @@ export default class Auth extends Component {
 
                       if (emailExists === email) {
                           registeredUser = true;
-                          break;
+                          return;
                       }
                   }
               });
-
             return [registeredUser, user, ref]
         })
           .then(data => {
-            if (!data[0]) registerUser(data[1], data[2])
+            console.log("ref after google---->", data)         
+            if (!data[0] && !data[1]) registerUser(data[1], data[2])
             // refactor above if statement to check whether user exists then add to db
           })
           .catch(err => console.error(err));
@@ -72,57 +78,70 @@ export default class Auth extends Component {
         }
     }
 
-    handleAnonymousClick = evt => {
-        evt.preventDefault()
-        //FIXME: this can be a promise thing
+    handleAnonymousClick = () => {
+        //FIXME: This logic is funny need to change it
         firebase.auth().signInAnonymously()
-          .then(firebase.auth().onAuthStateChanged(user => {
+            .then(firebase.auth().onAuthStateChanged(user => {
                 let isAnonymous, uid;
-
                 user
                     ? (isAnonymous = user.isAnonymous,
                         uid = user.uid)
                     : "Stranger"
-          }))
-          .catch(err => console.log(err.code, err.message))
-    }
+            }))
+            .catch(err => console.log(err.code, err.message))
+        }
 
-    handleSignOutClick = evt => {
+
+    handleSignOutClick = () => {
         // evt.preventDefault()
         firebase.auth().signOut().then(() => {
             this.setState({ userName: "Stranger", userFace: "" })
         }, error =>  console.log(error.message));
     }
 
-    render() {
-        const { status } = this.props
-        const { userName, userFace } = this.state
-        return <div className="auth">
-          <span>
-            <h3 className="hello">Hello, {userName}!</h3>
-            <img className="userFace" src={userFace}/>
-          </span>
+    loginSubmit = (opt) => {
+        switch (opt) {
+            case loginOption.google:
+                this.handleGoogleClick()
+            case loginOption.anonymous:
+                this.handleAnonymousClick()
+            case loginOption.logout:
+                 this.handleSignOutClick()
+                default:
+                console.log("default---->")         
+        }
+    }
 
-          <div className="login-buttons">
-            <button onClick={this.handleAnonymousClick}>
-              Sign in as Anonymous
-            </button>
-            <button onClick={this.handleGoogleClick}>
-              Sign in with Google
-            </button>
-            <button onClick={this.handleSignOutClick}>
-              Log out
-            </button>
-          </div>
+    render() {
+        const { status } = this.props // FIXME: this might not be used?
+        const { userName, userFace } = this.state
+        return <div className="authSelect">
+        <img className="userFace" src={userFace}/>
+          <LogInSelect options={loginOption} loginSubmit={this.loginSubmit}/>
         </div>
     }
 }
 
-// <select name="teachableSelector" className="select-tutor" >
 
-//         {
-//            teachables.map(ele => (
-//             <option value={ele.id} key={ele.id}>{ele.name + ' $' + ele.price + '.00'}</option>
-//             ))
-//         }
-//         </select>
+class LogInSelect extends Component {
+    constructor(props){
+        super(props)
+    }
+    select = evt => {
+        this.props.loginSubmit(evt.target.value);
+    }
+
+    render(){
+        let options = []
+        for (let option in this.props.options) {
+            let selectText = this.props.options[option]
+            options.push(<option key={option} selected={option.value} value={option}>{selectText}</option>)
+    }
+    return (
+            <form>
+            <select onChange= {this.select} >
+                {options}
+            </select>
+            </form>
+        )}
+}

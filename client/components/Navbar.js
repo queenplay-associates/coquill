@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import Auth from './Auth'
 
 import '~/public/assets/Homepage.css'
 
@@ -23,9 +24,7 @@ export default class Navbar extends Component {
       <NavLink to=''><h3>{navName}</h3></NavLink>
       <NavLink to='/guides'><h3>Guides</h3></NavLink>
       <NavLink to='/screenplays'><h3>Screenplays</h3></NavLink>
-      <NavLink to='/login'>
-      <h3 className="login">{logInStatus}</h3>
-    </NavLink>
+      <Auth />
     </nav>
   }
 }
