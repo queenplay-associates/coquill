@@ -55,12 +55,6 @@ export default class App extends Component {
                             fireRef={db.ref('screenplays')
                                        .child(screenplayId)}/>}
           />
-          <Route path="/login" component={() =>
-            <Auth db={db}
-                  userName={userName}
-                  userFace={faceUrl}
-                  status={loginStatus}/>
-          }/>
         </Switch>
       </div>
     </Router>
