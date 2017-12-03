@@ -163,6 +163,7 @@ export default class Editor extends Component {
           </a>
         </div>
       </div>
+      </div>
     </Provider>
   }
 }

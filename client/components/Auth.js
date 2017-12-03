@@ -5,6 +5,15 @@ import { checkUser } from './authHelper'
 
 //TODO: reduce ref to a var and reuse it
 
+// const Google= "google"
+// const Anonymous = "anonymous"
+// const Logout = "logOut"
+
+const loginOption = { google: "google",
+                      anonymous : "anonymous",
+                      logout : "logOut"
+                    }
+
 export default class Auth extends Component {
     constructor(props) {
         super(props);
@@ -95,6 +104,17 @@ export default class Auth extends Component {
         }, error =>  console.log(error.message));
     }
 
+    loginSubmit = (opt) => {
+        switch (opt) {
+            case "one":
+                console.log("one--->")
+            case "two":
+                console.log("two---->")
+            default: 
+            console.log("default---->")            
+        }
+    }
+
     render() {
         const { status } = this.props
         const { userName, userFace } = this.state
@@ -115,16 +135,35 @@ export default class Auth extends Component {
               Log out
             </button>
           </div>
+          <LogInSelect options={loginOption} loginSubmit={()=>{}}/>
         </div>
     }
 }
 
 
-// <select name="teachableSelector" className="select-tutor" >
+class LogInSelect extends Component {
+    constructor(props){
+        super(props)
+        this.select = this.select.bind(this)
+    }
+    select(evt) {
+        console.log("event.target.value=====", evt.target.value)        
+        this.props.loginSubmit(evt.target.value);
+    }
 
-//         {
-//            teachables.map(ele => (
-//             <option value={ele.id} key={ele.id}>{ele.name + ' $' + ele.price + '.00'}</option>
-//             ))
-//         }
-//         </select>
+
+    render(){
+        let options = []
+        for (let option in this.props.options) {
+            options.push(<option key={option} value={option}>{option}</option>)
+           }
+           
+        return(
+            <form>
+            <label>Log in Options</label>
+            <select onChange= {this.select}>
+            {options}
+            </select>
+            </form>
+        )}
+}
