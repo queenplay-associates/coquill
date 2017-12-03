@@ -1,7 +1,6 @@
 # Coquill 
 
-![N|Solid](https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cutie_mark_final_version_by_burntquill-d8j1is9.png){:width="100px"}
-<img src="https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cutie_mark_final_version_by_burntquill-d8j1is9.png" width="100">
+<img src="https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cutie_mark_final_version_by_burntquill-d8j1is9.png" width="200">
 
 
 > Coquill is a real-time collaborative text editor for writing screenplays. 
