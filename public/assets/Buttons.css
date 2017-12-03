@@ -68,7 +68,8 @@ button:active {
 .share-text {
     display: inline-block;
     margin-left: 10px;
-    margin-right: 5px
+    margin-right: 5px;
+    font-size: 18px;
 }
 
 .share-buttons {

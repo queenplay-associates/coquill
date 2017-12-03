@@ -70,7 +70,7 @@ class Block extends Component {
                   onChange={this.handleChange}
                   className={type}
                   rows={
-                    type==='dialogue' ? value.length/65 + 1 : value.length/95 + 1}
+                    type==='dialogue' ? value.length/48 + 1 : value.length/75 + 1}
                   onKeyDown={this.handleKeyPress}
               />
             <span className="tooltiptext">{type}</span>
