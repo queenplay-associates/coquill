@@ -14,7 +14,7 @@ class Block extends Component {
     componentDidMount() {
         this.text.focus()
 
-        //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
+        //FIXME: put this into a helper file
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return
 
@@ -38,7 +38,7 @@ class Block extends Component {
     handleChange = evt => {
         const { setValue } = this.props,
               { userName } = this.state;
-      
+
         setValue(evt.target.value, userName)
     }
 
