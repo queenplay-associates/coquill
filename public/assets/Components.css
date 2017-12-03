@@ -14,18 +14,17 @@ textarea {
     font-size: 14px;
 }
 
- .sceneHeading {
+.sceneHeading {
     text-transform: uppercase;
     background-color: lightgray;
-    /* display: inline; */
+    display: inline;
     max-width: 70%;
     font-weight: bold;
-} 
+}
 
 .transition {
-    text-transform: uppercase;
+   text-transform: uppercase;
    max-width: 70%;
-
 }
 
 .character {
@@ -40,7 +39,7 @@ textarea {
 .parenthetical {
     position: center;
     text-align: center;
-    margin: 0 5% 0 5%; padding: 0px;
+    margin: 0 5%; padding: 0;
 }
 
 .dialogue {
@@ -50,11 +49,12 @@ textarea {
     margin-bottom: 1em;
 }
 
-/* .sceneNumber {
+.sceneNumber {
     vertical-align: middle;
     display: inline;
-    margin-left: 0px;
-} */
+    margin-top: -10px;
+    padding: 0;
+}
 
 .action {
    max-width: 70%;
@@ -77,8 +77,6 @@ textarea {
     padding: 2px 0;
     border-radius: 6px;
     font-size: 12px;
-
-    /* Position the tooltip text - see examples below! */
     position: absolute;
     left: 80%;
 }

@@ -36,8 +36,8 @@ export default () => {
         anonAnimalsList.map(animal => {
           return <li className="animal-item">
             <img src={`/public/anonymous-icons/icons/${animal}.png`}
-                 alt={`${animal}`}
-                 title={`${animal}`}>
+                 alt={animal}
+                 title={animal}>
                 {`Anonymous ${animal}`}
             </img>
           </li>
