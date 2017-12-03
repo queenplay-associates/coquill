@@ -14,16 +14,18 @@ textarea {
     font-size: 14px;
 }
 
-.sceneHeading {
+ .sceneHeading {
     text-transform: uppercase;
     background-color: lightgray;
-    display: inline;
-    margin-left: 45px;
+    /* display: inline; */
+    max-width: 70%;
     font-weight: bold;
-}
+} 
 
 .transition {
     text-transform: uppercase;
+   max-width: 70%;
+
 }
 
 .character {
@@ -31,26 +33,39 @@ textarea {
     position: center;
     text-align: center;
     font-size: 16px;
-    margin: 0 100px; padding: 0;
+    margin: 2% 5% 0 5%; padding: 0;
     font-weight: bold;
 }
 
 .parenthetical {
     position: center;
     text-align: center;
-    margin: 0px 100px; padding: 0px;
+    margin: 0 5% 0 5%; padding: 0px;
 }
 
 .dialogue {
     position: relative;
     left: 12%;
-    max-width: 55%;
+    max-width: 48%;
+    margin-bottom: 1em;
 }
 
-.sceneNumber {
+/* .sceneNumber {
     vertical-align: middle;
     display: inline;
-    margin-left: 25px;
+    margin-left: 0px;
+} */
+
+.action {
+   max-width: 70%;
+}
+
+.text {
+   max-width: 70%;
+}
+
+.shot {
+   max-width: 70%;
 }
 
 .tooltiptext {
@@ -76,8 +91,4 @@ textarea {
 img.userFace {
     max-width: 3%;
     max-height: 3%;
-}
-
-.share {
-    padding-top: 5%;
 }

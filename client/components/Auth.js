@@ -20,7 +20,6 @@ export default class Auth extends Component {
 
     componentDidMount() {
         /*
-        there was a reason and I forgot. Keep it for now.
         this.props.db.ref('users').on('value', snap => {
           // we're not doing anything here yet
         })

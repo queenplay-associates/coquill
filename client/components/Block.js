@@ -12,9 +12,7 @@ class Block extends Component {
     }
 
     componentDidMount() {
-        this.text.focus()
-
-        //FIXME: put this into a helper file/ Eleni do not delete this yet! :D
+        //FIXME: put this into a helper file
         firebase.auth().onAuthStateChanged(user => {
             if (!user) return
 
@@ -38,7 +36,7 @@ class Block extends Component {
     handleChange = evt => {
         const { setValue } = this.props,
               { userName } = this.state;
-      
+
         setValue(evt.target.value, userName)
     }
 
@@ -52,10 +50,9 @@ class Block extends Component {
             insertNext()
         }
 
-       if (evt.keyCode == 16) { //keydown of shift
-        this.setState(prevState => ({
-            showWriter: !prevState.showWriter
-        }))
+       if (evt.keyCode == 9) { //keydown of tab
+        this.setState({showWriter: !this.state.showWriter})
+        console.log('THE SHOWWRITER', this.state.showWriter)
        }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
@@ -66,13 +63,14 @@ class Block extends Component {
     render() {
         const {value = '', name, type } = this.props;
         return <div className="tooltip">
-          <span className="tooltipauthor">{name}</span>
+          {this.state.showWriter && <span className="tooltipauthor">{name}</span>}
           <textarea
                   ref={name => this.text = name}
                   value={value}
                   onChange={this.handleChange}
                   className={type}
-                  rows={value.length/75 + 1}
+                  rows={
+                    type==='dialogue' ? value.length/65 + 1 : value.length/95 + 1}
                   onKeyDown={this.handleKeyPress}
               />
             <span className="tooltiptext">{type}</span>
