@@ -1,4 +1,71 @@
-Can't start a fire without a spark.
+
+# Coquill 
+
+![N|Solid](https://img00.deviantart.net/3b69/i/2015/125/6/f/burnt_quill_s_cutie_mark_final_version_by_burntquill-d8j1is9.png)
+
+> Coquill is a real-time collaborative text editor for writing screenplays. 
+> Based on your selection, the editor will automatically format your text and 
+> provide text styling if need be. Once you have created a screenplay, 
+> the editor will project colors on the page which map to the context of your text.
+>Created by 
+>   ❤️ [Eleni](https://github.com/DatGreekChick) 💜 [Sam](https://github.com/samsterzz)  💖 [Christin](https://github.com/cyng24) 💙 [Guang](https://github.com/guangLess)️
+
+
+#### Tech
+*****React, Redux, Firebase, Immutable.js*****
+
+##### Data Flow
+- Data from Coquill up to the cloud 👆🏽🌪:              
+- Words - - ->  Redux (locally stored as a tree structure) - - > dispatched to firebase(stored as a flat lists of all the actions made the words)
+- Data from the cloud down to Coquill 🌧☟:
+- firebase (listens to each unique action key on change ) - - -> listeners trggers Redux action - - -> store get updated - - -> conpoment renders indivisually
+- Each Screen play 's  (what are those called? Actions Scene headings ) content is a conponment, each those kind is a node in Redux state. Ex: A screenplay might have 50+ conpomenets rendered, the State has potential fixed amount of node (Action, dia , etc)
+- Each dispatched action with word content also carries writer's content, when working on the same screenplay, writer knows the other writer is writing at where.
+
+Reducer sample
+````
+export const setValue = (value, index, name) => ({
+type: SET_VALUE,
+value,
+componentKey: index,
+name
+})
+...
+const reducer = (state = OrderedMap(), action) => {
+...
+case SET_VALUE:
+case CHANGE_TYPE:
+return state.update(action.componentKey, item => itemReducer(item, action))
+default: return state
+}
+}
+
+function itemReducer(item = {}, action) {
+const {type} = action
+if (type === SET_VALUE)
+return {...item, value: action.value, name: action.name}
+if (type === CHANGE_TYPE)
+return {...item, type: action.objectType}
+return item
+}
+````
+Firebase sample
+```
+-Screenplays
+-L-Pdurudnr1DSlx08BO
+-actionKey: "-L-Pdurudnr1DSlx08BO"
+-componentKey: "-L-O8hlCEDLV_z3CPTYm" // action may share same componentKey
+-name: "GZ"
+-type: "SET_VALUE"
+-value: ""One of our biggest challenges was..."
+-Users
+-xOedKRr8zoVvKzhgby1xx0 //user's auth id
+-contributedScreenPlays: "Demo Day"
+-displayName: "Guang Zhu"
+-permissions
+-photoURL:
+```
+
 
 # Get started:
 
@@ -9,35 +76,3 @@ npm install
 npx firebase init
 npm start
 ```
-
-# Frontend
-
-The frontend starts in [`main.js`](./main.js). The root of the react app
-is in [`App.jsx`](./App.jsx).
-
-# Functions
-
-Write your [Cloud Functions](https://firebase.google.com/docs/functions/) in
-[`functions/index.js`](./functions/index.js).
-
-You can require node modules from Cloud Functions normally. Be sure to `npm install` them
-*inside* the functions directory (it has its own `package.json`).
-
-Sadly, you can't use `import` statements, and you can't `require` code that does.
-Don't despair, the library provides a workaround.
-
-## The Library
-
-The library is defined in [`lib/index.js`](lib/index.js). In the library, you
-can `import` code from your project normally, and anything you `export` will be
-available to your Cloud Functions.
-
-It is a bridge between Cloud Function code and the rest of your
-project's code.
-
-# Hot loading
-
-Hot module replacement is enabled, and the react-hot-loader plugins are applied.
-
-Your React components will update in place after you save them, without losing
-their state.
