@@ -6,14 +6,15 @@
 > Based on your selection, the editor will automatically format your text and 
 > provide text styling if need be. Once you have created a screenplay, 
 > the editor will project colors on the page which map to the context of your text.
->Created by 
+> Created by 
+> 
 >   ❤️ [Eleni](https://github.com/DatGreekChick) 💜 [Sam](https://github.com/samsterzz)  💖 [Christin](https://github.com/cyng24) 💙 [Guang](https://github.com/guangLess)️
 
 
-#### Tech
+### Tech
 *****React, Redux, Firebase, Immutable.js*****
 
-##### Data Flow
+### Data Flow
   - Data from Coquill up to the cloud 👆🏽🌪:              
     - Words - - ->  Redux (locally stored as a tree structure) - - > dispatched to firebase(stored as a flat lists of all the actions made the words)
 - Data from the cloud down to Coquill 🌧☟:
@@ -66,7 +67,8 @@ Firebase sample
 ```
 
 
-# Get started:
+
+ Get started:
 
 ```
 git clone git@github.com:queerviolet/spark.git
