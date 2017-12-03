@@ -44,7 +44,6 @@ export default class Editor extends Component {
 
     //Get list of users who contribute to this screenplay
     if (title) {
-      console.log('INSIDE THE IF STATEMENT')
       db.ref('users').orderByChild(contributedScreenPlays)
         .equalTo(title)
         .once('value')
@@ -52,7 +51,6 @@ export default class Editor extends Component {
             let names = ''
 
             snap.forEach(data => {
-              console.log('DATA VAL', data.val())
               const { displayName, photoURL } = data.val()
               names += displayName + ','
               this.setState({ names })
@@ -130,7 +128,6 @@ export default class Editor extends Component {
 
     const { title } = this.props,
           { names } = this.state
-          console.log('THE STATE', this.state)
 
     return <Provider store={store}>
       <div>
@@ -148,7 +145,9 @@ export default class Editor extends Component {
          <div className="scriptBox">
           <p className="title">{title.toUpperCase()}</p>
           <div className='writers'>
-            <p>Screenplay written by: {names}</p>
+            <p>Screenplay written by: {
+              names[names.length - 1] === ',' ? names.slice(0, -1) : names
+              }</p>
           </div>
           <Script />
          <div className="share">
@@ -162,6 +161,7 @@ export default class Editor extends Component {
             <img src="/assets/twitter_circle.png" height="30px" />
           </a>
         </div>
+      </div>
       </div>
     </Provider>
   }
