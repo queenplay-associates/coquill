@@ -12,7 +12,7 @@
 ️
 
 ### Tech Stacks
-*****React, Redux, Firebase, Immutable.js, Webpack, Babel, React-hot-loader, Sentiment(to be implemented*****
+*****React, Redux, Firebase, Immutable.js, Webpack, Babel, React-hot-loader, Sentiment(to be implemented)*****
 
 ##### Data Flow
   - Data from Coquill to Firebase 👆🏽🌪:              
