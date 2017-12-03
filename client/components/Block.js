@@ -52,10 +52,9 @@ class Block extends Component {
             insertNext()
         }
 
-       if (evt.keyCode == 16) { //keydown of shift
-        this.setState(prevState => ({
-            showWriter: !prevState.showWriter
-        }))
+       if (evt.keyCode == 9) { //keydown of tab
+        this.setState({showWriter: !this.state.showWriter})
+        console.log('THE SHOWWRITER', this.state.showWriter)
        }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
@@ -66,7 +65,7 @@ class Block extends Component {
     render() {
         const {value = '', name, type } = this.props;
         return <div className="tooltip">
-          <span className="tooltipauthor">{name}</span>
+          {this.state.showWriter && <span className="tooltipauthor">{name}</span>}
           <textarea
                   ref={name => this.text = name}
                   value={value}
