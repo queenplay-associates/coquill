@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { checkUser } from './authHelper'
 
+import '~/public/assets/Homepage.css'
+
 //TODO: reduce ref to a var and reuse it
 
 const loginOption = { select : "Login Options",
@@ -139,7 +141,7 @@ class LogInSelect extends Component {
     }
     return (
             <form>
-            <select onChange= {this.select} >
+            <select onChange= {this.select} className="dropdown">
                 {options}
             </select>
             </form>
