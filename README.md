@@ -6,6 +6,7 @@
 > Based on your selection, the editor will automatically format your text and 
 > provide text styling if need be. Once you have created a screenplay, 
 > the editor will project colors on the page which map to the context of your text.
+> 
 > Created by 
 > 
 >   ❤️ [Eleni](https://github.com/DatGreekChick) 💜 [Sam](https://github.com/samsterzz)  💖 [Christin](https://github.com/cyng24) 💙 [Guang](https://github.com/guangLess)️
@@ -54,7 +55,7 @@ Firebase sample
 -Screenplays
     -L-Pdurudnr1DSlx08BO
         -actionKey: "-L-Pdurudnr1DSlx08BO"
-        -componentKey: "-L-O8hlCEDLV_z3CPTYm" // action may share same componentKey
+        -componentKey: "-L-O8hlCEDLV_z3CPTYm" // each unqic action may share same componentKey
         -name: "GZ"
         -type: "SET_VALUE"
         -value: ""One of our biggest challenges was..."
