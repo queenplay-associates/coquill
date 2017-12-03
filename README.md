@@ -16,9 +16,9 @@
   - Data from Coquill to Firebase 👆🏽🌪:              
     - Typed words - - ->  Redux (locally stored as a tree structure) - - > dispatched to Firebase(stored as a flat-ish lists consist of Redux actions which carried the word character bits data)
 - Data from the Firebase to Coquill 🌧☟:
-    - Database listens to each unique action key on change - - -> those listeners trigger Redux actions - - -> local state get updated - - -> React component renders individually
-- Each Screen play 's  (what are those called? Actions Scene headings ) content is a conponment, each those kind is a node in Redux state. Ex: A screenplay might have 50+ conpomenets rendered, the State has potential fixed amount of node (Action, dia , etc)
-- Each dispatched action with word content also carries writer's content, when working on the same screenplay, writer knows the other writer is writing at where.
+    - Database listens to each unique action key on change - - -> those listeners trigger Redux actions - - -> local state get updated - - -> React component renders individually- Within the formatting toolbar, each formatting type generates an individual React component, this component also contains a reference key to its type (Action, Dialog, Scenes, etc) Ex: A screenplay might have 50+ rendered blocks, the State has potential fixed amount of child nodes. (Action, Dialog, Scene Headings, etc)
+The tree-like structure. The tree structure grows like that.
+- Each dispatched action with word content also carries writer's info which is passed on from firebase Auth, when writing in Coquill, writer notice the other writer's current editing place.
 
 Reducer sample
 ````
