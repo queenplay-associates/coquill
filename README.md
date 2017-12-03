@@ -12,7 +12,7 @@
 ️
 
 ### Tech Stacks
-*****React, Redux, Firebase, Immutable.js, Webpack, Babel, React-hot-loader, Sentiment(to be implemented)*****
+*****React, Redux, Firebase, Immutable.js, Webpack, Babel, React-hot-loader, Sentiment(in progress)*****
 
 ##### Data Flow
   - Data from Coquill to Firebase 👆🏽🌪:              
@@ -71,13 +71,13 @@ Firebase sample
     -L-Pdurudnr1DSlx08BO
         -actionKey: "-L-Pdurudnr1DSlx08BO"
         -componentKey: "-L-O8hlCEDLV_z3CPTYm" // each unqic action may share same componentKey
-        -name: "GZ"
+        -name: "SJ"
         -type: "SET_VALUE"
         -value: ""One of our biggest challenges was..."
 -Users
     -xOedKRr8zoVvKzhgby1xx0 //user's auth id
     -contributedScreenPlays: "Demo Day"
-    -displayName: "Guang Zhu"
+    -displayName: "Spike Jonze"
     -permissions
     -photoURL:
 ```
