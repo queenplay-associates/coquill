@@ -20,7 +20,7 @@
 - Data from the Firebase to Coquill 🌧☟:
     - Database listens to each unique action key on change - - -> those listeners trigger Redux actions - - -> local state get updated - - -> React component renders individually- Within the formatting toolbar, each formatting type generates an individual React component, this component also contains a reference key to its type (Action, Dialog, Scenes, etc) Ex: A screenplay might have 50+ rendered blocks, the State has potential fixed amount of child nodes. (Action, Dialog, Scene Headings, etc)
 The tree-like structure. The tree structure grows like that.
-- Each dispatched action with word content also carries writer's info which is passed on from firebase Auth, when writing in Coquill, writer notice the other writer's current editing place.
+- Each dispatched action with word content also carries writer's info which is passed on from firebase Auth, when writing in Coquill, writer notice the other writer's current editing place by pressing the 'tab' key.
 
 Reducer sample
 ````
