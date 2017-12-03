@@ -58,9 +58,21 @@ button:active {
 
 .share {
     padding-top: 5%;
-    margin-left: -8%;
+    padding-bottom: 1%;
 }
 
-.share hr {
-    margin-left: -10%;
+.share a {
+    margin: 6px;
+}
+
+.share-text {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 5px
+}
+
+.share-buttons {
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
 }
