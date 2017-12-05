@@ -7,6 +7,7 @@
 > Based on your selection, the editor will automatically format your text and 
 > provide text styling if need be. Once you have created a screenplay, 
 > the editor will project colors on the page which map to the context of your text.
+> https://github.com/queenplay-associates/coquill 
 >
 > Created by ❤️ [Eleni](https://github.com/DatGreekChick) 💜 [Samantha](https://github.com/samsterzz)  💖 [Christina](https://github.com/cyng24) 💙 [Guang](https://github.com/guangLess)️
 ️
