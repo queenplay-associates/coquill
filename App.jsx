@@ -5,6 +5,7 @@ import Screenplays from '~/client/components/Screenplays'
 import Navbar from '~/client/components/Navbar'
 import Editor from '~/client/components/Editor'
 import About from '~/client/components/About'
+import Guides from '~/client/components/Guides'
 import { db } from '~/public/secrets'
 import Auth from '~/client/components/Auth'
 
@@ -55,6 +56,7 @@ export default class App extends Component {
                             fireRef={db.ref('screenplays')
                                        .child(screenplayId)}/>}
           />
+          <Route exact path="/guides" component={Guides}/>
         </Switch>
       </div>
     </Router>

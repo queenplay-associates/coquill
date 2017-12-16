@@ -13,14 +13,16 @@ export default () =>
     </div>
     <div className='about-container'>
       <p className='about'>
-        Coquill is a real-time collaborative text editor for writing screenplays.
-        Based on your selection, the editor will automatically format your text
-        and provide text styling if need be. Once you have created a screenplay,
-        the editor will project colors on the page which map to the context of
-        your text.
+        Coquill is a real-time collaborative text editor for writing screenplays. Based on the component of the screenplay that you select, the editor will automatically format your text and provide styling. If you would like other people to write with you, simply link them to your screenplay.
       </p>
     <Link to='/screenplays'>
       <button className='start-button'>Get Started Now!</button>
     </Link>
     </div>
   </div>
+
+  // Coquill is a real-time collaborative text editor for writing screenplays.
+  //       Based on your selection, the editor will automatically format your text
+  //       and provide text styling if need be. Once you have created a screenplay,
+  //       the editor will project colors on the page which map to the context of
+  //       your text.
