@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<About /> component 1`] = `
+exports[`<About /> component snapshop of the DOM 1`] = `
 <div>
   <div
     className="logo-container"
