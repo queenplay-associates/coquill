@@ -10,7 +10,7 @@ import Auth from '~/client/components/Auth'
 
 import firebase from 'firebase'
 
-//TODO: make fire thing into promises and make const of screenPlay ref turn this function into a promise
+//TODO: make fire thing into promises or a helper class is it is reuseable?
 //TODO: make a function that makes anonymous names and images
 
 export default class App extends Component {

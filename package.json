@@ -23,6 +23,17 @@
     "Guang Zhu"
   ],
   "license": "ISC",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/reactTests/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/node_modules/jest-css-modules"
+    },
+    "testPathIgnorePatterns": [
+      "~/node_modules/",
+      "~/legacy_notes_and_workbook/",
+      "public/assets"
+    ]
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-jest": "^21.2.0",
@@ -33,6 +44,7 @@
     "chai": "^4.1.2",
     "firebase-tools": "^3.14.0",
     "jest": "^21.2.1",
+    "jest-css-modules": "^1.1.0",
     "mocha": "^4.0.1",
     "react-hot-loader": "^3.1.2",
     "regenerator-runtime": "^0.11.1",

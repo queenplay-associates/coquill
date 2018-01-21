@@ -63,19 +63,6 @@ function devServer(env) {
   }
 }
 
-
-// const babel = env => ({
-//   loader: 'babel-loader',
-//   options: {
-//     presets:[["es2015", {"modules": false}], "react"],
-//     "env": {
-//       "test": {
-//         "presets": ["react", ["env"]]
-//       }
-//     },
-//     plugins: isHot(env) && ['react-hot-loader/babel']
-//   }
-// });
 const babel = env => ({
   loader: 'babel-loader',
   options: {
@@ -86,30 +73,11 @@ const babel = env => ({
     ],
     "env": {
       "test": {
-        "plugins": ["transform-es2015-modules-commonjs"]
+        "plugins": ["dynamic-import-node"]
       }
     },
     plugins: isHot(env) && ['react-hot-loader/babel']
   }
 });
 
-/*
-const babel = env => ({
-  "presets": [
-    ["env", {"modules": false}],
-     "es2015",
-     "react",
-     "stage-2"
-],
-  "plugins": isHot(env) && ['react-hot-loader/babel']
-})
-*/
 module.exports = config(process.env);
-
-/*
- [
-      ['env', {modules: false}],
-      'stage-2',
-      'react',
-    ],
-*/
