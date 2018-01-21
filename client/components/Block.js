@@ -17,13 +17,14 @@ class Block extends Component {
             if (!user) return
 
             const nameid = user.displayName;
+            /*
             const initials = nameid.indexOf(' ')
             ? nameid.charAt(0).toUpperCase() + nameid.charAt(nameid.indexOf(' ')+1).toUpperCase()
             : nameid.charAt(0).toUpperCase();
-
+          */
             const name = user.isAnonymous
               ? '🤷🏻‍'
-              : initials
+              : nameid //initials
 
             this.setState({
               loginStatus: true,
@@ -52,7 +53,7 @@ class Block extends Component {
 
        if (evt.keyCode == 9) { //keydown of tab
         this.setState({showWriter: !this.state.showWriter})
-        console.log('THE SHOWWRITER', this.state.showWriter)
+        //console.log('THE SHOWWRITER', this.state.userName)
        }
 
         if (evt.keyCode === 8 && evt.target.value.length === 0) {
@@ -62,8 +63,9 @@ class Block extends Component {
 
     render() {
         const {value = '', name, type } = this.props;
+        console.log("this.props.name==", this.props.name)
         return <div className="tooltip">
-          {this.state.showWriter && <span className="tooltipauthor">{name}</span>}
+          {this.state.showWriter && <span className="tooltipauthor">{this.state.userName}</span>}
           <textarea
                   ref={name => this.text = name}
                   value={value}

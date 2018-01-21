@@ -66,13 +66,22 @@ function devServer(env) {
 const babel = env => ({
   loader: 'babel-loader',
   options: {
-    presets: [
-      ['env', {modules: false}],
-      'stage-2',
-      'react',
-    ],
+    presets:[["es2015", {"modules": false}], "react"],
+    "env": {
+      "test": {
+        "presets": [["es2015"], "react"]
+      }
+    },
     plugins: isHot(env) && ['react-hot-loader/babel']
   }
 });
 
 module.exports = config(process.env);
+
+/*
+ [
+      ['env', {modules: false}],
+      'stage-2',
+      'react',
+    ],
+*/
